@@ -14,7 +14,7 @@ export default class App extends Component {
         <Route exact path="/" component={LandingPage} />
 
         {/*Primary App*/}
-        <Route path="/main" component={PrimaryApp} />
+        <Route exact path="/main" component={PrimaryApp} />
       </Switch>
     )
   }

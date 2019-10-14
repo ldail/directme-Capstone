@@ -1,0 +1,191 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body, html, #root>.main.wrapper { 
+  height: 100%;
+  background-color: lightgray;
+}
+
+.main.wrapper header {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main.wrapper .top {
+  display: flex;
+}
+
+.main.wrapper .titles {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.main.wrapper h1 {
+  font-size: 30px;
+}
+
+.main.wrapper h2 {
+  font-size: 18px;
+}
+
+.main.wrapper .websiteButton {
+  border: 1px solid black;
+  height: 60px;
+  margin: 10px;
+}
+
+.main.wrapper .searchBar {
+  text-align: center;
+}
+.main.wrapper .searchBar input {
+  width: 90%;
+  height: 30px;
+}
+
+.main.wrapper .locationBar {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  align-content: center;
+}
+
+.main.wrapper .currentLocation {
+  border: 1px solid black;
+  padding: 10px;
+  flex: 0;
+  text-align: center;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.main.wrapper .nextLocation {
+  border: 1px solid black;
+  padding: 5px;
+  flex: 0;
+  text-align: center;
+}
+
+.main.wrapper .lineBar {
+  flex: 1;
+  border-top: 1px solid black;
+}
+
+.main.wrapper main {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-bottom: 65px;
+  background-color: white;
+}
+
+.main.wrapper .chooseHeader {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 10px;
+}
+
+.main.wrapper .chooseHeader div {
+  width: 100%;
+  text-align: center;
+}
+
+.main.wrapper .chooseHeader div:not(.active) {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.main.wrapper .headerInfo {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.main.wrapper .headerInfo div {
+  width: 100%;
+  text-align: center;
+}
+
+.main.wrapper .headerInfo div:not(.active) {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.main.wrapper ul {
+  list-style: none;
+}
+
+.main.wrapper .catListings {
+  width: 100%;
+}
+
+.main.wrapper .catListing {
+  display: flex;
+  border-bottom: 1px solid black;
+  padding: 20px 0px;
+}
+
+.main.wrapper .catListing h3 {
+  background-color: lightgray;
+}
+
+.main.wrapper .catListingNumbers {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.main.wrapper .catListingNumbersItem {
+  border: 1px solid black;
+  background-color: lightgray;
+}
+
+.main.wrapper .catListingInfo {
+  flex: 1;
+}
+
+.main.wrapper .submitButton {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 90px;
+  right: 50px;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid black;
+  z-index: 2;
+}
+
+.main.wrapper footer {
+  position: fixed;
+  bottom: 0px;
+  background-color: gray;
+  padding: 15px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.main.wrapper footer ul {
+  display: flex;
+}
+
+.main.wrapper footer li {
+  border: 1px solid black;
+  margin: 0px 5px;
+  background-color: white;
+}
+
+.main.wrapper footer li.activeSort {
+  background-color: lightgray;
+}
+.main.wrapper footer li.divider {
+  height: 30px;
+  width: 1px;
+  background-color: black;
+}

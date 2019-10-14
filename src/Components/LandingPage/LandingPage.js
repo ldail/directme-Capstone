@@ -1,10 +1,11 @@
 import React from 'react';
+import '../../reset.css'
 import './LandingPage.css'
 
 export default function LandingPage() {
 
   return(
-    <div class="wrapper">
+    <div class="landing wrapper">
 
 <header>
     <h1>direct.me</h1>

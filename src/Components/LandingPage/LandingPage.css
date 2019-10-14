@@ -8,7 +8,7 @@ html, body, #root, #root>.wrapper{
   padding: 0px;
 }
 
-#root>.wrapper {
+#root>.landing.wrapper {
   background-color: lightgray;
   display: flex;
   flex-direction: column;
@@ -19,45 +19,45 @@ ul {
   list-style: none;
 }
 
-header {
+.landing.wrapper header {
   width: 100%;
   flex: 1;
   background-color: gray;
 }
 
-h1 {
+.landing.wrapper h1 {
   font-size: 60px;
   text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-h2 {
+.landing.wrapper h2 {
   font-size: 30px;
   text-align: center;
 }
 
-main {
+.landing.wrapper main {
   padding-top: 30px;
   flex: 2;
   width: 100%;
 }
 
 
-li {
+.landing.wrapper li {
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 20px;
   padding: 5px 30px;
 }
 
-li span {
+.landing.wrapper li span {
   display: block;
   font-size: 18px;
   font-weight: normal;
 }
 
-li.final {
+.landing.wrapper li.final {
   margin-top: 50px;
   text-align: right;
   background-color: gray;
