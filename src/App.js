@@ -12,7 +12,9 @@ export default class App extends Component {
     super(props)
     this.state = {
       displayPage: LandingPage,
-      displayTab: '?hubs'
+      displayTab: '?hubs',
+      currentHub: 0,
+      tags: []
     }
   }
 
@@ -22,10 +24,56 @@ export default class App extends Component {
     });
   }
 
+  getTagNameById(tag_id) {
+    let tag = this.state.tags.find(tag => tag.id === tag_id) || {};
+    return tag.name;
+  }
+
+  getFullTagByName(tag_name) {
+    let tag = this.state.tags.find(tag => tag.name.toLowerCase() === tag_name.toLowerCase());
+    return tag;
+  }
+
+  getTagByName(name) {
+    fetch(`${config.API_ENDPOINT}/getTagByName/${name}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('This is an error');
+      }
+      res.json();
+    })
+    .then(resJson => resJson)
+    .catch(e => new Error('there was an error!'));
+  }
+
+  getTagById(id) {
+    console.log('reaching');
+    fetch(`${config.API_ENDPOINT}/getTagById/${id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('This is an error');
+      }
+      res.json();
+    })
+    .then(resJson => resJson)
+    .catch(e => new Error('there was an error!'));
+  }
+
   componentDidMount() {
     this.checkPage();
 
     //Connect to API
+    //Gather the hubs / subcategory list since that is the initial display (this.state.displayTab:'?hubs')
     fetch(`${config.API_ENDPOINT}/allSubcategoryLists`, {
       method: 'GET',
       headers: {
@@ -38,7 +86,23 @@ export default class App extends Component {
       }
       return res.json();
     })
-    .then(resJson => console.log(resJson))
+    .then(subcategory_list => this.setState({subcategory_list}))
+    .then(() => {
+      return fetch(`${config.API_ENDPOINT}/allTags`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('error in fetch!')
+        }
+        return res.json();
+      })
+      .then(tags => this.setState({tags}))
+      .catch(e => console.error('there was an error'));
+    })
     .catch(e=> console.error('there was an error'));
   }
 
@@ -55,8 +119,8 @@ export default class App extends Component {
 
   render() {
     return (
-        <Route exact path="/" render={(e) => 
-          <this.state.displayPage props={e} stateChange={this.stateChange} state={this.state}  />} />
+        <Route path="/" render={(e) => 
+          <this.state.displayPage router={e} stateChange={this.stateChange} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />} />
     )
   }
 }

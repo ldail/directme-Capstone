@@ -13,7 +13,7 @@ export default function LandingPage(props) {
   function goToLanding() {
     window.localStorage.setItem('seenLanding',true);
     props.stateChange({displayPage: PrimaryApp})
-    props.props.history.push('/');
+    props.router.history.push('/');
   };
 
   return(

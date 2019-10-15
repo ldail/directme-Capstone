@@ -26,19 +26,19 @@ export default function PrimaryApp(props) {
       {/*Header*/}
       <header>
         <section className="top">
-          <HeaderTitle />
+          <HeaderTitle stateChange={props.stateChange} />
           <InfoBox />
           <AccountBox />
         </section>
         <SearchBar />
-        <LocationBar />
+        <LocationBar router={props.router} stateChange={props.stateChange} getTagNameById={props.getTagNameById} getFullTagByName={props.getFullTagByName} state={props.state} />
       </header>
 
 
       {/*Main*/}
       <Route exact path="/?submit" component={SubmitListing} />
       <Route path="/" render={() =>
-      <Main stateChange={props.stateChange} state={props.state} />} />
+      <Main stateChange={props.stateChange} state={props.state} router={props.router} getFullTagByName={props.getFullTagByName} getTagById={props.getTagById} getTagByName={props.getTagByName} getTagNameById={props.getTagNameById} />} />
       <SubmitButton />
 
       {/*Footer*/}
