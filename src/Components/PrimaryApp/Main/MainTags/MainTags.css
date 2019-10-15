@@ -1,0 +1,53 @@
+.tab-main main h3 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.tab-main .TagHeading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tab-main .TagCombos {
+  margin: 5px 20px;
+}
+
+.tab-main .TagComboItem {
+  border: 1px solid black;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.TagComboItem p {
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.tab-main .TagComboItem ul {
+  width: 100%;
+  display: flex;
+  margin-left: 50px;
+}
+
+.tab-main .TagComboItem li {
+  padding-right: 15px;
+}
+
+.tab-main .TagSingles {
+  margin: 0px 20px;
+  padding-top: 30px;
+  border-top: 1px solid black;
+}
+
+.tab-main .TagSingles ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tab-main .TagSingles li {
+  width: 50%;
+  text-align: center;
+  margin-bottom: 10px;
+}

@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function AccountBox() {
   return(
-    <div class="websiteButton infoBox">
+    <div className="websiteButton infoBox">
       account options
     </div>
   );

@@ -1,0 +1,20 @@
+.submit-listing main {
+  padding: 20px;
+  text-align: center;
+}
+
+.submit-listing label {
+  display: block;
+}
+
+.submit-listing input {
+  width: 100%;
+}
+
+.submit-listing input.tags {
+  width: 30%;
+}
+
+.submit-listing .submitLink ul {
+  margin-bottom: 20px;
+}
