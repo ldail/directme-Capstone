@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 export default function HeaderTitle(props) {
   function onClickEvent() {
-    props.stateChange({currentHub: 0});
+    props.stateChange({currentHub: 0, displayTab: '?hubs'});
   }
   return(
       <div className="titles">

@@ -30,7 +30,15 @@ export default class App extends Component {
   }
 
   getFullTagByName(tag_name = '') {
-    let tag = this.state.tags.find(tag  => tag.name.toLowerCase() === tag_name.toLowerCase());
+    let tag = this.state.tags.find(tag  => {
+      if (!tag.name) {
+        let testName = '';
+        return testName.toLowerCase() === tag_name.toLowerCase();
+       }
+       else {
+        return tag.name.toLowerCase() === tag_name.toLowerCase()
+       }
+    });
     return tag;
   }
 

@@ -6,21 +6,20 @@ export default function LocationBar(props) {
   let routeListing = '';
   // let routeArray = [];
   let totalPath = ['home'];
-  if (path === '/') {
-    routeListing = <div className="currentLocation">{totalPath[0]}</div>
-  }
-  else {
-    let fullPath = path.split('/').filter(item=> item !== "");
-    // console.log(fullPath);
-    fullPath.forEach(path=> {
-      //check if each in the path is an actual tag
-      if (!props.getFullTagByName(path)) {
-        //Catches if it's not a tag.
-        return routeListing = <div className="currentLocation">{totalPath[0]}</div>
-      }
+  // if (path === '/') {
+  routeListing = <div className="currentLocation">{totalPath[0]}</div>
+  // }
+  // else {
+  //   let fullPath = path.split('/').filter(item=> item !== "");
+  //   // console.log(fullPath);
+  //   fullPath.forEach(path=> {
+  //     //check if each in the path is an actual tag
+  //     if (!props.getFullTagByName(path)) {
+  //       //Catches if it's not a tag.
+  //       return routeListing = <div className="currentLocation">{totalPath[0]}</div>
+  //     }
 
-    });
-  }
+  //   });
   return(
     <section className="locationBar">
       {routeListing}

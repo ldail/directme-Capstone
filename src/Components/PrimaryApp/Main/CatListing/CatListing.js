@@ -32,7 +32,7 @@ export default function CatListing(props) {
       let link = props.getTagNameById(item.tag_id) || '';
       let lowercase = link.toLowerCase();
       let path2 = `..${props.router.location.pathname}/${lowerCase}/${lowercase}`;
-      return <li className="subCategoryItem">--><Link to={path2} onClick={onClickEvent}>{props.getTagNameById(item.tag_id)}</Link></li>;
+      return <li className="subCategoryItem">--><Link to={path2}>{props.getTagNameById(item.tag_id)}</Link></li>;
     });
     return mapping
     }
@@ -40,18 +40,26 @@ export default function CatListing(props) {
 
 showSubcategories();
 
-  function onClickEvent() {
+  function decideLink(lowerCase) {
     if (checkSubcategories()) {
-      console.log('yes');
-      props.stateChange({currentHub: currentTagId});
-      props.router.history.push('?listings')
+      if (props.router.location.pathname === '/') {
+
+        return lowerCase;
+      }
+      else {
+        return `${props.router.location.pathname}/${lowerCase}`
+      }
     }
     else {
-      let newPath = `${props.router.location.pathname}/${lowerCase}?listings`
-      console.log(newPath);
-      // props.stateChange({currentHub: currentTagId, displayTab: '?listings'});
-    }
+      if (props.router.location.pathname !== '/') {
+        return `${props.router.location.pathname}/${lowerCase}`
+      }
+      else {
+        return `${lowerCase}`;
+      }
   }
+}
+
   return(
     <li className="catListing">
       <div className="catListingNumbers">
@@ -59,7 +67,7 @@ showSubcategories();
         <div className="catListingNumbersItem">12</div>
       </div>
       <div className="catListingInfo">
-        <h3><Link to={() => path(lowerCase)} onClick={onClickEvent}>{currentTagName}</Link></h3>
+        <h3><Link to={() => decideLink(lowerCase)}>{currentTagName}</Link></h3>
         <h4><ul>{showSubcategories()}</ul></h4>
       </div>
     </li>
