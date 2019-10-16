@@ -38,7 +38,7 @@ export default function PrimaryApp(props) {
       {/*Main*/}
       <Route exact path="/?submit" component={SubmitListing} />
       <Route path="/" render={() =>
-      <Main stateChange={props.stateChange} state={props.state} router={props.router} getFullTagByName={props.getFullTagByName} getTagById={props.getTagById} getTagByName={props.getTagByName} getTagNameById={props.getTagNameById} />} />
+      <Main stateChange={props.stateChange} state={props.state} router={props.router} getFullTagById={props.getFullTagById} getFullTagByName={props.getFullTagByName} getTagById={props.getTagById} getTagByName={props.getTagByName} getTagNameById={props.getTagNameById} />} />
       <SubmitButton />
 
       {/*Footer*/}

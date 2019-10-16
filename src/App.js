@@ -29,8 +29,13 @@ export default class App extends Component {
     return tag.name;
   }
 
-  getFullTagByName(tag_name) {
-    let tag = this.state.tags.find(tag => tag.name.toLowerCase() === tag_name.toLowerCase());
+  getFullTagByName(tag_name = '') {
+    let tag = this.state.tags.find(tag  => tag.name.toLowerCase() === tag_name.toLowerCase());
+    return tag;
+  }
+
+  getFullTagById(tag_id) {
+    let tag = this.state.tags.find(tag => tag.id === tag_id) || {};
     return tag;
   }
 
@@ -52,7 +57,6 @@ export default class App extends Component {
   }
 
   getTagById(id) {
-    console.log('reaching');
     fetch(`${config.API_ENDPOINT}/getTagById/${id}`, {
       method: 'GET',
       headers: {
@@ -120,7 +124,7 @@ export default class App extends Component {
   render() {
     return (
         <Route path="/" render={(e) => 
-          <this.state.displayPage router={e} stateChange={this.stateChange} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />} />
+          <this.state.displayPage router={e} stateChange={this.stateChange} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />} />
     )
   }
 }
