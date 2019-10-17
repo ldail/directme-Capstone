@@ -3,96 +3,49 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 //Components
+import getHubList from '../../../utils/getHubList'
 import checkPath from '../../../utils/checkPath'
 
 export default function CatListing(props) {
   let path = props.router.location.pathname;
   let info = props.info || {}
-  let currentTagId = info.id
   let currentTagName = info.name || ''
-  let lowerCase = currentTagName.toLowerCase();
-
-  let check = checkPath(props,path);
-
-
-
-
-
-  return(
-    <li className="catListing">
-      <div className="catListingNumbers">
-        <div className="catListingNumbersItem">20</div>
-        <div className="catListingNumbersItem">12</div>
-      </div>
-      <div className="catListingInfo">
-        <h3>{currentTagName}</h3>
-        <h4><ul></ul></h4>
-      </div>
-    </li>
-  );
-}
-
-
-/*
-
-
-
-
-
-
-  let path = (lowerCase) => {
-    if (props.router.location.pathname === '/') {
-      return lowerCase;
-    }
-    else {
-      return `${props.router.location.pathname}/${lowerCase}`
-    }
-  }
-  let theseSubcategories = props.state.subcategory_list.filter(item => item.subcategory_to === currentTagId)
   
-  function checkSubcategories() {
-    if (!theseSubcategories || theseSubcategories === [] || theseSubcategories.length === 0) {
-      return false;
-    }
-    return true;
-  }
-
-  function showSubcategories() {
-    if (!checkSubcategories()) {
-      return <li>(no subcategories)</li>
+  function createPath(tagName) {
+    if (path === '/') {
+      return `/${tagName.toLowerCase()}`;
     }
     else {
-    let mapping = theseSubcategories.map(item => {
-      let link = props.getTagNameById(item.tag_id) || '';
-      let lowercase = link.toLowerCase();
-      let path2 = `..${props.router.location.pathname}/${lowerCase}/${lowercase}`;
-      return <li className="subCategoryItem">--><Link to={path2}>{props.getTagNameById(item.tag_id)}</Link></li>;
-    });
-    return mapping
+      return `${path}/${tagName.toLowerCase()}`
     }
   }
 
-showSubcategories();
-
-  function decideLink(lowerCase) {
-    if (checkSubcategories()) {
-      if (props.router.location.pathname === '/') {
-
-        return lowerCase;
-      }
-      else {
-        return `${props.router.location.pathname}/${lowerCase}`
-      }
+  function createSubPath(tagName) {
+    if (path === '/') {
+      return `${currentTagName.toLowerCase()}/${tagName.toLowerCase()}`
     }
     else {
-      if (props.router.location.pathname !== '/') {
-        return `${props.router.location.pathname}/${lowerCase}`
-      }
-      else {
-        return `${lowerCase}`;
-      }
+      return `${path}/${currentTagName}/${tagName.toLowerCase()}`
+    }
+  }
+  console.log(createPath(currentTagName));
+  let check = checkPath(props,createPath(currentTagName));
+  let subcategories = getHubList(props,check.currentHub) || [];
+
+  function listSubcategories() {
+    if (subcategories.length === 0) {
+      return <li>There are no further hubs!</li>
+    }
+    else {
+      if (subcategories[0]) {
+        return subcategories.map((item,index) => <Link to={() => createSubPath(item.name)}><li key={index}>{item.name}</li></Link>)
+    }
   }
 }
+
+
+
+
 
   return(
     <li className="catListing">
@@ -101,10 +54,9 @@ showSubcategories();
         <div className="catListingNumbersItem">12</div>
       </div>
       <div className="catListingInfo">
-        <h3><Link to={() => decideLink(lowerCase)}>{currentTagName}</Link></h3>
-        <h4><ul>{showSubcategories()}</ul></h4>
+        <h3><Link to={() => createPath(currentTagName)}>{currentTagName}</Link></h3>
+        <h4><ul>{listSubcategories()}</ul></h4>
       </div>
     </li>
   );
 }
-*/

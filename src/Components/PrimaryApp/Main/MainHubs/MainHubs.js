@@ -9,29 +9,18 @@ import checkPath from '../../../utils/checkPath';
 export default function MainHubs(props) {
 
   let path = props.router.location.pathname;
-  let check = checkPath(props,path)
-  console.log(check);
-  let hubList = getHubList(props, check.currentHub);
+  let check = checkPath(props,path) // returns the currentHub (unique) id and if the path is missing.
+  let hubList = getHubList(props, check.currentHub); //returns the list of categories within. Empty if none.
 
   function makeHubDisplay() {
     if (check.missingPath === true) {
       return <li>This is not an established path yet!</li>
     }
-    if (hubList.newNames.length === 0) {
-      // if (props.state.displayTab !== '?listings' && props.router.location.pathname !== '/') {
-      //   props.stateChange({displayTab: '?listings'});
-      // }
+    if (hubList.length === 0) {
       return <li>There are no further hubs!</li>
     }
-    return hubList.newNames.map((item,index) => <CatListing key={index} info={item} router={props.router} {...props} />)
+    return hubList.map((item,index) => <CatListing key={index} currentHub={check.currentHub} info={item} router={props.router} {...props}  />)
   }
-
-  // function checkPath() {
-  //   if (hubList.missingPath === true) {
-  //     return <li>There is no established path here yet!</li>
-  //   }
-  //   return makeHubDisplay();
-  // }
 
   return(
       <section className="catListings">
