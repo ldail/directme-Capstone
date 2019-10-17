@@ -14,24 +14,18 @@ export default function Main(props) {
   let check = useLocation().search;
 
   function checkPage() {
-    if (check.includes('?tags') || props.state.displayTab === '?tags') {
-      if (props.state.displayTab !== '?tags') { props.stateChange({displayTab: '?tags'})}
+    if (check.includes('?tags')) {
       return <MainTags router={props.router} {...props}  />
     }
 
-    else if (check.includes('?listings') || props.state.displayTab === '?listings') {
-      if (props.state.displayTab !== '?listings') { props.stateChange({displayTab: '?listings'})}
+    else if (check.includes('?listings')) {
       return <MainListings router={props.router} {...props} />
     }
-    else if (check.includes('?submit') || props.state.displayTab === '?submit') {
-      if (props.state.displayTab !== '?submit') { props.stateChange({displayTab: '?submit'})}
+    else if (check.includes('?submit')) {
       return <SubmitListing />
     }
 
-    else if (check.includes('?hubs') || props.state.displayTab === '?hubs') {
-      if (props.state.displayTab !== '?hubs') {
-        props.stateChange({displayTab: '?hubs'});
-      }
+    else {
       return <MainHubs router={props.router} {...props} />
     }
   }

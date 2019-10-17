@@ -1,40 +1,39 @@
 //Dependencies
 import React from 'react'
 
-export default function LinkListing() {
+export default function LinkListing(props) {
+  let listing = props.info
+  let description = (listing.description) ? listing.description : '' //it's optional, so don't dislay 'null'
   return (
-              <li class="catListing">
-          <div class="catListingNumbers">
-            <div class="catListingNumbersItem">20</div>
-            <div class="catListingNumbersItemBottom">^</div>
+    <li className="catListing">
+      <div className="catListingNumbers">
+        <div className="catListingNumbersItem">20</div>
+        <div className="catListingNumbersItemBottom">^</div>
+      </div>
+      <div className="catListingInfo">
+        <h3>{listing.name}</h3>
+        <h4><a href={listing.url} target="_blank">{listing.url}</a></h4>
+        <div className="tagList">
+          <div className="leftSide">
+            <h5>-tags will go here-</h5>
           </div>
-          <div class="catListingInfo">
-            <h3>First Listing Item Name - Expanded</h3>
-            <h4>reactjs.com</h4>
-            <div class="tagList">
-              <div class="leftSide">
-                <h5>#react #javascript #learn #blog #short #more #tags #here</h5>
-              </div>
-              <div class="rightSide">
-                <span>(see more)</span>
-                <span>(add tags)</span>
-              </div>
-            </div>
-            <p>A short description goes here to let people
-                know what they are going to get when 
-                they enter the link. The description can 
-                take up a further amount of space. </p>
+          <div className="rightSide">
+            <span>(see more)</span>
+            <span>(add tags)</span>
+          </div>
+        </div>
+        <p>{description}</p>
 
-            <div class="CatListingBottomRow">
-              <div class="comments">
-                <div class="theIcon">-icon-</div>
-                <div>(15 comments)</div>
-              </div>
-              <div class="star">
-                <div>-star-</div>
-              </div>
-            </div>
+        <div className="CatListingBottomRow">
+          <div className="comments">
+            <div className="theIcon">-icon-</div>
+            <div>(15 comments)</div>
           </div>
-        </li>
+          <div className="star">
+            <div>-star-</div>
+          </div>
+        </div>
+      </div>
+    </li>
   )
 }

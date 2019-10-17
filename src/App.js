@@ -12,7 +12,6 @@ export default class App extends Component {
     super(props)
     this.state = {
       displayPage: LandingPage,
-      displayTab: '?hubs',
       currentHub: 0,
       tags: []
     }
@@ -99,7 +98,7 @@ export default class App extends Component {
   }
 
   getListingByTagId = (tag_id) => {
-    fetch (`${config.API_ENDPOINT}/listings/tag/${tag_id}`, {
+    return fetch (`${config.API_ENDPOINT}/listings/tag/${tag_id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -111,12 +110,14 @@ export default class App extends Component {
       }
       return res.json();
     })
-    .then(resJson => resJson)
+    .then(resJson => {
+      return resJson
+    })
     .catch(e => console.log('error'));
   }
 
   getListingByListingId = (listing_id) => {
-    fetch (`${config.API_ENDPOINT}/listings/listing/${listing_id}`, {
+    return fetch (`${config.API_ENDPOINT}/listings/listing/${listing_id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'

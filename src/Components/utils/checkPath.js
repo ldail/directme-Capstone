@@ -1,9 +1,10 @@
 //Give the function a path and it'll return a matching 
 //hub id (unique) or if the path is missing (not established).
 export default function checkPath(props,path) { //e.g. 2, 'programming/javascript/react'
-  let tags = props.state.tags || [];
-  let hubLinks = props.state.hubLinks || [];
-  let hubTags = props.state.hubTags || [];
+  let state = props.state || {}
+  let tags = state.tags || [];
+  let hubLinks = state.hubLinks || [];
+  let hubTags = state.hubTags || [];
   let missingPath = false;
   if (path === '/') {
     return {currentHub: 1, missingPath}
