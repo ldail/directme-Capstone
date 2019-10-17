@@ -1,6 +1,3 @@
-//Dependencies
-import React from 'react'
-
 export default function getListingsByTags(props,path) {
   let tags = props.state.tags || []
   let newPath = path.slice(1);
@@ -13,12 +10,7 @@ export default function getListingsByTags(props,path) {
 
 
   if (!newPath.includes('/')) { // single Path
-    console.log(checkId);
-    let data = props.getListingByTagId(checkId)
-    console.log(data);
+    return props.getListingByTagId(checkId);
   }
-
-  // let splitPath = newPath.split('/') //example: ['Programming,'Javascript','React']
-
 
 }

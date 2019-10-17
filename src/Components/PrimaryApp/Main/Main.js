@@ -1,6 +1,6 @@
 //Dependencies
 import React from 'react';
-import {Route, useLocation, useHistory, Switch} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 //Components
 import MainNav from './MainNav/MainNav';

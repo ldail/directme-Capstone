@@ -13,8 +13,6 @@ export default function CatListing(props) {
   let currentTagName = info.name || ''
   
   let check = checkPath(props,createPath(path,currentTagName));
-  console.log(check);
-  console.log('check');
   let subcategories = getHubList(props,check.currentHub) || [];
 
   function listSubcategories() {
@@ -23,7 +21,7 @@ export default function CatListing(props) {
     }
     else {
       if (subcategories[0]) {
-        return subcategories.map((item,index) => <Link to={() => createPath(path,currentTagName,item.name)}><li key={index}>{item.name}</li></Link>)
+        return subcategories.map((item,index) => <Link key={index} to={() => createPath(path,currentTagName,item.name)}><li key={index}>{item.name}</li></Link>)
     }
   }
 }

@@ -111,9 +111,7 @@ export default class App extends Component {
       }
       return res.json();
     })
-    .then(resJson => {
-      return resJson;
-    })
+    .then(resJson => resJson)
     .catch(e => console.log('error'));
   }
 
