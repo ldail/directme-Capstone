@@ -9,7 +9,6 @@ export default function getHubList(props,currentHub) {
     return hub_tag_item.tag_id;
   });
   let newNames = names.map(mapItem => tags.find(tag => tag.id === mapItem));
-  console.log(newNames);
   return newNames;
 }
 

@@ -19,7 +19,6 @@ import SortOptions from './SortOptions/SortOptions';
 import './PrimaryApp.css'
 
 export default function PrimaryApp(props) {
-  console.log(props);
   return(
     <div className="main wrapper">
 
@@ -36,7 +35,6 @@ export default function PrimaryApp(props) {
 
 
       {/*Main*/}
-      {console.log({props})}
       <Route exact path="/?submit" component={SubmitListing} />
       <Route path="/" render={() =>
       <Main {...props} router={props.router}  />} />

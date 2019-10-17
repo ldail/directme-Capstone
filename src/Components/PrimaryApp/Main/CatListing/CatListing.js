@@ -28,7 +28,6 @@ export default function CatListing(props) {
       return `${path}/${currentTagName}/${tagName.toLowerCase()}`
     }
   }
-  console.log(createPath(currentTagName));
   let check = checkPath(props,createPath(currentTagName));
   let subcategories = getHubList(props,check.currentHub) || [];
 

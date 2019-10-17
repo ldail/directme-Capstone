@@ -8,6 +8,7 @@ import MainNavNumbers from './MainNavNumbers/MainNavNumbers'
 import MainHubs from './MainHubs/MainHubs'
 import MainTags from './MainTags/MainTags';
 import SubmitListing from '../SubmitListing/SubmitListing'
+import MainListings from './MainListings/MainListings'
 
 export default function Main(props) {
   let check = useLocation().search;
@@ -20,7 +21,7 @@ export default function Main(props) {
 
     else if (check.includes('?listings') || props.state.displayTab === '?listings') {
       if (props.state.displayTab !== '?listings') { props.stateChange({displayTab: '?listings'})}
-      return <div>This is where the listings will go!</div>
+      return <MainListings router={props.router} {...props} />
     }
     else if (check.includes('?submit') || props.state.displayTab === '?submit') {
       if (props.state.displayTab !== '?submit') { props.stateChange({displayTab: '?submit'})}

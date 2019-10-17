@@ -81,21 +81,57 @@ export default class App extends Component {
     .catch(e => new Error('there was an error!'));
   }
 
-  oldSubcategoryFunction = () => {
-    // fetch(`${config.API_ENDPOINT}/allSubcategoryLists`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'content-type': 'application/json'
-    //   }
-    // })
-    // .then(res => {
-    //   if (!res.ok) {
-    //     throw new Error('error in fetch!')
-    //   }
-    //   return res.json();
-    // })
-    // .then(subcategory_list => this.setState({subcategory_list}))
-    //console.log('nothing');
+  getAllListings = () => {
+    fetch (`${config.API_ENDPOINT}/listings`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('error in fetch!')
+      }
+      return res.json();
+    })
+    .then(resJson => resJson)
+    .catch(e => console.log('error'));
+  }
+
+  getListingByTagId = (tag_id) => {
+    fetch (`${config.API_ENDPOINT}/listings/tag/${tag_id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('error in fetch!')
+      }
+      return res.json();
+    })
+    .then(resJson => {
+      return resJson;
+    })
+    .catch(e => console.log('error'));
+  }
+
+  getListingByListingId = (listing_id) => {
+    fetch (`${config.API_ENDPOINT}/listings/listing/${listing_id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('error in fetch!')
+      }
+      return res.json();
+    })
+    .then(resJson => resJson)
+    .catch(e => console.log('error'));
   }
 
   componentDidMount() {
@@ -164,7 +200,7 @@ export default class App extends Component {
   render() {
     return (
         <Route path="/" render={(e) => 
-          <this.state.displayPage router={e} stateChange={this.stateChange} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />} />
+          <this.state.displayPage router={e} stateChange={this.stateChange} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />} />
     )
   }
 }
