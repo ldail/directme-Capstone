@@ -24,12 +24,12 @@ export default class App extends Component {
     });
   }
 
-  getTagNameById(tag_id) {
+  getTagNameById = (tag_id) => {
     let tag = this.state.tags.find(tag => tag.id === tag_id) || {};
     return tag.name;
   }
 
-  getFullTagByName(tag_name = '') {
+  getFullTagByName = (tag_name = '') => {
     let tag = this.state.tags.find(tag  => {
       if (!tag.name) {
         let testName = '';
@@ -42,12 +42,12 @@ export default class App extends Component {
     return tag;
   }
 
-  getFullTagById(tag_id) {
+  getFullTagById = (tag_id) => {
     let tag = this.state.tags.find(tag => tag.id === tag_id) || {};
     return tag;
   }
 
-  getTagByName(name) {
+  getTagByName = (name) => {
     fetch(`${config.API_ENDPOINT}/getTagByName/${name}`, {
       method: 'GET',
       headers: {
@@ -64,7 +64,7 @@ export default class App extends Component {
     .catch(e => new Error('there was an error!'));
   }
 
-  getTagById(id) {
+  getTagById = (id) => {
     fetch(`${config.API_ENDPOINT}/getTagById/${id}`, {
       method: 'GET',
       headers: {
@@ -81,12 +81,29 @@ export default class App extends Component {
     .catch(e => new Error('there was an error!'));
   }
 
+  oldSubcategoryFunction = () => {
+    // fetch(`${config.API_ENDPOINT}/allSubcategoryLists`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'content-type': 'application/json'
+    //   }
+    // })
+    // .then(res => {
+    //   if (!res.ok) {
+    //     throw new Error('error in fetch!')
+    //   }
+    //   return res.json();
+    // })
+    // .then(subcategory_list => this.setState({subcategory_list}))
+    //console.log('nothing');
+  }
+
   componentDidMount() {
     this.checkPage();
 
     //Connect to API
     //Gather the hubs / subcategory list since that is the initial display (this.state.displayTab:'?hubs')
-    fetch(`${config.API_ENDPOINT}/allSubcategoryLists`, {
+    fetch (`${config.API_ENDPOINT}/getHubLinks`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -98,7 +115,22 @@ export default class App extends Component {
       }
       return res.json();
     })
-    .then(subcategory_list => this.setState({subcategory_list}))
+    .then(hubLinks => this.setState({hubLinks}))
+    .then(() => {
+      return fetch (`${config.API_ENDPOINT}/getHubTags`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('error in fetch!')
+        }
+        return res.json();
+      })
+      .then(hubTags => this.setState({hubTags}))
+    })
     .then(() => {
       return fetch(`${config.API_ENDPOINT}/allTags`, {
         method: 'GET',

@@ -2,10 +2,44 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+//Components
+import checkPath from '../../../utils/checkPath'
+
 export default function CatListing(props) {
-  let currentTagId = props.info.tag_id;
-  let currentTagName = props.getTagNameById(currentTagId) || ''
+  let path = props.router.location.pathname;
+  let info = props.info || {}
+  let currentTagId = info.id
+  let currentTagName = info.name || ''
   let lowerCase = currentTagName.toLowerCase();
+
+  let check = checkPath(props,path);
+
+
+
+
+
+  return(
+    <li className="catListing">
+      <div className="catListingNumbers">
+        <div className="catListingNumbersItem">20</div>
+        <div className="catListingNumbersItem">12</div>
+      </div>
+      <div className="catListingInfo">
+        <h3>{currentTagName}</h3>
+        <h4><ul></ul></h4>
+      </div>
+    </li>
+  );
+}
+
+
+/*
+
+
+
+
+
+
   let path = (lowerCase) => {
     if (props.router.location.pathname === '/') {
       return lowerCase;
@@ -73,3 +107,4 @@ showSubcategories();
     </li>
   );
 }
+*/

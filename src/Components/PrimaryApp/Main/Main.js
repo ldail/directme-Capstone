@@ -15,7 +15,7 @@ export default function Main(props) {
   function checkPage() {
     if (check.includes('?tags') || props.state.displayTab === '?tags') {
       if (props.state.displayTab !== '?tags') { props.stateChange({displayTab: '?tags'})}
-      return <MainTags state={props.state} router={props.router} getTagById={props.getTagById} getTagByName={props.getTagByName} stateChange={props.stateChange} />
+      return <MainTags router={props.router} {...props}  />
     }
 
     else if (check.includes('?listings') || props.state.displayTab === '?listings') {
@@ -31,15 +31,15 @@ export default function Main(props) {
       if (props.state.displayTab !== '?hubs') {
         props.stateChange({displayTab: '?hubs'});
       }
-      return <MainHubs state={props.state} router={props.router} getFullTagByName={props.getFullTagByName} getFullTagById={props.getFullTagById} getTagById={props.getTagById} getTagByName={props.getTagByName} stateChange={props.stateChange} getTagNameById={props.getTagNameById} />
+      return <MainHubs router={props.router} {...props} />
     }
   }
   let pageDisplay = checkPage();
 
   return(
     <main>
-      <MainNav state={props.state} router={props.router} stateChange={props.stateChange}/>
-      <MainNavNumbers state={props.state} router={props.router} getFullTagByName={props.getFullTagByName} />
+      <MainNav router={props.router} {...props}/>
+      <MainNavNumbers router={props.router} {...props}/>
       {pageDisplay}
     </main>
   );

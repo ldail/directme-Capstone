@@ -19,26 +19,27 @@ import SortOptions from './SortOptions/SortOptions';
 import './PrimaryApp.css'
 
 export default function PrimaryApp(props) {
-
+  console.log(props);
   return(
     <div className="main wrapper">
 
       {/*Header*/}
       <header>
         <section className="top">
-          <HeaderTitle stateChange={props.stateChange} />
+          <HeaderTitle {...props} />
           <InfoBox />
           <AccountBox />
         </section>
         <SearchBar />
-        <LocationBar router={props.router} stateChange={props.stateChange} getTagNameById={props.getTagNameById} getFullTagByName={props.getFullTagByName} state={props.state} />
+        <LocationBar router={props.router} {...props} />
       </header>
 
 
       {/*Main*/}
+      {console.log({props})}
       <Route exact path="/?submit" component={SubmitListing} />
       <Route path="/" render={() =>
-      <Main stateChange={props.stateChange} state={props.state} router={props.router} getFullTagById={props.getFullTagById} getFullTagByName={props.getFullTagByName} getTagById={props.getTagById} getTagByName={props.getTagByName} getTagNameById={props.getTagNameById} />} />
+      <Main {...props} router={props.router}  />} />
       <SubmitButton />
 
       {/*Footer*/}
