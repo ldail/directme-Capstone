@@ -5,30 +5,16 @@ import {Link} from 'react-router-dom';
 //Components
 import getHubList from '../../../utils/getHubList'
 import checkPath from '../../../utils/checkPath'
+import createPath from '../../../utils/createPath'
 
 export default function CatListing(props) {
   let path = props.router.location.pathname;
   let info = props.info || {}
   let currentTagName = info.name || ''
   
-  function createPath(tagName) {
-    if (path === '/') {
-      return `/${tagName.toLowerCase()}`;
-    }
-    else {
-      return `${path}/${tagName.toLowerCase()}`
-    }
-  }
-
-  function createSubPath(tagName) {
-    if (path === '/') {
-      return `${currentTagName.toLowerCase()}/${tagName.toLowerCase()}`
-    }
-    else {
-      return `${path}/${currentTagName}/${tagName.toLowerCase()}`
-    }
-  }
-  let check = checkPath(props,createPath(currentTagName));
+  let check = checkPath(props,createPath(path,currentTagName));
+  console.log(check);
+  console.log('check');
   let subcategories = getHubList(props,check.currentHub) || [];
 
   function listSubcategories() {
@@ -37,14 +23,10 @@ export default function CatListing(props) {
     }
     else {
       if (subcategories[0]) {
-        return subcategories.map((item,index) => <Link to={() => createSubPath(item.name)}><li key={index}>{item.name}</li></Link>)
+        return subcategories.map((item,index) => <Link to={() => createPath(path,currentTagName,item.name)}><li key={index}>{item.name}</li></Link>)
     }
   }
 }
-
-
-
-
 
   return(
     <li className="catListing">
@@ -53,7 +35,7 @@ export default function CatListing(props) {
         <div className="catListingNumbersItem">12</div>
       </div>
       <div className="catListingInfo">
-        <h3><Link to={() => createPath(currentTagName)}>{currentTagName}</Link></h3>
+        <h3><Link to={() => createPath(path,currentTagName)}>{currentTagName}</Link></h3>
         <h4><ul>{listSubcategories()}</ul></h4>
       </div>
     </li>
