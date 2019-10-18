@@ -209,7 +209,6 @@ class App extends Component {
         return res.json();
       })
       .then(listingsRes => {
-        console.log(listingsRes);
         listings=listingsRes
       })
       .catch(e => console.error('there was an error'));

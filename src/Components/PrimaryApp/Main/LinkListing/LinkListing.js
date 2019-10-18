@@ -1,5 +1,6 @@
 //Dependencies
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 //Components
 import getAllListingTagsByListingId from '../../../utils/getAllListingTagsByListingId'
@@ -9,6 +10,14 @@ export default function LinkListing(props) {
   let id = listing.id || 1;
   let description = (listing.description) ? listing.description : '' //it's optional, so don't dislay 'null'
 
+  function createTagListing() {
+    let results = getAllListingTagsByListingId(props,id);
+    let tagList = [];
+    results.tagNames.forEach(tagName => {
+      tagList.push(<li class="tagName"><Link to ="#">#{tagName}</Link> </li>)
+    });
+    return tagList;
+  }
   return (
     <li className="catListing">
       <div className="catListingNumbers">
@@ -20,7 +29,7 @@ export default function LinkListing(props) {
         <h4><a href={listing.url} target="_blank">{listing.url}</a></h4>
         <div className="tagList">
           <div className="leftSide">
-            <h5>{getAllListingTagsByListingId(props,id)}</h5>
+            <h5>{createTagListing()}</h5>
           </div>
           <div className="rightSide">
             <span>(see more)</span>

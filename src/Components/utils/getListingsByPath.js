@@ -1,3 +1,6 @@
+//Components
+import onlyUnique from './onlyUnique'
+
 export default function getListingsByPath(props,path) {
   let tags = props.state.tags || [];
   let listings = props.state.listings || [];
@@ -26,9 +29,6 @@ export default function getListingsByPath(props,path) {
   
   //get listings that include all tags IDs
 
-  function onlyUnique(value, index, self) { 
-    return self.indexOf(value) === index;
-  }
   let finalListings = listings;
   let linkIds = listings.map(listing => listing.id);
   let remainingLinks = linkIds.filter(onlyUnique)

@@ -7,7 +7,7 @@ export default function checkPath(props,path) { //e.g. 2, 'programming/javascrip
   let hubTags = state.hubTags || [];
   let missingPath = false;
   if (path === '/') {
-    return {currentHub: 1, missingPath}
+    return {currentHub: 1, missingPath, }
   }
   let path2 = path.slice(1);
 
