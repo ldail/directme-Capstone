@@ -35,7 +35,6 @@ export default function PrimaryApp(props) {
 
 
       {/*Main*/}
-      <Route exact path="/?submit" component={SubmitListing} />
       <Route path="/" render={() =>
       <Main {...props} router={props.router}  />} />
       <SubmitButton router={props.router} />

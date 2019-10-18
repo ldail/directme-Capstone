@@ -1,6 +1,7 @@
 //Dependencies
 import React from 'react';
 import {useLocation} from 'react-router-dom';
+import {withRouter} from 'react-router'
 
 //Components
 import MainNav from './MainNav/MainNav';
@@ -9,33 +10,56 @@ import MainHubs from './MainHubs/MainHubs'
 import MainTags from './MainTags/MainTags';
 import SubmitListing from '../SubmitListing/SubmitListing'
 import MainListings from './MainListings/MainListings'
+import getListingsByTags from '../../utils/getListingsByTags'
 
-export default function Main(props) {
-  let check = useLocation().search;
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listings: []
+    }
+  }  
 
-  function checkPage() {
-    if (check.includes('?tags')) {
-      return <MainTags router={props.router} {...props}  />
+  componentDidMount() {
+    console.log('mounted main');
+    console.log('tags');
+    console.log(this.props.state.tags)
+    getListingsByTags(this.props, this.props.router.location.pathname)
+                    .then(resJson => {
+                      this.setState({listings: resJson})
+                    });
+  }
+
+  checkPage = () => {
+
+    if (this.props.location.search.includes('?tags')) {
+      return <MainTags router={this.props.router} {...this.props}  />
     }
 
-    else if (check.includes('?listings')) {
-      return <MainListings router={props.router} {...props} />
+    else if (this.props.location.search.includes('?listings')) {
+      return <MainListings router={this.props.router} {...this.props} listings={this.state.listings}/>
     }
-    else if (check.includes('?submit')) {
+
+    else if (this.props.location.search.includes('?submit')) {
       return <SubmitListing />
     }
 
     else {
-      return <MainHubs router={props.router} {...props} />
+      return <MainHubs router={this.props.router} {...this.props} />
     }
   }
-  let pageDisplay = checkPage();
 
-  return(
-    <main>
-      <MainNav router={props.router} {...props}/>
-      <MainNavNumbers router={props.router} {...props}/>
-      {pageDisplay}
-    </main>
-  );
+  render() {
+    console.log('render: main');
+    let pageDisplay = this.checkPage();
+      return(
+        <main>
+          <MainNav router={this.props.router} {...this.props}/>
+          <MainNavNumbers router={this.props.router} {...this.props}/>
+          {pageDisplay}
+        </main>
+      );
+  }
 }
+
+export default withRouter(Main);

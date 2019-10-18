@@ -6,11 +6,13 @@ export default function getListingsByTags(props,path) {
       return tag.name.toLowerCase() === newPath;
     }
   }) || {};
-  let checkId = tag.id || 1;
+  let checkId = tag.id || 2; //programming -> 2
 
 
   if (!newPath.includes('/')) { // single Path
     return props.getListingByTagId(checkId);
   }
+  let pathArray = newPath.split('/') // multiple paths now in an array.
+
 
 }

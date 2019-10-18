@@ -7,6 +7,7 @@ import getHubList from '../../../utils/getHubList';
 import checkPath from '../../../utils/checkPath';
 
 export default function MainHubs(props) {
+  console.log('render: mainHubs');
 
   let path = props.router.location.pathname;
   let check = checkPath(props,path) // returns the currentHub (unique) id and if the path is missing.

@@ -1,13 +1,15 @@
 //Dependencies
 import React, { Component } from 'react'
+import {withRouter} from 'react-router'
 import {Route} from 'react-router-dom'
 import config from './config'
 
 //Components
 import LandingPage from './Components/LandingPage/LandingPage';
 import PrimaryApp from './Components/PrimaryApp/PrimaryApp';
+import SubmitButton from './Components/PrimaryApp/Main/SubmitButton/SubmitButton'
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,6 +20,8 @@ export default class App extends Component {
   }
 
   stateChange = (newState) => { 
+    console.log('stateChange');
+    console.log(newState);
     this.setState({
       ...newState
     });
@@ -135,7 +139,9 @@ export default class App extends Component {
 
   componentDidMount() {
     this.checkPage();
-
+    let hubLinks = [];
+    let hubTags = [];
+    let tags = [];
     //Connect to API
     //Gather the hubs / subcategory list since that is the initial display (this.state.displayTab:'?hubs')
     fetch (`${config.API_ENDPOINT}/getHubLinks`, {
@@ -150,7 +156,9 @@ export default class App extends Component {
       }
       return res.json();
     })
-    .then(hubLinks => this.setState({hubLinks}))
+    .then(hubLinksRes => {
+      hubLinks = hubLinksRes;
+    })
     .then(() => {
       return fetch (`${config.API_ENDPOINT}/getHubTags`, {
         method: 'GET',
@@ -164,7 +172,9 @@ export default class App extends Component {
         }
         return res.json();
       })
-      .then(hubTags => this.setState({hubTags}))
+      .then(hubTagsRes => {
+        hubTags = hubTagsRes;
+      })
     })
     .then(() => {
       return fetch(`${config.API_ENDPOINT}/allTags`, {
@@ -179,9 +189,12 @@ export default class App extends Component {
         }
         return res.json();
       })
-      .then(tags => this.setState({tags}))
+      .then(tagsRes => {
+        tags=tagsRes
+      })
       .catch(e => console.error('there was an error'));
     })
+    .then(() => this.setState({hubLinks: hubLinks,hubTags: hubTags,tags: tags}))
     .catch(e=> console.error('there was an error'));
   }
 
@@ -198,8 +211,9 @@ export default class App extends Component {
 
   render() {
     return (
-        <Route path="/" render={(e) => 
-          <this.state.displayPage router={e} stateChange={this.stateChange} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />} />
+        <this.state.displayPage router={this.props} stateChange={this.stateChange} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />
     )
   }
 }
+
+export default withRouter(App);
