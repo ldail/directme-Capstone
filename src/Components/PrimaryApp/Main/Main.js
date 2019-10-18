@@ -12,11 +12,6 @@ import SubmitListing from '../SubmitListing/SubmitListing'
 import MainListings from './MainListings/MainListings'
 
 class Main extends React.Component {
-
-  componentDidMount() {
-    console.log('mounted main');
-  }
-
   checkPage = () => {
 
     if (this.props.location.search.includes('?tags')) {
@@ -37,8 +32,6 @@ class Main extends React.Component {
   }
 
   render() {
-    console.log('render: main');
-    console.log(this.props.state.listings);
     let pageDisplay = this.checkPage();
       return(
         <main>

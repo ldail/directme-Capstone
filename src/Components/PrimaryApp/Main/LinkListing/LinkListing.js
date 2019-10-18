@@ -1,9 +1,14 @@
 //Dependencies
 import React from 'react'
 
+//Components
+import getAllListingTagsByListingId from '../../../utils/getAllListingTagsByListingId'
+
 export default function LinkListing(props) {
-  let listing = props.info
+  let listing = props.info || {};
+  let id = listing.id || 1;
   let description = (listing.description) ? listing.description : '' //it's optional, so don't dislay 'null'
+
   return (
     <li className="catListing">
       <div className="catListingNumbers">
@@ -15,7 +20,7 @@ export default function LinkListing(props) {
         <h4><a href={listing.url} target="_blank">{listing.url}</a></h4>
         <div className="tagList">
           <div className="leftSide">
-            <h5>-tags will go here-</h5>
+            <h5>{getAllListingTagsByListingId(props,id)}</h5>
           </div>
           <div className="rightSide">
             <span>(see more)</span>

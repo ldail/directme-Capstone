@@ -23,7 +23,6 @@ export default function getListingsByPath(props,path) {
     }) || {};
   }) || [];
   let tagsArrayIds = tagsArrayObjects.map(tagCheck => tagCheck.id)
-  console.log(tagsArrayIds);
   
   //get listings that include all tags IDs
 
@@ -43,13 +42,7 @@ export default function getListingsByPath(props,path) {
     remainingLinks = stepLinks;
   })
 
-  console.log(remainingLinks);
 
   let final = remainingLinks.map(linkId => listings.find(listing => listing.id === linkId))
-  console.log(final);
   return final;
-
-
-  // console.log(filteredListings);
-  // return filteredListings;
 }

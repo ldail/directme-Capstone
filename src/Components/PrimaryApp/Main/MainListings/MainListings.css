@@ -32,3 +32,8 @@ h5 span {
 .tagList {
   display: flex;
 }
+
+.tagName { 
+  display: inline-block;
+  margin-right: 10px;
+}

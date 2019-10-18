@@ -1,13 +1,31 @@
 //Dependencies
 import React from 'react';
 
+//Components
+import checkPath from '../../../utils/checkPath';
+
 //CSS
 import './MainTags.css'
 
-export default function MainTags() {
-  return(
-    <section className="tab-main">
-      <h3>Popular</h3>
+export default function MainTags(props) {
+
+  function makeTagsDisplay() {
+    let path = props.router.location.pathname;
+    let check = checkPath(props,path);
+    if (check.missingPath === true) {
+      return <li>This is not an established path yet!</li>
+    }
+    return 'here we are';
+    // if (filteredListings.length === 0) {
+    //   return <li>There are no listings for these tags yet!</li>
+    // }
+    // return filteredListings.map((item,index) => <li currentHub={check.currentHub} info={item} router={props.router} {...props}  />)
+  }
+  return (
+    makeTagsDisplay()
+  )
+    // <section className="tab-main">
+      {/* <h3>Popular</h3>
       <section className="TagCombos">
         <div className="TagHeading">
         <h4>Tag combos:</h4>
@@ -40,9 +58,9 @@ export default function MainTags() {
               </ul>
             </div>
 
-      </section>
+      </section> */}
 
-      <section className="TagSingles">
+      {/* <section className="TagSingles">
         <ul>
           <li>#Javascript</li>
           <li>#Developer</li>
@@ -53,5 +71,5 @@ export default function MainTags() {
         </ul>
       </section>
     </section>
-  );
+  ); */}
 }
