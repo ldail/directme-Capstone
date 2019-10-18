@@ -142,6 +142,7 @@ class App extends Component {
     let hubLinks = [];
     let hubTags = [];
     let tags = [];
+    let listings = [];
     //Connect to API
     //Gather the hubs / subcategory list since that is the initial display (this.state.displayTab:'?hubs')
     fetch (`${config.API_ENDPOINT}/getHubLinks`, {
@@ -194,7 +195,26 @@ class App extends Component {
       })
       .catch(e => console.error('there was an error'));
     })
-    .then(() => this.setState({hubLinks: hubLinks,hubTags: hubTags,tags: tags}))
+    .then(() => {
+      return fetch(`${config.API_ENDPOINT}/listings`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('error in fetch!')
+        }
+        return res.json();
+      })
+      .then(listingsRes => {
+        console.log(listingsRes);
+        listings=listingsRes
+      })
+      .catch(e => console.error('there was an error'));
+    })
+    .then(() => this.setState({hubLinks: hubLinks,hubTags: hubTags,tags: tags, listings: listings}))
     .catch(e=> console.error('there was an error'));
   }
 
