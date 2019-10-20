@@ -11,7 +11,8 @@ export default function getSimilarTagsByPath(props,oldPath) {
   let listings = props.state.listings || [];
   let tags = props.state.tags || [];
   if (oldPath === '/') {
-    return tags.filter(tag => tag.name)
+    let tagCount = props.state.tagCount || [];
+    return tagCount;
   }
   let path = oldPath.slice(1);
   if (!path.includes('/')) { //single-level path
@@ -28,39 +29,51 @@ export default function getSimilarTagsByPath(props,oldPath) {
     }
 
     let pathArray = path.split('/');
-    let pathArrayIds = pathArray.map(name => tags.find(tag => {
+
+    //get the IDs of each tag in the path to exclude later on.
+    let pathArrayFullTags = pathArray.map(name => tags.find(tag => {
       if (tag.name){
         let find = tag.name.toLowerCase() === name.toLowerCase();
-        return find.id;
+        return find;
       }
     }));
+    let pathArrayTagIds = pathArrayFullTags.map(tag => tag.id);
 
+    //check if any of the results are empty, otherwise gather them.
+    let empty = false;
     let singlePathData = pathArray.map(name => {
       let results = processSinglePath(props,name,listings,tags);
+      if (!results || results.length === 0) { empty = true}
       return results;
     });
-    
+    if (empty) { return [];}
+
+    //merge all the results together    
     let mergeData = [];
     singlePathData.forEach(arrayFound => {
       arrayFound.forEach(objectFound => {
         mergeData.push(objectFound);
       });
     });
-    console.log('mergeData:');
-    console.log(mergeData);
 
     let newestData = [];
+    console.log(mergeData);
     mergeData.forEach(item => {
       let find = newestData.find(listHere => listHere.id===item.id);
       if (!find) {
-        newestData.push(find);
+        newestData.push(item);
       }
-      // else {
-      //   find.count += item.count
-      // }
+      else {
+        find.count += item.count
+      }
     });
-    console.log('newestData');
-    console.log(newestData);
+    
+    //exclude all the tags that match the path.
+
+    pathArrayTagIds.forEach(tagId => {
+      newestData = newestData.filter(item => item.id !== tagId)
+    })
+    return newestData;
   }
 }
 
@@ -69,6 +82,9 @@ function processSinglePath(props,path,listings,tags) {
   let id = tag.id || '';
   let filteredListings = listings.filter(listing => listing.tag_id === id);
   let listingTags = filteredListings.map(listing => getAllListingTagsByListingId(props,listing.id));
+  if (listingTags.length === 0) { 
+    return [];
+  }
   let totalTags = [];
   listingTags.forEach(listing => {
     listing.tagIds.forEach(id => totalTags.push(id))
@@ -88,9 +104,15 @@ function processSinglePath(props,path,listings,tags) {
   let tagCounts = popularity.filter(obj => obj.tagId !== id)
   let fullTags = filteredUniqueTotalTags.map(tagId => {
     let find = tags.find(tag => tag.id === tagId)
-    let findCount = tagCounts.find(obj => obj.tagId === tagId).count
-    return {...find,findCount}
+    let count = tagCounts.find(obj => obj.tagId === tagId).count
+    return {...find,count}
 
   });
   return fullTags;
 }
+
+async function getPopularityOfAll(props) {
+  let answer = await props.getTagCountByPopularity()
+  console.log(answer);
+  return answer;
+};

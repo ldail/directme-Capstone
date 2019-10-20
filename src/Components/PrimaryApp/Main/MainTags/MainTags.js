@@ -17,10 +17,11 @@ export default function MainTags(props) {
       return <li>This is not an established path yet!</li>
     }
     let tagList = getSimilarTagsByPath(props,path) || [];
+    
     if (tagList.length === 0) {
       return <li>There are no tags within this hub yet!</li>
     }
-    return tagList.map((item,index) => <li currentHub={check.currentHub} info={item} router={props.router} {...props}>{item.name}</li>)
+    return tagList.map((item,index) => <li currentHub={check.currentHub} info={item} router={props.router} {...props}>{item.name}:{item.count }</li>)
   }
   return (
       <section className="TagSingles">

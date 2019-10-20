@@ -143,6 +143,7 @@ class App extends Component {
     let hubTags = [];
     let tags = [];
     let listings = [];
+    let tagCount = [];
     //Connect to API
     //Gather the hubs / subcategory list since that is the initial display (this.state.displayTab:'?hubs')
     fetch (`${config.API_ENDPOINT}/getHubLinks`, {
@@ -213,7 +214,25 @@ class App extends Component {
       })
       .catch(e => console.error('there was an error'));
     })
-    .then(() => this.setState({hubLinks: hubLinks,hubTags: hubTags,tags: tags, listings: listings}))
+    .then(() => {
+      return fetch (`${config.API_ENDPOINT}/tagCount`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('error in fetch!')
+        }
+        return res.json();
+      })
+      .then(resJson => {
+        tagCount = resJson;
+      })
+      .catch(e => console.log('error'));
+    })
+    .then(() => this.setState({hubLinks: hubLinks,hubTags: hubTags,tags: tags, listings: listings, tagCount: tagCount}))
     .catch(e=> console.error('there was an error'));
   }
 
@@ -230,7 +249,7 @@ class App extends Component {
 
   render() {
     return (
-        <this.state.displayPage router={this.props} stateChange={this.stateChange} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />
+        <this.state.displayPage router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />
     )
   }
 }
