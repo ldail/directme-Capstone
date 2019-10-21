@@ -18,3 +18,8 @@
 .submit-listing .submitLink ul {
   margin-bottom: 20px;
 }
+
+.tagListingSubmit {
+  margin-right: 20px;
+  padding-right: 20px;
+}

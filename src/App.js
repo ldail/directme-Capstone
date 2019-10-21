@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       displayPage: LandingPage,
       currentHub: 0,
-      tags: []
+      tags: [],
+      addTag: 0
     }
   }
 
@@ -25,6 +26,23 @@ class App extends Component {
     this.setState({
       ...newState
     });
+  }
+
+  addNewTag = (name) => {
+    return fetch (`${config.API_ENDPOINT}/tags/${name}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('error in fetch!')
+      }
+      return res.json();
+    })
+    .then(resJson => resJson)
+    .catch(e => console.log('error'));
   }
 
   getTagNameById = (tag_id) => {
@@ -249,7 +267,7 @@ class App extends Component {
 
   render() {
     return (
-        <this.state.displayPage router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />
+        <this.state.displayPage addNewTag={this.addNewTag} router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />
     )
   }
 }

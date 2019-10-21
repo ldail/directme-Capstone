@@ -23,7 +23,7 @@ class Main extends React.Component {
     }
 
     else if (this.props.location.search.includes('?submit')) {
-      return <SubmitListing />
+      return <SubmitListing router={this.props.router} {...this.props} />
     }
 
     else {
@@ -36,7 +36,7 @@ class Main extends React.Component {
       return(
         <main>
           <MainNav router={this.props.router} {...this.props}/>
-          <MainNavNumbers router={this.props.router} {...this.props}/>
+          {/* <MainNavNumbers router={this.props.router} {...this.props}/> */}
           {pageDisplay}
         </main>
       );

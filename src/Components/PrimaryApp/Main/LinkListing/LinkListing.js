@@ -4,11 +4,13 @@ import {Link} from 'react-router-dom'
 
 //Components
 import getAllListingTagsByListingId from '../../../utils/getAllListingTagsByListingId'
+import AddTagForm from '../AddTagForm/AddTagForm'
 
 export default function LinkListing(props) {
   let listing = props.info || {};
   let id = listing.id || 1;
   let description = (listing.description) ? listing.description : '' //it's optional, so don't dislay 'null'
+  let results = getAllListingTagsByListingId(props,id)
 
   function createTagListing() {
     let results = getAllListingTagsByListingId(props,id);
@@ -17,6 +19,15 @@ export default function LinkListing(props) {
       tagList.push(<li class="tagName"><Link to ="#">#{tagName}</Link> </li>)
     });
     return tagList;
+  }
+
+  function addTag(e) {
+    e.preventDefault();
+    let addTagState = props.state.addTag || {}
+    if (addTagState !== id) {
+      props.stateChange({addTag : id})
+      console.log(props.state.addTag);
+    }
   }
   return (
     <li className="catListing">
@@ -33,9 +44,10 @@ export default function LinkListing(props) {
           </div>
           <div className="rightSide">
             <span>(see more)</span>
-            <span>(add tags)</span>
+            <span><Link to="#" onClick={(e) => addTag(e)}>(add tags)</Link></span>
           </div>
         </div>
+        <AddTagForm {...props} id={id} results={results} listing={listing} />
         <p>{description}</p>
 
         <div className="CatListingBottomRow">

@@ -7,7 +7,7 @@ export default function checkPath(props,path) { //e.g. 2, 'programming/javascrip
   let hubTags = state.hubTags || [];
   let missingPath = false;
   if (path === '/') {
-    return {currentHub: 1, missingPath, }
+    return {currentHub: 1, missingPath, subs: {}}
   }
   let path2 = path.slice(1);
 
@@ -18,7 +18,9 @@ export default function checkPath(props,path) { //e.g. 2, 'programming/javascrip
     let checkPath = path.split('/');
     let newPath = [];
     if (checkPath.includes('')) { // includes a trailing slash somewhere, probably at the end.
+      console.log(checkPath);
       newPath = checkPath.filter(item => item !== '');
+      console.log(newPath);
       if (newPath.length === 1) {
         return processSinglePath(props,newPath[0],tags,hubTags,hubLinks);
       }
@@ -41,7 +43,6 @@ export default function checkPath(props,path) { //e.g. 2, 'programming/javascrip
 
       let tagPotentials = hubTags.filter(hub => hub.tag_id === fullTag.id);
       let linkPotentials = hubLinks.filter(hub=> hub.hub_id === previousPath);
-
       for (let j=0;j<tagPotentials.length;j++) {
         for (let k=0; k<linkPotentials.length;k++) {
           if (tagPotentials[j].hub_id === linkPotentials[k].sub_hub) {
@@ -76,7 +77,7 @@ function processSinglePath(props,path,tags,hubTags,hubLinks) {
   for (let i=0;i<tagPotentials.length;i++) {
     for (let j=0; j<linkPotentials.length;j++) {
       if (tagPotentials[i].hub_id === linkPotentials[j].sub_hub) {
-        return {currentHub: linkPotentials[j].sub_hub, missingPath: false}
+        return {currentHub: linkPotentials[j].sub_hub, missingPath: false, subs: [fullTag.name]}
       }
     }
   }
