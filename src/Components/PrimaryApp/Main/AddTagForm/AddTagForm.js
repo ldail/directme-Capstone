@@ -42,29 +42,26 @@ export default class AddTagForm extends React.Component {
       }
       else { // tag doesn't already exist.
         //add the tag to the database
-        let tag_id = tags.length + 1;
-        console.log(tag_id);
-        let tagListing = {tag_id: tag_id, listing_id: listing_id}
-        let newTag = {id: tag_id, name: this.state.text.toLowerCase()}
-        let newListing = {description: this.props.info.description, id: listing_id, listing_id: listing_id, name: this.props.info.name, tag_id: tag_id, url: this.props.info.url}
         this.props.addNewTag(this.state.text.toLowerCase())
-          .then(() => {
-            this.props.addTagListing(tagListing)
-              .then(() => {
-                this.props.stateChange({
-                  tags: [
-                    ...tags,
-                    newTag
-                  ],
-                  listings: [
-                    ...this.props.state.listings,
-                    newListing
-                  ]
+        .then(tagReturn => {
+          let tagListing = {tag_id: tagReturn.id, listing_id: listing_id}
+          this.props.addTagListing(tagListing)
+            .then(listingReturn => {
+              let newListing = {description: this.props.info.description, id: listing_id, listing_id: listing_id, name: this.props.info.name, tag_id: tagReturn.id, url: this.props.info.url}
+              this.props.stateChange({
+                tags: [
+                  ...tags,
+                  tagReturn
+                ],
+                listings: [
+                  ...this.props.state.listings,
+                  newListing
+                ]
 
-                })
-              });
+              })
             });
-        //add tag to the state, add tag_id and listing_id to tag_listings
+          });
+        
       }
     }
   }
