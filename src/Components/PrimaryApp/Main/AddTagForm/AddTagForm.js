@@ -13,26 +13,9 @@ export default class AddTagForm extends React.Component {
     }
   }
 
-  addTagListing = (tagListing) => {
-    let bodyText = JSON.stringify(tagListing);
-    return fetch (`${config.API_ENDPOINT}/tag-listings`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(tagListing)
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('error in fetch!')
-      }
-      return res.json();
-    })
-    .catch(e => console.log('error in fetch command'));
-  }
 
   checkTag = () => {
-    console.log(this.props.results);
+    let tags = this.props.state.tags;
     let find = this.props.results.tagNames.find(result => result.toLowerCase() === this.state.text.toLowerCase())
     if (find) {
       this.setState({error: true});
@@ -49,8 +32,7 @@ export default class AddTagForm extends React.Component {
         tag_id = tagSearch.id;
         let newListing = {description: this.props.info.description, id: listing_id, listing_id: listing_id, name: this.props.info.name, tag_id: tag_id, url: this.props.info.url}
         let tagListing = {tag_id: tag_id, listing_id: listing_id}
-        console.log(tagListing);
-        this.addTagListing(tagListing)
+        this.props.addTagListing(tagListing)
           .then(() => this.props.stateChange({
             listings: [
               ...this.props.state.listings,
@@ -60,17 +42,18 @@ export default class AddTagForm extends React.Component {
       }
       else { // tag doesn't already exist.
         //add the tag to the database
-        let tag_id = this.props.state.tags.length + 2;
+        let tag_id = tags.length + 1;
+        console.log(tag_id);
         let tagListing = {tag_id: tag_id, listing_id: listing_id}
         let newTag = {id: tag_id, name: this.state.text.toLowerCase()}
         let newListing = {description: this.props.info.description, id: listing_id, listing_id: listing_id, name: this.props.info.name, tag_id: tag_id, url: this.props.info.url}
         this.props.addNewTag(this.state.text.toLowerCase())
           .then(() => {
-            this.addTagListing(tagListing)
+            this.props.addTagListing(tagListing)
               .then(() => {
                 this.props.stateChange({
                   tags: [
-                    ...this.props.state.tags,
+                    ...tags,
                     newTag
                   ],
                   listings: [

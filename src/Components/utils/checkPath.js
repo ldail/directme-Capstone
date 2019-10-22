@@ -18,9 +18,7 @@ export default function checkPath(props,path) { //e.g. 2, 'programming/javascrip
     let checkPath = path.split('/');
     let newPath = [];
     if (checkPath.includes('')) { // includes a trailing slash somewhere, probably at the end.
-      console.log(checkPath);
       newPath = checkPath.filter(item => item !== '');
-      console.log(newPath);
       if (newPath.length === 1) {
         return processSinglePath(props,newPath[0],tags,hubTags,hubLinks);
       }
@@ -61,8 +59,8 @@ export default function checkPath(props,path) { //e.g. 2, 'programming/javascrip
   }
 }
 
-function processSinglePath(props,path,tags,hubTags,hubLinks) {
-  let fullTag = tags.find(tag => {
+function processSinglePath(props,path,tags,hubTags,hubLinks) { //'programming' 
+  let fullTag = tags.find(tag => { // ----> {name: 'programming', id: 2}
     if (tag.name) {
       return tag.name.toLowerCase() === path.toLowerCase()
     }

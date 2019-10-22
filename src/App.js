@@ -28,6 +28,43 @@ class App extends Component {
     });
   }
 
+
+  addListing = (listing) => {
+    let bodyText = JSON.stringify(listing);
+    return fetch (`${config.API_ENDPOINT}/listings`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: bodyText
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('error in fetch!')
+      }
+      return res.json();
+    })
+    .catch(e => console.log('error in fetch command'));
+  }
+
+  addTagListing = (tagListing) => {
+    let bodyText = JSON.stringify(tagListing);
+    return fetch (`${config.API_ENDPOINT}/tag-listings`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(tagListing)
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('error in fetch!')
+      }
+      return res.json();
+    })
+    .catch(e => console.log('error in fetch command'));
+  }
+
   addNewTag = (name) => {
     return fetch (`${config.API_ENDPOINT}/tags/${name}`, {
       method: 'POST',
@@ -267,7 +304,7 @@ class App extends Component {
 
   render() {
     return (
-        <this.state.displayPage addNewTag={this.addNewTag} router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />
+        <this.state.displayPage addListing={this.addListing} addTagListing={this.addTagListing} addNewTag={this.addNewTag} router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />
     )
   }
 }
