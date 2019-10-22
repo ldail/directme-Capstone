@@ -1,32 +1,55 @@
 //Dependencies
 import React from 'react';
 
+//Components
+import checkPath from '../../../utils/checkPath'
+
 export default function LocationBar(props) {
   let path = props.router.location.pathname;
-  let routeListing = '';
-  // let routeArray = [];
-  let totalPath = ['home'];
-  // if (path === '/') {
-  routeListing = <div className="currentLocation">{totalPath[0]}</div>
-  // }
-  // else {
-  //   let fullPath = path.split('/').filter(item=> item !== "");
-  //   // console.log(fullPath);
-  //   fullPath.forEach(path=> {
-  //     //check if each in the path is an actual tag
-  //     if (!props.getFullTagByName(path)) {
-  //       //Catches if it's not a tag.
-  //       return routeListing = <div className="currentLocation">{totalPath[0]}</div>
-  //     }
+  let results = ['home'];
+  let checkPathFunction = checkPath(props,path);
+  if (!checkPathFunction.missingPath) {
+    results = findPath(props);
+  }
 
-  //   });
   return(
     <section className="locationBar">
-      {routeListing}
-      <div className="lineBar"></div>
+        {makePath(results)}
+        <div className="lineBar"></div>
     </section>
   );
 }
 
-  //Start with deepest link {e.g. 'react' in programming/javascript/react}, check if it's a tag matched to a subcategory in subcategory_to
-  //Continue this process until the subcategory_to === 0. IF it's true, then show the display. If not, just show home and set state home to 0;
+function makePath(results) {
+  let paths = results.map(tagName => {
+    if (results[0] === tagName) {
+      return <div class="currentLocation">#{tagName}</div>
+    }
+    else {
+      return <div class="nextLocation">#{tagName}</div>
+    }
+  })
+  return paths;
+}
+
+function findPath(props) {
+    let foundPath = ['home']
+    let path = props.router.location.pathname;
+    if (path === '/') {
+      return foundPath;
+    }
+    let path2 = path.slice(1);
+    if (!path2.includes('/')) { //single path // e.g. programming
+      foundPath.unshift(path2.toLowerCase());
+      return foundPath;
+    }
+    else { //multiple paths. e.g. programming/javascript/react OR a trailing slash.
+      let checkPath2 = path.split('/');
+      let lowerCase = checkPath2.map(item => item.toLowerCase())
+      if (lowerCase.includes('')) { // includes a trailing slash somewhere, probably at the end.
+        lowerCase = lowerCase.filter(item => item !== '')
+      lowerCase.forEach(tagName => foundPath.unshift(tagName));
+      return foundPath;
+      }
+    }
+  }

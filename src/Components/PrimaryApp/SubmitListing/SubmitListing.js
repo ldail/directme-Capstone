@@ -21,7 +21,8 @@ export default class submitListing extends React.Component {
       link: '',
       hub: [],
       tagText: '',
-      focus: false
+      focus: false,
+      submitting: false
     }
   }
 
@@ -64,7 +65,8 @@ export default class submitListing extends React.Component {
     }
     else { 
       e.preventDefault();
-      if (this.state.addingTags.length === 0) {
+      this.setState({submitting: true});
+      if (this.state.addingTags.length === 0 && this.state.tagText === '') {
         this.setState({tagError: true});
         console.log('1. Found that there are no tags.');
       }
@@ -72,8 +74,17 @@ export default class submitListing extends React.Component {
         if (this.state.tagText !== '') {
           this.addTag();
           console.log('2. found that theres a tag that hasnt been submitted');
+          console.log(this.state.addingTags);
         }
         if (!this.state.tagError) {
+          let listings = this.props.state.listings;
+          //find the listing ID (=== highest listing currently then add one)
+          let highestID = 0;
+          listings.forEach(listing => {
+            if (listing.id > highestID) { highestID = listing.id }
+          })
+          let newListingId = highestID + 1;
+
           let submitListingObject = {name: this.state.title, url: this.state.url, description: this.state.description};
           this.props.addListing(submitListingObject);
 
@@ -81,22 +92,14 @@ export default class submitListing extends React.Component {
           let addingTags = this.state.addingTags;
           let hub = this.state.hub;
           let allTags = this.props.state.tags;
-          let listings = this.props.state.listings;
-          console.log('listings');
-          console.log(listings);
           let listingTagList = [];
+
 
           // let addingTags be a full array of all the tags assigned to this listing
           if (hub.length !== 0) {
-            addingTags.concat(hub);
+            addingTags = addingTags.concat(hub);
+            console.log(addingTags);
           }
-
-          //find the listing ID (=== highest listing currently then add one)
-          let highestID = 0;
-          listings.forEach(listing => {
-            if (listing.id > highestID) { highestID = listing.id }
-          })
-          let newListingId = highestID + 1;
 
           //go through each of the tags.
           //check if it exists. If not, add the tag into the API db.
@@ -106,27 +109,27 @@ export default class submitListing extends React.Component {
             let tagId = '';
             find = allTags.find(tag => {
               if (tag.name) {
-                return tag.name === tagName
+                return tag.name.toLowerCase() === tagName.toLowerCase()
               }
             })
             if (!find) { //add tag to list
               console.log(`could not find ${tagName}`);
 
               //add to API and the local variable
-              this.props.addNewTag(tagName);
-              console.log('length');
-              console.log(allTags.length);
               allTags =  [
                 ...allTags,
                 {id: allTags.length+1, name: tagName}
               ];
-              this.props.addTagListing({listing_id: newListingId, tag_id: allTags.length });
+              this.props.addNewTag(tagName)
+                .then(() => {
+                  this.props.addTagListing({listing_id: newListingId, tag_id: allTags.length });
+                });
               tagId = allTags.length;
             }
             else {
               tagId = find.id;
               console.log(`found ${tagName}`)
-              this.props.addTagListing({listing_id: listings.length, tag_id: tagId});
+              this.props.addTagListing({listing_id: newListingId, tag_id: tagId});
             }
             let submitListingObject = {name: this.state.title, url: this.state.url, description: this.state.description, id: newListingId, listing_id: newListingId, tag_id: tagId}
             listingTagList.push(submitListingObject);
@@ -138,6 +141,7 @@ export default class submitListing extends React.Component {
             ],
             tags: allTags
           });
+          this.props.router.history.push('/');
         }
       }
     }
@@ -145,18 +149,28 @@ export default class submitListing extends React.Component {
 
   addTag = () => {
     if (!this.state.tagError && this.state.tagText !== '') {
-      if (this.state.hub.includes(this.state.tagText) || this.state.addingTags.includes(this.state.tagText)) {
+      if (this.state.hub.includes(this.state.tagText.toLowerCase()) || this.state.addingTags.includes(this.state.tagText.toLowerCase())) {
         this.setState({tagError: true})
+        console.log('addTag error 1');
       }
       else {
+        console.log(this.state.tagText);
+        console.log(this.state.addingTags)
         this.setState({
           addingTags: [
             ...this.state.addingTags,
             this.state.tagText.toLowerCase()
           ],
-          tagText: ''
         })
+        if (!this.state.submitting) {
+          this.setState({
+            tagText: ''
+          },console.log(this.state.addingTags));
+        }
       }
+    }
+    else {
+      console.log('cant make it past first part');
     }
   }
 
@@ -181,7 +195,7 @@ export default class submitListing extends React.Component {
         return <div>#{tagName.toLowerCase()} - <Link onClick={(e) => {
             e.preventDefault();
             let newAddingTags = this.state.addingTags.filter(tag => tag.toLowerCase() !== tagName.toLowerCase());
-            this.setState({addingTags: newAddingTags});
+            this.setState({addingTags: newAddingTags, tagError: false});
           }}>[-x-]</Link></div>;
         });
       return display;
@@ -197,7 +211,8 @@ export default class submitListing extends React.Component {
   removeHub = (e) => {
     e.preventDefault();
     this.setState({
-      hub: []
+      hub: [],
+      tagError: false,
     });
   }
 

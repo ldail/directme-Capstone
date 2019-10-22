@@ -43,14 +43,14 @@ export default function LinkListing(props) {
             <h5>{createTagListing()}</h5>
           </div>
           <div className="rightSide">
-            <span>(see more)</span>
+            {/* <span>(see more)</span> */}
             <span><Link to="#" onClick={(e) => addTag(e)}>(add tags)</Link></span>
           </div>
         </div>
         <AddTagForm {...props} id={id} results={results} listing={listing} />
         <p>{description}</p>
 
-        <div className="CatListingBottomRow">
+        {/* <div className="CatListingBottomRow">
           <div className="comments">
             <div className="theIcon">-icon-</div>
             <div>(15 comments)</div>
@@ -58,7 +58,7 @@ export default function LinkListing(props) {
           <div className="star">
             <div>-star-</div>
           </div>
-        </div>
+        </div> */}
       </div>
     </li>
   )
