@@ -1,5 +1,6 @@
 //Dependencies
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 //Components
 import checkPath from '../../../utils/checkPath';
@@ -21,7 +22,7 @@ export default function MainTags(props) {
     if (tagList.length === 0) {
       return <li>There are no tags within this hub yet!</li>
     }
-    return tagList.map((item,index) => <li currentHub={check.currentHub} info={item} router={props.router} {...props}>{item.name}:{item.count }</li>)
+    return tagList.map((item,index) => <li currentHub={check.currentHub} info={item} router={props.router} {...props}><Link to={`?tag=${item.name}`}>{item.name}</Link>:{item.count }</li>)
   }
   return (
       <section className="TagSingles">

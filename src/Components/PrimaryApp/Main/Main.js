@@ -18,7 +18,7 @@ class Main extends React.Component {
       return <MainTags router={this.props.router} {...this.props}  />
     }
 
-    else if (this.props.location.search.includes('?listings')) {
+    else if (this.props.location.search.includes('?listings') || this.props.location.search.includes('?tag=')) {
       return <MainListings router={this.props.router} {...this.props}/>
     }
 
@@ -32,12 +32,11 @@ class Main extends React.Component {
   }
 
   render() {
-    let pageDisplay = this.checkPage();
       return(
         <main>
           <MainNav router={this.props.router} {...this.props}/>
           {/* <MainNavNumbers router={this.props.router} {...this.props}/> */}
-          {pageDisplay}
+          {this.checkPage()}
         </main>
       );
   }

@@ -4,6 +4,9 @@ import onlyUnique from './onlyUnique'
 export default function getListingsByPath(props,path) {
   let tags = props.state.tags || [];
   let listings = props.state.listings || [];
+  if (path === '/') {
+    return listings;
+  }
   let newPath = path.slice(1);
   if (!newPath.includes('/')) { //single Path
     let tag = tags.find(tag => {
