@@ -40,10 +40,23 @@ body, html, #root>.main.wrapper {
 
 .main.wrapper .searchBar {
   text-align: center;
+  display: flex;
 }
-.main.wrapper .searchBar input {
+.main.wrapper .searchBar #searchInput {
   width: 90%;
   height: 30px;
+}
+
+.main.wrapper #searchTag {
+  align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column; 
+}
+
+.main.wrapper .keepHub {
+  display: flex;
+
 }
 
 .main.wrapper .locationBar {

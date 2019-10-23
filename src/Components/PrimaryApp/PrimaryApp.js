@@ -29,7 +29,7 @@ export default function PrimaryApp(props) {
           <InfoBox />
           <AccountBox />
         </section>
-        <SearchBar />
+        <SearchBar router={props.router} {...props} />
         <LocationBar router={props.router} {...props} />
       </header>
 

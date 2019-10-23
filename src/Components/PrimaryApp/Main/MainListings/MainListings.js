@@ -26,13 +26,25 @@ export default function MainListings(props) {
     if (!props.router.location.search.includes('?tag=')) {
       return filteredListings.map((item,index) => <LinkListing key={index} currentHub={check.currentHub} info={item} router={props.router} {...props}  />)
     }
+
+    //This is a search result. 
+    
+    //Get the parameters of the search.
     let searchFilter = props.router.location.search; //?tag=xxx&yyy
     let removeTagParam = searchFilter.slice(5);
-    let tagsArray = removeTagParam.split('&');
+    let tagsArray = removeTagParam.split('&'); // tags split ['javascript,'react']
+    let listings = props.state.listings;
+    tagsArray = tagsArray.map(tag => tag.toLowerCase())
     let results = [];
+    console.log('tagsArray');
+    console.log(tagsArray);
+    console.log('listings');
+    console.log(filteredListings);
     tagsArray.forEach(tag => { // 3: Programming,Javascript,React
-      let fullTag = findTagByName(props,tag.toLowerCase());
-      let find = filteredListings.filter(listing => listing.tag_id === fullTag.id);  //16 listings, 4 match all, 4 match only one/two
+      let fullTag = findTagByName(props,tag.toLowerCase()) || {}
+      console.log(fullTag);
+      let find = listings.filter(listing => listing.tag_id === fullTag.id);
+      console.log(find);
       results = [
         ...results,
         ...find
@@ -54,6 +66,9 @@ export default function MainListings(props) {
     })
     console.log('allAreThere');
     console.log(allAreThere);
+    if (allAreThere.length === 0) {
+      return <div>There are no listings for this!</div>
+    }
     return allAreThere.map((item,index) => <LinkListing key={index} currentHub={check.currentHub} info={item} router={props.router} {...props}  />)
   
   }

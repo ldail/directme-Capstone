@@ -1,5 +1,6 @@
 //Dependencies
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 //Components
 import checkPath from '../../../utils/checkPath'
@@ -21,12 +22,51 @@ export default function LocationBar(props) {
 }
 
 function makePath(results) {
-  let paths = results.map(tagName => {
-    if (results[0] === tagName) {
-      return <div class="currentLocation">#{tagName}</div>
+
+  console.log(results);
+  let paths = results.map((tagName,index) => {
+    let link = ''
+    if (index === 0 && tagName === 'home') {
+      link = '/';
+    }
+    else {   //results = ['programming','home']
+      let goTo = results.length - index;
+      for (let i = goTo;i>0;i--) {
+        let currentTag = results[goTo-1];
+        console.log(currentTag);
+        if (currentTag === 'home') {
+          link += '';
+        }
+        else {
+          link += `/${results[i-1]}`;
+        }
+      }
+    }
+    // if (index === results.length-1 && tagName === 'home') {
+    //   link = '/'
+    // }
+    // else {
+    //   let reversedPath = [];
+    //   for (let i =results.length-1; i>=0;i--) {
+    //     reversedPath.push(results[i]);
+    //   }
+    //   console.log(reversedPath);
+    //   reversedPath.forEach((pathName,index2) => {
+    //     let goTo = reversedPath.length - 1 - index;
+    //     console.log(goTo);
+    //     if (index <= goTo) {
+    //       if (pathName === 'home') {
+    //         link += '/';
+    //       }
+    //       else {
+    //         link += `/${pathName}`
+    //       }
+    //     }
+    if (index === 0) {
+      return <div class="currentLocation"><Link to={link}>#{tagName}</Link></div>
     }
     else {
-      return <div class="nextLocation">#{tagName}</div>
+      return <div class="nextLocation"><Link to={link}>#{tagName}</Link></div>
     }
   })
   return paths;
