@@ -15,8 +15,21 @@ export default function LinkListing(props) {
   function createTagListing() {
     let results = getAllListingTagsByListingId(props,id);
     let tagList = [];
+
+    //find out how many levels up we are so we can search directly from the home.
+    let path = props.router.location.pathname;
+    let prePath = '';
+      if (path !== '/') {
+        if (path.includes('/')) {
+          let newPath = path.split('/');
+          newPath = newPath.filter(item => item !== '')
+          newPath.forEach(path => {
+            prePath += '../';
+          })
+        }
+      }
     results.tagNames.forEach(tagName => {
-      tagList.push(<li class="tagName"><Link to ="#">#{tagName}</Link> </li>)
+    tagList.push(<li class="tagName"><Link to ={`${prePath}?tag=${tagName}`}>#{tagName}</Link> </li>)
     });
     return tagList;
   }

@@ -77,6 +77,7 @@ export default class SearchBar extends React.Component {
       searchString = `${prePath}${searchString}`
     }
 
+    this.props.router.location.pathname = '/';
     this.props.router.history.push(searchString);
 
 

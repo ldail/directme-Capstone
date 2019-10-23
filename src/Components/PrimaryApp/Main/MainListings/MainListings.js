@@ -33,6 +33,18 @@ export default function MainListings(props) {
     let searchFilter = props.router.location.search; //?tag=xxx&yyy
     let removeTagParam = searchFilter.slice(5);
     let tagsArray = removeTagParam.split('&'); // tags split ['javascript,'react']
+    let newPath = [];
+    if (path !== '/') {
+      newPath = [path.slice(1)];
+    }
+    if (path.includes('/')) {
+      newPath = path.split('/');
+      newPath = newPath.filter(item => item !== '')
+    }
+    tagsArray = [
+      ...tagsArray,
+      ...newPath
+    ]
     let listings = props.state.listings;
     tagsArray = tagsArray.map(tag => tag.toLowerCase())
     let results = [];
@@ -45,10 +57,12 @@ export default function MainListings(props) {
       console.log(fullTag);
       let find = listings.filter(listing => listing.tag_id === fullTag.id);
       console.log(find);
-      results = [
-        ...results,
-        ...find
-      ];
+      if (find) {
+        results = [
+          ...results,
+          ...find
+        ];
+      }
     })  
     console.log('results');
     console.log(results);
@@ -66,6 +80,7 @@ export default function MainListings(props) {
     })
     console.log('allAreThere');
     console.log(allAreThere);
+
     if (allAreThere.length === 0) {
       return <div>There are no listings for this!</div>
     }

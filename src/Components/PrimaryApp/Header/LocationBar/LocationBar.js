@@ -7,6 +7,7 @@ import checkPath from '../../../utils/checkPath'
 
 export default function LocationBar(props) {
   let path = props.router.location.pathname;
+  console.log(path);
   let results = ['home'];
   let checkPathFunction = checkPath(props,path);
   if (!checkPathFunction.missingPath) {
@@ -15,62 +16,48 @@ export default function LocationBar(props) {
 
   return(
     <section className="locationBar">
-        {makePath(results)}
+        {makePath(props,results)}
         <div className="lineBar"></div>
     </section>
   );
 }
 
-function makePath(results) {
+function makePath(props,results) {
 
   console.log(results);
-  let paths = results.map((tagName,index) => {
-    let link = ''
-    if (index === 0 && tagName === 'home') {
-      link = '/';
-    }
-    else {   //results = ['programming','home']
-      let goTo = results.length - index;
-      for (let i = goTo;i>0;i--) {
-        let currentTag = results[goTo-1];
-        console.log(currentTag);
-        if (currentTag === 'home') {
-          link += '';
+    let path = props.router.location.pathname;
+    let paths = results.map((tagName,index) => {
+      let setPath = '/';
+      if (index !== results.length-1) {
+        if (index === 0) {
+          return <div class="currentLocation"><Link to={`${path}`}>#{tagName}</Link></div>
+        }
+        //return links for the middle paths:
+        if (index === 1) {
+          return <div class="nextLocation"><Link to='./'>#{tagName}</Link></div>
+        }
+        if (index === 2) {
+          return <div class="nextLocation"><Link to='../'>#{tagName}</Link></div>
         }
         else {
-          link += `/${results[i-1]}`;
+          let count = '../'
+          for (let j=3; j<=index;j++) {
+            count += '../'
+          }
+          return <div class="nextLocation"><Link to ={count}>#{tagName}</Link></div>
         }
       }
-    }
-    // if (index === results.length-1 && tagName === 'home') {
-    //   link = '/'
-    // }
-    // else {
-    //   let reversedPath = [];
-    //   for (let i =results.length-1; i>=0;i--) {
-    //     reversedPath.push(results[i]);
-    //   }
-    //   console.log(reversedPath);
-    //   reversedPath.forEach((pathName,index2) => {
-    //     let goTo = reversedPath.length - 1 - index;
-    //     console.log(goTo);
-    //     if (index <= goTo) {
-    //       if (pathName === 'home') {
-    //         link += '/';
-    //       }
-    //       else {
-    //         link += `/${pathName}`
-    //       }
-    //     }
-    if (index === 0) {
-      return <div class="currentLocation"><Link to={link}>#{tagName}</Link></div>
-    }
-    else {
-      return <div class="nextLocation"><Link to={link}>#{tagName}</Link></div>
-    }
-  })
-  return paths;
-}
+      else {
+        if (results.length === 1) { // only home
+          return <div class="currentLocation"><Link to='/'>#home</Link></div>
+        }
+        else {
+          return <div class="nextLocation"><Link to='/'>#home</Link></div>
+        }
+      }
+    })
+    return paths;
+  }
 
 function findPath(props) {
     let foundPath = ['home']
