@@ -43,35 +43,22 @@ export default function LinkListing(props) {
     }
   }
   return (
-    <li className="catListing">
-      <div className="catListingNumbers">
-        <div className="catListingNumbersItem">20</div>
-        <div className="catListingNumbersItemBottom">^</div>
-      </div>
+    <li className="listing catListing">
       <div className="catListingInfo">
+      <a href={listing.url} target="_blank">
         <h3>{listing.name}</h3>
-        <h4><a href={listing.url} target="_blank">{listing.url}</a></h4>
+        <h4>{listing.url}</h4>
+      </a>
         <div className="tagList">
           <div className="leftSide">
             <h5>{createTagListing()}</h5>
           </div>
           <div className="rightSide">
-            {/* <span>(see more)</span> */}
-            <span><Link to="#" onClick={(e) => addTag(e)}>(add tags)</Link></span>
+            <Link to="#" onClick={(e) => addTag(e)} className="addTagButton"></Link>
           </div>
         </div>
         <AddTagForm {...props} id={id} results={results} listing={listing} />
-        <p>{description}</p>
-
-        {/* <div className="CatListingBottomRow">
-          <div className="comments">
-            <div className="theIcon">-icon-</div>
-            <div>(15 comments)</div>
-          </div>
-          <div className="star">
-            <div>-star-</div>
-          </div>
-        </div> */}
+        <p class="linkDescription">{description}</p>
       </div>
     </li>
   )

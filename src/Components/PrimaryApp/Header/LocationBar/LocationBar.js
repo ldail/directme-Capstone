@@ -27,7 +27,6 @@ function makePath(props,results) {
   console.log(results);
     let path = props.router.location.pathname;
     let paths = results.map((tagName,index) => {
-      let setPath = '/';
       if (index !== results.length-1) {
         if (index === 0) {
           return <div class="currentLocation"><Link to={`${path}`}>#{tagName}</Link></div>

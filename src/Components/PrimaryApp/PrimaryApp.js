@@ -26,8 +26,8 @@ export default function PrimaryApp(props) {
       <header>
         <section className="top">
           <HeaderTitle {...props} />
-          <InfoBox />
-          <AccountBox />
+          {/* <InfoBox />
+          <AccountBox /> */}
         </section>
         <SearchBar router={props.router} {...props} />
         <LocationBar router={props.router} {...props} />
@@ -40,7 +40,7 @@ export default function PrimaryApp(props) {
       <SubmitButton router={props.router} />
 
       {/*Footer*/}
-      <SortOptions />
+      {/* <SortOptions /> */}
     </div>
   );
 }

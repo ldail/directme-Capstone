@@ -1,13 +1,11 @@
 //Dependencies
 import React, { Component } from 'react'
 import {withRouter} from 'react-router'
-import {Route} from 'react-router-dom'
 import config from './config'
 
 //Components
 import LandingPage from './Components/LandingPage/LandingPage';
 import PrimaryApp from './Components/PrimaryApp/PrimaryApp';
-import SubmitButton from './Components/PrimaryApp/Main/SubmitButton/SubmitButton'
 
 class App extends Component {
   constructor(props) {
@@ -48,7 +46,6 @@ class App extends Component {
   }
 
   addTagListing = (tagListing) => {
-    let bodyText = JSON.stringify(tagListing);
     return fetch (`${config.API_ENDPOINT}/tag-listings`, {
       method: 'POST',
       headers: {

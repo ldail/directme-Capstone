@@ -55,3 +55,46 @@
 li {
   list-style: none;
 }
+
+.TagSingles {
+  width: 95%;
+  margin: 0 auto;
+  padding: 20px 0px;
+}
+
+.tagsInfo h4 {
+  background-color: #b0c1ce;
+  color: #314d66;
+  font-weight: bold;
+  padding: 5px 5px;
+}
+
+.TagSingles ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.TagSingles ul a {
+  width: 50%;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.TagSingles a:hover {
+  background-color: #314d66;
+}
+
+.TagSingles a:hover {
+  color: white;
+}
+
+.TagSingles a {
+  color: #314d66;
+  font-weight: bold;
+  width: 100%;
+}

@@ -71,7 +71,7 @@ export default class AddTagForm extends React.Component {
     //check for only numbers and letters
     let letters = /^[0-9a-zA-Z]+$/
     if (this.state.text.match(letters)) {
-      this.setState({erorr: false});
+      this.setState({error: false});
       this.checkTag();
     }
     else {
@@ -85,11 +85,13 @@ export default class AddTagForm extends React.Component {
     let determinate = (addTag === this.props.id) ? true : false
     return (
       <>{determinate &&
+        <div>
         <form id='addTagForm' name='addTagForm' onSubmit={(e) => this.validateText(e)}>
-        <input type="text" placeholder='tag' onChange={(e) => this.setState({text: e.target.value})} />
-        <button type="submit">Add</button>
+        <input type="text" placeholder='tag' onChange={(e) => this.setState({text: e.target.value})}/>
+        <button type="submit"></button>
+        </form>
         {this.state.error && <div class="errorMessage">Please include only one new tag with only numbers or letters!</div>}
-      </form>}
+      </div>}
       </>
     )
   }

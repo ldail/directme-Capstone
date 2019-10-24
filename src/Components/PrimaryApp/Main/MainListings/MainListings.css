@@ -1,4 +1,56 @@
+.listings {
+  width: 95%;
+  margin: 0 auto;
+}
 
+.listings .listing {
+  display: flex;
+  flex-direction: column;
+}
+
+.listing:hover {
+  background-color: #d7e9f7;
+}
+
+.listing .catListingInfo {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.listing .catListingInfo a, .listing .catListingInfo {
+  color: #314d66;
+}
+
+.listing .tagName {
+  background-color: #314d66;
+  margin: 3px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.listing .tagName a {
+  color: white;
+}
+
+.listing .tagName:hover {
+  background-color: #eae870;
+}
+
+.listing .tagName:hover a {
+  color: #314d66;
+}
+
+.listing h4 {
+  margin: 5px 0px;
+  font-weight: bold;
+}
+
+.listing .catListingInfo h3 {
+  background-color: #b0c1ce;
+  padding: 5px 0px;
+}
 
 .catListingNumbersItem {
   border-bottom: none;
@@ -36,4 +88,57 @@ h5 span {
 .tagName { 
   display: inline-block;
   margin-right: 10px;
+}
+
+.addTagButton {
+  background-image: url('../../../../images/addicon-blue.png');
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin-right: 15px;
+  margin-top: 5px;
+  border-radius: 50%;
+}
+
+.addTagButton:hover {
+  background-image: url('../../../../images/addicon-white.png');
+  background-color: #314d66;
+}
+
+.errorMessage {
+  color: #ab3e3e;
+  font-weight: bold;
+}
+
+#addTagForm {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#addTagForm button {
+  background-image: url('../../../../images/addicon-white.png');
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #314d66;
+  margin-left: 5px;
+  border-radius: 50%;
+}
+
+#addTagForm button:hover {
+  background-color: #eae870;
+  background-image: url('../../../../images/addicon-blue.png')
+}
+
+/* .linkDescription {
+  padding: 5px;
+} */
+
+.leftSide {
+  flex: 1;
 }

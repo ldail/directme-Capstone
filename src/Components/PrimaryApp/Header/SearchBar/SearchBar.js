@@ -92,9 +92,9 @@ export default class SearchBar extends React.Component {
           this.submitSearch();
         }}>
         <input type="text" id="searchInput" placeholder="#tags #here" onChange={(e) => this.setState({searchTerms: e.target.value})} />
-        <div class="keepHub">
+        <div className="keepHub">
           <input type="checkbox" id="keep" name="keep" checked={this.state.checked} onChange={() => this.setState({checked: !this.state.checked})} />
-          <label for="keep">Stay in hub?</label>
+          <label htmlFor="keep">Stay in hub?</label>
         </div>
         </form>
       </section>

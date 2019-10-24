@@ -1,35 +1,131 @@
-* {
+*, label {
   margin: 0px;
   padding: 0px;
+  font-family: 'PT Sans', sans-serif;
+  box-sizing: border-box;
+  transition: 0.2s all;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #314d66;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  margin-left: -40px;
+}
+
+.tTop {
+  bottom: 100%;
+}
+
+.tBottom {
+  top: 100%;
+
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  transition: 0s;
+}
+
+a {
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
 }
 
 body, html, #root>.main.wrapper { 
   height: 100%;
-  background-color: lightgray;
+  background-image: url('../../images/background.png');
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .main.wrapper header {
-  padding: 5px;
   display: flex;
   flex-direction: column;
 }
 
+.main.wrapper .noFurtherHubs {
+  margin: 10px 0px 20px 5px;
+  color: #314d66;
+}
+
+
+.main.wrapper .catListingInfo ul {
+  display: block;
+  width: 100%;
+}
+
+.main.wrapper a.subCategoryListing {
+  display: block;
+  margin: 0px;
+  background-color: #b0c1ce;
+  display: block;
+  font-size: 16px;
+  color: #314d66;
+}
+
+.main.wrapper a.subcategoryListing:hover {
+  background-color: #eae870;
+}
+
+.main.wrapper .subcategoryListing a {
+  color: #314d66;
+}
+
 .main.wrapper .top {
   display: flex;
+  background-color: white;
 }
 
 .main.wrapper .titles {
   flex: 2;
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
+  padding-left: 5%;
 }
 
 .main.wrapper h1 {
-  font-size: 30px;
+  font-size: 70px;
+  font-family: 'PT Sans', sans-serif;
+  color: #ea5a5a;
+}
+
+.main.wrapper h1 a:hover {
+  color: #3281b3;
+  transition: 0.4s all;
+}
+
+.main.wrapper h1 span {
+  color: #3281b3;
+  font-weight: 900;
+}
+
+.main.wrapper header a {
+  text-decoration: none;
+  color: #ea5a5a;
 }
 
 .main.wrapper h2 {
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 5px;
 }
 
 .main.wrapper .websiteButton {
@@ -41,10 +137,22 @@ body, html, #root>.main.wrapper {
 .main.wrapper .searchBar {
   text-align: center;
   display: flex;
+  justify-content: flex-start;
+  padding-top: 20px;
+  width: 90%;
+  margin: 0 auto;
 }
 .main.wrapper .searchBar #searchInput {
-  width: 90%;
+  width: 100%;
   height: 30px;
+  background-image: url('../../images/search-icon.png');
+  background-position-x: left;
+  background-position-y: center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  padding-left: 30px;
+  border: 1px solid #855656;
+  font-size: 16px;
 }
 
 .main.wrapper #searchTag {
@@ -52,11 +160,7 @@ body, html, #root>.main.wrapper {
   width: 100%;
   display: flex;
   flex-direction: column; 
-}
-
-.main.wrapper .keepHub {
-  display: flex;
-
+  align-items: flex-start;
 }
 
 .main.wrapper .locationBar {
@@ -88,12 +192,15 @@ body, html, #root>.main.wrapper {
 }
 
 .main.wrapper main {
-  margin: 30px;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid #a96060;
   margin-bottom: 65px;
   background-color: white;
+  padding-bottom: 30px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 .main.wrapper .chooseHeader {
@@ -102,14 +209,47 @@ body, html, #root>.main.wrapper {
   padding-bottom: 10px;
 }
 
-.main.wrapper .chooseHeader div {
+.main.wrapper .chooseHeader a {
   width: 100%;
   text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ea5a5a;
+  cursor: pointer;
+  text-decoration: none;
 }
 
+.main.wrapper .chooseHeader a div {
+  color: #ea5a5a;
+  padding: 5px 0px;
+}
+
+
 .main.wrapper .chooseHeader div:not(.active) {
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  background-color: #ea9f9f;
+  color: #922d2d;
+} 
+
+.main.wrapper .chooseHeader .firstNav {
+  border-right: 1px solid #922d2d;
+}
+
+.main.wrapper .chooseHeader .middleNav {
+  border-right: 1px solid #922d2d;
+}
+
+.main.wrapper .chooseHeader a div:not(.active) {
+  color: #ab3e3e;
+}
+
+.main.wrapper .chooseHeader a  div.active:hover {
+  color: #ab3e3e;
+  transition: 0.2s all;
+}
+
+.main.wrapper .chooseHeader a div:not(.active):hover {
+  color: #fff;
+  transition: 0.2s all;
 }
 
 .main.wrapper .headerInfo {
@@ -123,40 +263,115 @@ body, html, #root>.main.wrapper {
 }
 
 .main.wrapper .headerInfo div:not(.active) {
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  border-left: 1px solid #ea9f9f;
+  border-right: 1px solid #ea9f9f
 }
 .main.wrapper ul {
   list-style: none;
 }
 
-.main.wrapper .catListings {
-  width: 100%;
+.main.wrapper .catListinga {
+  width: 95%;
+  margin: 0 auto;
+  display: block;
 }
 
 .main.wrapper .catListing {
   display: flex;
-  border-bottom: 1px solid black;
+  flex-direction: column;
+}
+
+.main.wrapper .catListing {
+  display: flex;
+  border-bottom: 1px solid #ea9f9f;
   padding: 20px 0px;
 }
 
-.main.wrapper .catListing h3 {
-  background-color: lightgray;
+.main.wrapper .catListinga:hover {
+  background-color: #d7e9f7;
+}
+
+.main.wrapper .catListingTitle {
+  display: flex;
+  align-content: center;
+  margin-bottom: 5px;
+}
+
+.main.wrapper .catListing .blueArrow {
+  background-image: url('../../images/blue-arrow.png');
+  width: 50px;
+  height: 15px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.main.wrapper .catListing h3, .main.wrapper .catListing h3 a {
+  color: #314d66;
+  font-weight: bold;
+  text-decoration: none;
+  padding-left: 3px;
+  font-size: 16px;
+}
+
+.main.wrapper .catListingInfo {
+  display: flex;
 }
 
 .main.wrapper .catListingNumbers {
   display: flex;
   flex-direction: column;
   margin: 5px;
+  width: 50px;
 }
 
 .main.wrapper .catListingNumbersItem {
-  border: 1px solid black;
-  background-color: lightgray;
+  color: #314d66;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-content: center;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.main.wrapper .catListingNumbersItem .listingIcon {
+  background-image: url('../../images/listing-icon.png');
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+
+.main.wrapper .catListingNumbersItem .tagIcon {
+  background-image: url('../../images/tag-icon.png');
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+
+.main.wrapper .catListingNumbersItem .listingCount {
+  min-width: 18px;
 }
 
 .main.wrapper .catListingInfo {
   flex: 1;
+}
+
+.main.wrapper .subArrow {
+  background-image: url('../../images/down-icon.png');
+  width: 25px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.main.wrapper .subArrowLast {
+  background-image: url('../../images/down-icon-last.png');
+  width: 25px;
+  height: 24px;
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .main.wrapper .submitButton {
@@ -166,15 +381,21 @@ body, html, #root>.main.wrapper {
   position: fixed;
   bottom: 90px;
   right: 50px;
-  background-color: lightgray;
+  background-image: url('../../images/addicon-transparent.png');
+  background-color: white;
+  background-size: contain;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 1px solid black;
   z-index: 2;
+  box-shadow: 0px 0px 5px #8c687c;
 }
 
+.main.wrapper .submitButton:hover {
+  transform: rotate(90deg);
+  transition: 0.2s all;
+}
 .main.wrapper footer {
   position: fixed;
   bottom: 0px;
@@ -201,4 +422,20 @@ body, html, #root>.main.wrapper {
   height: 30px;
   width: 1px;
   background-color: black;
+}
+
+.main.wrapper .keepHub {
+  display: flex;
+  margin-top: 5px;
+  font-size: 16px;
+  color: white;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.main.wrapper .keepHub input {
+  margin-right: 10px;
+}
+
+.main.wrapper a.subCategoryListing:hover {
+  background-color: #eae870;
 }

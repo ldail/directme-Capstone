@@ -22,13 +22,17 @@ export default function MainTags(props) {
     if (tagList.length === 0) {
       return <li>There are no tags within this hub yet!</li>
     }
-    return tagList.map((item,index) => <li currentHub={check.currentHub} info={item} router={props.router} {...props}><Link to={`?tag=${item.name}`}>{item.name}</Link>:{item.count }</li>)
+    return tagList.map((item,index) => <Link to={`?tag=${item.name}`} key={index}><li>#{item.name}</li></Link>)
+    // currentHub={check.currentHub} info={item} router={props.router} {...props}
   }
   return (
       <section className="TagSingles">
+        <div className="tagsInfo">
+          <h4>More tags connected to these:</h4>
         <ul>
           {makeTagsDisplay()}
         </ul>
+        </div>
       </section>
   );
 }

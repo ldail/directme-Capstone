@@ -17,25 +17,44 @@ export default function CatListing(props) {
 
   function listSubcategories() {
     if (subcategories.length === 0) {
-      return <li>There are no further hubs!</li>
+      return <li className="noFurtherHubs">There are no further hubs!</li>
     }
     else {
       if (subcategories[0]) {
-        return subcategories.map((item,index) => <Link key={index} to={() => createPath(path,currentTagName,item.name)}><li key={index}>{item.name}</li></Link>)
+        return subcategories.map((item,index) => {
+          let path2 = createPath(path,currentTagName,item.name);
+          let arrow = 'subArrow'
+          if (index === subcategories.length-1) { arrow = 'subArrowLast' }
+          return <Link className="subCategoryListing" key={index} to={path2}>
+            <li key={index}>
+              <h4 class="flex">
+                <span className={arrow}></span>
+                <span>{item.name}</span>
+              </h4>
+            </li>
+            </Link>
+          });
+        }
+      }
     }
-  }
-}
-
+    let path3 = createPath(path,currentTagName)
   return(
-    <li className="catListing">
-      <div className="catListingNumbers">
-        <div className="catListingNumbersItem">20</div>
-        <div className="catListingNumbersItem">12</div>
+    <Link to={path3} className="catListinga">
+      <li className="catListing">
+      <div className="catListingTitle">
+        <span className="blueArrow"></span><h3>{currentTagName}</h3>
       </div>
-      <div className="catListingInfo">
-        <h3><Link to={() => createPath(path,currentTagName)}>{currentTagName}</Link></h3>
-        <h4><ul>{listSubcategories()}</ul></h4>
+      <div class="catListingInfo">
+        <div className="catListingNumbers">
+          <Link to={`${path3}?listings`} className="catListingNumbersItem tooltip"><span className="listingCount">5 <span className="tooltiptext tTop">5 listings</span></span><span className="listingIcon"></span></Link>
+          <Link to={`${path3}?tags`} className="catListingNumbersItem tooltip"><span className="listingCount">12<span className="tooltiptext tBottom">12 tags</span></span><span className="tagIcon"></span></Link>
+        </div>
+        <div className="catListingInfo">
+          <ul>{listSubcategories()}</ul>
+        </div>
       </div>
     </li>
+    </Link>
+
   );
 }

@@ -1,6 +1,5 @@
 //Dependencies
 import React from 'react';
-import {useLocation} from 'react-router-dom';
 import {withRouter} from 'react-router'
 
 //Components
