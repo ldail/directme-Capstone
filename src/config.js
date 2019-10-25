@@ -1,3 +1,3 @@
 module.exports = {
-  API_ENDPOINT: `http://localhost:8000/api`,
+  API_ENDPOINT: `https://infinite-cliffs-30759.herokuapp.com/api`,
 };

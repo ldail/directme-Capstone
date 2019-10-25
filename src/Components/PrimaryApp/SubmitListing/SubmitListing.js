@@ -219,7 +219,10 @@ export default class submitListing extends React.Component {
   }
 
   findHubLink = () => {
-    let path = this.props.router.location.pathname;
+    let props = this.props || {};
+    let router = props.router || {}
+    let location = router.location || {};
+    let path = location.pathname || '';
     if (path !== '/') {
       let path2 = path.slice(1);
       if (!path2.includes('/')) { //single path // e.g. programming
@@ -243,7 +246,10 @@ export default class submitListing extends React.Component {
 
 
   makeSubmitDisplay = () => {
-    let path = this.props.router.location.pathname;
+    let props = this.props || {};
+    let router = props.router || {}
+    let location = router.location || {};
+    let path = location.pathname || '';
     let check = checkPath(this.props,path) // returns the currentHub (unique) id and if the path is missing.
     if (check.missingPath) {
       return <div>This is not an established path yet!</div>
