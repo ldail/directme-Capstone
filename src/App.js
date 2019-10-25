@@ -14,7 +14,8 @@ class App extends Component {
       displayPage: LandingPage,
       currentHub: 0,
       tags: [],
-      addTag: 0
+      addTag: 0,
+      error: false
     }
   }
 
@@ -40,7 +41,7 @@ class App extends Component {
       }
       return res.json();
     })
-    .catch(e => console.log('error in fetch command'));
+    .catch(() => this.setState({error: true}));
   }
 
   addTagListing = (tagListing) => {
@@ -57,7 +58,7 @@ class App extends Component {
       }
       return res.json();
     })
-    .catch(e => console.log('error in fetch command'));
+    .catch(() => this.setState({error: true}));
   }
 
   addNewTag = (name) => {
@@ -74,7 +75,7 @@ class App extends Component {
       return res.json();
     })
     .then(resJson => resJson)
-    .catch(e => console.log('error'));
+    .catch(() => this.setState({error: true}));
   }
 
   getTagNameById = (tag_id) => {
@@ -100,93 +101,6 @@ class App extends Component {
     return tag;
   }
 
-  getTagByName = (name) => {
-    fetch(`${config.API_ENDPOINT}/getTagByName/${name}`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('This is an error');
-      }
-      res.json();
-    })
-    .then(resJson => resJson)
-    .catch(e => new Error('there was an error!'));
-  }
-
-  getTagById = (id) => {
-    fetch(`${config.API_ENDPOINT}/getTagById/${id}`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('This is an error');
-      }
-      res.json();
-    })
-    .then(resJson => resJson)
-    .catch(e => new Error('there was an error!'));
-  }
-
-  getAllListings = () => {
-    fetch (`${config.API_ENDPOINT}/listings`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('error in fetch!')
-      }
-      return res.json();
-    })
-    .then(resJson => resJson)
-    .catch(e => console.log('error'));
-  }
-
-  getListingByTagId = (tag_id) => {
-    return fetch (`${config.API_ENDPOINT}/listings/tag/${tag_id}`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('error in fetch!')
-      }
-      return res.json();
-    })
-    .then(resJson => {
-      return resJson
-    })
-    .catch(e => console.log('error'));
-  }
-
-  getListingByListingId = (listing_id) => {
-    return fetch (`${config.API_ENDPOINT}/listings/listing/${listing_id}`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('error in fetch!')
-      }
-      return res.json();
-    })
-    .then(resJson => resJson)
-    .catch(e => console.log('error'));
-  }
-
   componentDidMount() {
     this.checkPage();
     let hubLinks = [];
@@ -196,7 +110,7 @@ class App extends Component {
     let tagCount = [];
     //Connect to API
     //Gather the hubs / subcategory list since that is the initial display (this.state.displayTab:'?hubs')
-    fetch (`${config.API_ENDPOINT}/getHubLinks`, {
+    fetch (`${config.API_ENDPOINT}/hub_links`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -229,7 +143,7 @@ class App extends Component {
       })
     })
     .then(() => {
-      return fetch(`${config.API_ENDPOINT}/allTags`, {
+      return fetch(`${config.API_ENDPOINT}/tags`, {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
@@ -244,7 +158,7 @@ class App extends Component {
       .then(tagsRes => {
         tags=tagsRes
       })
-      .catch(e => console.error('there was an error'));
+      .catch(() => this.setState({error: true}));
     })
     .then(() => {
       return fetch(`${config.API_ENDPOINT}/listings`, {
@@ -262,7 +176,7 @@ class App extends Component {
       .then(listingsRes => {
         listings=listingsRes
       })
-      .catch(e => console.error('there was an error'));
+      .catch(() => this.setState({error: true}));
     })
     .then(() => {
       return fetch (`${config.API_ENDPOINT}/tagCount`, {
@@ -280,10 +194,10 @@ class App extends Component {
       .then(resJson => {
         tagCount = resJson;
       })
-      .catch(e => console.log('error'));
+      .catch(() => this.setState({error: true}));
     })
     .then(() => this.setState({hubLinks: hubLinks,hubTags: hubTags,tags: tags, listings: listings, tagCount: tagCount}))
-    .catch(e=> console.error('there was an error'));
+    .catch(() => this.setState({error: true}));
   }
 
   //Check if local storage has been set indicating that the landing page has been seen.
@@ -299,7 +213,7 @@ class App extends Component {
 
   render() {
     return (
-        <this.state.displayPage addListing={this.addListing} addTagListing={this.addTagListing} addNewTag={this.addNewTag} router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getListingByListingId={this.getListingByListingId} getListingByTagId={this.getListingByTagId} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} getTagById={this.getTagById} getTagByName={this.getTagByName} />
+      <this.state.displayPage addListing={this.addListing} addTagListing={this.addTagListing} addNewTag={this.addNewTag} router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} />
     )
   }
 }

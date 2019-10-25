@@ -21,6 +21,7 @@ export default class AddTagForm extends React.Component {
       this.setState({error: true});
     }
     else {
+      this.setState({text: ''})
       let tagSearch = this.props.state.tags.find(tag => {
         if (tag.name) {
           return tag.name.toLowerCase() === this.state.text.toLowerCase()

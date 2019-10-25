@@ -19,6 +19,8 @@ import SortOptions from './SortOptions/SortOptions';
 import './PrimaryApp.css'
 
 export default function PrimaryApp(props) {
+
+
   return(
     <div className="main wrapper">
 
@@ -35,8 +37,7 @@ export default function PrimaryApp(props) {
 
 
       {/*Main*/}
-      <Route path="/" render={() =>
-      <Main {...props} router={props.router}  />} />
+      {props.state.error ? <div class="errorMessage">There has been an error! Please refresh or try again</div> : <Main {...props} router={props.router} /> }
       <SubmitButton router={props.router} />
 
       {/*Footer*/}

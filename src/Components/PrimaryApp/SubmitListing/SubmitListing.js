@@ -83,7 +83,6 @@ export default class submitListing extends React.Component {
             let newListingId = highestID + 1;
 
             let submitListingObject = {name: this.state.title, url: this.state.url, description: this.state.description};
-            console.log('reaching add Listing');
             this.props.addListing(submitListingObject);
 
             //Check if Tags exist. If not, add them.
@@ -110,7 +109,6 @@ export default class submitListing extends React.Component {
                 }
               })
               if (!find) { //add tag to list
-                console.log(`could not find ${tagName}`);
 
                 //add to API and the local variable
                 allTags =  [
@@ -125,7 +123,6 @@ export default class submitListing extends React.Component {
               }
               else {
                 tagId = find.id;
-                console.log(`found ${tagName}`)
                 this.props.addTagListing({listing_id: newListingId, tag_id: tagId});
               }
               let submitListingObject = {name: this.state.title, url: this.state.url, description: this.state.description, id: newListingId, listing_id: newListingId, tag_id: tagId}
