@@ -39,7 +39,6 @@ export default function LinkListing(props) {
     let addTagState = props.state.addTag || {}
     if (addTagState !== id) {
       props.stateChange({addTag : id})
-      console.log(props.state.addTag);
     }
   }
   return (

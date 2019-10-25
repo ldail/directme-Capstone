@@ -1,5 +1,4 @@
 export default function createPath(path1, firstTag, secondTag) {
-  console.log(path1);
   let firstTagAfter = firstTag || '';
   let secondTagAfter = secondTag || '';
   let leadingTrail = '/';

@@ -57,7 +57,6 @@ export default function getSimilarTagsByPath(props,oldPath) {
     });
 
     let newestData = [];
-    console.log(mergeData);
     mergeData.forEach(item => {
       let find = newestData.find(listHere => listHere.id===item.id);
       if (!find) {
@@ -113,6 +112,5 @@ function processSinglePath(props,path,listings,tags) {
 
 async function getPopularityOfAll(props) {
   let answer = await props.getTagCountByPopularity()
-  console.log(answer);
   return answer;
 };

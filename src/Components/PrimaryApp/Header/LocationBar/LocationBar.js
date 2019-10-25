@@ -7,7 +7,6 @@ import checkPath from '../../../utils/checkPath'
 
 export default function LocationBar(props) {
   let path = props.router.location.pathname;
-  console.log(path);
   let results = ['home'];
   let checkPathFunction = checkPath(props,path);
   if (!checkPathFunction.missingPath) {
@@ -24,7 +23,6 @@ export default function LocationBar(props) {
 
 function makePath(props,results) {
 
-  console.log(results);
     let path = props.router.location.pathname;
     let paths = results.map((tagName,index) => {
       if (index !== results.length-1) {

@@ -83,6 +83,7 @@ export default class submitListing extends React.Component {
             let newListingId = highestID + 1;
 
             let submitListingObject = {name: this.state.title, url: this.state.url, description: this.state.description};
+            console.log('reaching add Listing');
             this.props.addListing(submitListingObject);
 
             //Check if Tags exist. If not, add them.
@@ -95,7 +96,6 @@ export default class submitListing extends React.Component {
             // let addingTags be a full array of all the tags assigned to this listing
             if (hub.length !== 0) {
               addingTags = addingTags.concat(hub);
-              console.log(addingTags);
             }
 
             //go through each of the tags.

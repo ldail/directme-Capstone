@@ -19,8 +19,6 @@ class App extends Component {
   }
 
   stateChange = (newState) => { 
-    console.log('stateChange');
-    console.log(newState);
     this.setState({
       ...newState
     });
