@@ -185,8 +185,8 @@ export default class submitListing extends React.Component {
 
   showAddingTags = () => {
     if (this.state.addingTags.length !== 0) {
-      let display = this.state.addingTags.map(tagName => {
-        return <div className="tagName" onClick={(e) => {
+      let display = this.state.addingTags.map((tagName,index) => {
+        return <div key={index} className="tagName" onClick={(e) => {
           e.preventDefault();
           let newAddingTags = this.state.addingTags.filter(tag => tag.toLowerCase() !== tagName.toLowerCase());
           this.setState({addingTags: newAddingTags, tagError: false});

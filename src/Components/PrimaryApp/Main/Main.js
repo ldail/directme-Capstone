@@ -36,7 +36,7 @@ class Main extends React.Component {
     let error = state.error || {}
     let loading = state.loading || ''
     if (error === true) {
-      return <div class="errorMessage">There has been an error! Please refresh or try again</div>
+      return <div className="errorMessage">There has been an error! Please refresh or try again</div>
     }
     else if (loading === true) {
       return <div className="center"><ReactLoading className="center" type={"spinningBubbles"} color={'#a96060'} height={60} width={60} /></div>

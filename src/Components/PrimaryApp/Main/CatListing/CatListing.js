@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom';
 import getHubList from '../../../utils/getHubList'
 import checkPath from '../../../utils/checkPath'
 import createPath from '../../../utils/createPath'
+import getSimilarTagsByPath from '../../../utils/getSimilarTagsByPath';
+import getListingsByPath from '../../../utils/getListingsByPath';
 
 export default function CatListing(props) {
   let router = props.router || {};
@@ -39,7 +41,10 @@ export default function CatListing(props) {
         }
       }
     }
-    let path3 = createPath(path,currentTagName)
+  let path3 = createPath(path,currentTagName)
+
+  let getListings = getListingsByPath(props,path3);
+  let getTags = getSimilarTagsByPath(props,path3)
   return(
     <Link to={path3} className="catListinga">
       <li className="catListing">
@@ -48,8 +53,8 @@ export default function CatListing(props) {
       </div>
       <div className="catListingInfo">
         <div className="catListingNumbers">
-          <Link to={`${path3}?listings`} className="catListingNumbersItem tooltip"><span className="listingCount">5 <span className="tooltiptext tTop">5 listings</span></span><span className="listingIcon"></span></Link>
-          <Link to={`${path3}?tags`} className="catListingNumbersItem tooltip"><span className="listingCount">12<span className="tooltiptext tBottom">12 tags</span></span><span className="tagIcon"></span></Link>
+          <Link to={`${path3}?listings`} className="catListingNumbersItem tooltip"><span className="listingCount">{getListings.length} <span className="tooltiptext tTop">{getListings.length} {getListings.length === 1 ? 'listing' : 'listings'}</span></span><span className="listingIcon"></span></Link>
+          <Link to={`${path3}?tags`} className="catListingNumbersItem tooltip"><span className="listingCount">{getTags.length} <span className="tooltiptext tBottom">{getTags.length} {getTags.length === 1 ? 'tag' : 'tags'}</span></span><span className="tagIcon"></span></Link>
         </div>
         <div className="catListingInfo">
           <ul>{listSubcategories()}</ul>

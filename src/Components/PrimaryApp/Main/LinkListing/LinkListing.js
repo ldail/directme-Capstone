@@ -30,8 +30,8 @@ export default function LinkListing(props) {
           })
         }
       }
-    results.tagNames.forEach(tagName => {
-    tagList.push(<li class="tagName"><Link to ={`${prePath}?tag=${tagName}`}>#{tagName}</Link> </li>)
+    results.tagNames.forEach((tagName,index) => {
+    tagList.push(<li key={index} className="tagName"><Link to ={`${prePath}?tag=${tagName}`}>#{tagName}</Link> </li>)
     });
     return tagList;
   }
