@@ -5,7 +5,10 @@ import {Link} from 'react-router-dom'
 //Components
 import checkPath from '../../../utils/checkPath'
 
-export default function LocationBar(props) {
+export default class LocationBar extends React.Component {
+
+  render() {
+  let props = this.props
   let router = props.router || {};
   let location = router.location || {};
   let path = location.pathname || '';
@@ -21,16 +24,17 @@ export default function LocationBar(props) {
         <div className="lineBar"></div>
     </section>
   );
+  }
 }
 
 function makePath(props,results) {
-
   let router = props.router || {};
   let location = router.location || {};
   let path = location.pathname || '';
     let paths = results.map((tagName,index) => {
-      if (index !== results.length-1) {
-        if (index === 0) {
+      console.log(results);
+      if (index !== results.length-1) { // on the last one
+        if (index === 0) { //if we're on the current page
           if (!results[1]) {
             return <div key={index} className="currentLocation"><Link to={`${path}`}>#{tagName}</Link></div>
           }
@@ -69,11 +73,11 @@ function makePath(props,results) {
         }
       }
       else {
-        if (results.length === 1) { // only home
-          return <div key={index} className="currentLocation"><Link to='/'>#home</Link></div>
+        if (results.length === 1) { // we're at the home page
+          return <div key={index} className="currentLocation"><Link to='/'>home</Link></div>
         }
-        else {
-          return <div key={index} className="nextLocation"><Link to='/'>#home</Link></div>
+        else { // pointing to the home page
+          return <div key={index} className="nextLocation"><Link to='/'>home</Link></div>
         }
       }
     })

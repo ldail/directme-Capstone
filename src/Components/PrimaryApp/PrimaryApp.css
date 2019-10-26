@@ -6,6 +6,12 @@
   transition: 0.2s all;
 }
 
+.center {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .tooltip {
   position: relative;
   display: inline-block;
@@ -481,6 +487,13 @@ body, html, #root>.main.wrapper {
   background-color: #eae870;
 }
 
+.main.wrapper .catListingTitle {
+  padding: 5px;
+}
+.main.wrapper .catListingTitle:hover {
+  background-color: #eae870;
+  color: #314d66;
+}
 @media screen and (min-width: 768px) {
   body, html, #root>.main.wrapper { 
     background-image: url('../../images/largebackground.png');

@@ -15,7 +15,8 @@ class App extends Component {
       currentHub: 0,
       tags: [],
       addTag: 0,
-      error: false
+      error: false,
+      loading: true
     }
   }
 
@@ -42,13 +43,11 @@ class App extends Component {
       return res.json();
     })
     .catch(() => {
-      console.log('error in fetch I');
       this.setState({error: true});
     });
   }
 
   addTagListing = (tagListing) => {
-    console.log(tagListing);
     return fetch (`${config.API_ENDPOINT}/tag_listings`, {
       method: 'POST',
       headers: {
@@ -57,16 +56,12 @@ class App extends Component {
       body: JSON.stringify(tagListing)
     })
     .then(res => {
-      console.log('res');
-      console.log(res);
       if (!res.ok) {
         throw new Error('error in fetch!')
       }
       return res.json();
     })
     .catch(e => {
-      console.log('error in fetch 2');
-      console.log(e);
       this.setState({error: true});
     });
   }
@@ -86,7 +81,6 @@ class App extends Component {
     })
     .then(resJson => resJson)
     .catch(() => {
-      console.log('error in fetch 3');
       this.setState({error: true});
     });
   }
@@ -172,7 +166,6 @@ class App extends Component {
         tags=tagsRes
       })
       .catch(() => {
-        console.log('error in fetch 4');
         this.setState({error: true});
       });
     })
@@ -193,7 +186,6 @@ class App extends Component {
         listings=listingsRes
       })
       .catch(() => {
-        console.log('error in fetch 5');
         this.setState({error: true});
       });
     })
@@ -214,13 +206,11 @@ class App extends Component {
         tagCount = resJson;
       })
       .catch(() => {
-        console.log('error in fetch 6');
         this.setState({error: true});
       });
     })
-    .then(() => this.setState({hubLinks: hubLinks,hubTags: hubTags,tags: tags, listings: listings, tagCount: tagCount}))
+    .then(() => this.setState({hubLinks: hubLinks,hubTags: hubTags,tags: tags, listings: listings, tagCount: tagCount, loading: false}))
     .catch(() => {
-      console.log('error in fetch 7');
       this.setState({error: true});
     });
   }

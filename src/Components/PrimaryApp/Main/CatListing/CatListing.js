@@ -19,7 +19,7 @@ export default function CatListing(props) {
 
   function listSubcategories() {
     if (subcategories.length === 0) {
-      return <li className="noFurtherHubs">There are no further hubs!</li>
+      return <li className="noFurtherHubs"><span className='subArrowLast'></span>There are no further hubs!</li>
     }
     else {
       if (subcategories[0]) {

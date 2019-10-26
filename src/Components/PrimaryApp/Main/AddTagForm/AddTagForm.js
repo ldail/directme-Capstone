@@ -18,7 +18,6 @@ export default class AddTagForm extends React.Component {
     let tags = this.props.state.tags;
     let find = this.props.results.tagNames.find(result => result.toLowerCase() === this.state.text.toLowerCase())
     if (find) {
-      console.log('error is 8');
       this.setState({error: true});
     }
     else {
@@ -77,7 +76,6 @@ export default class AddTagForm extends React.Component {
       this.checkTag();
     }
     else {
-      console.log('error in 9');
       this.setState({error: true});
     }
   }

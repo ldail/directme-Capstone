@@ -1,6 +1,7 @@
 //Dependencies
 import React from 'react';
 import {withRouter} from 'react-router'
+import ReactLoading from 'react-loading';
 
 //Components
 import MainNav from './MainNav/MainNav';
@@ -29,15 +30,28 @@ class Main extends React.Component {
     }
   }
 
+  decideView = () => {
+    let props = this.props || {}
+    let state = props.state || {}
+    let error = state.error || {}
+    let loading = state.loading || ''
+    if (error === true) {
+      return <div class="errorMessage">There has been an error! Please refresh or try again</div>
+    }
+    else if (loading === true) {
+      return <div className="center"><ReactLoading className="center" type={"spinningBubbles"} color={'#a96060'} height={60} width={60} /></div>
+    }
+    else {
+      return this.checkPage()
+    }
+  }
+
   render() {
-    let props = this.props;
-    let state = props.state;
-    let error = state.error;
       return(
         <main>
           <MainNav router={this.props.router} {...this.props}/>
           {/* <MainNavNumbers router={this.props.router} {...this.props}/> */}
-          {error===true ? <main class="errorMessage">There has been an error! Please refresh or try again</main> : this.checkPage()}
+          {this.decideView()}
         </main>
       );
   }
