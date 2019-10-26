@@ -1,68 +1,68 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Directme Client Readme
 
-## Available Scripts
 
-In the project directory, you can run:
+#Directme
 
-### `npm start`
+##Links
+**[Live App](https://directme-client.ldail.now.sh/)**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Client Repository](https://github.com/ldail/directme-Capstone)
+[Server repository](https://github.com/ldail/directme-Capstone-server)
+[Kanban / Project Board](https://github.com/ldail/CapstoneI/projects)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+##About
+Directme is a modern web directory. Users can find new websites and communities via hubs and tags. Hubs are nested categories that a user can move through until they find a topic of interest. Tags allow a user to search by keywords to find listings. Users can contribute listings with any number of imaginable tags. If the tags match a hub's nested link, the listing will be displayed there as well.
 
-### `npm test`
+Future deployment will include:
+* User accounts that can save hubs, listings, and tags in their favorites.
+* Vote for the best listings in each hub.
+* Sort and filter the hubs, listings, and tags.
+* Become editors of a hub and currate the best links for others.
+* and much, more. Check the [Kanban / Project Board](https://github.com/ldail/CapstoneI/projects) for a list of upcoming releases.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##Technology
+* ReactJS
+* Express
+* Postgres
+* HTML5
+* CSS3
+* Mocha
+* Chai
+* Supertest
+* Enzyme
+* Jest
 
-### `npm run build`
+##Screenshots
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+####`Hubs` View
+[Hubs View](/images/Directme_hubs_screenshot.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+[Listings View](/images/Directme_listings_screenshot.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Tags View](/images/Directme_tags_screenshot.png)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##Details
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Each Component is housed within its own folder. I took the best effort to separate out reusable functions as needed.
+The hierarchy for the client is as follows:
+1. Components
+	1. Primary App --> // *This houses all of the main application*
+		1. Header
+			1. HeaderTitle
+			1. LocationBar --> // *The breadcrumbs / location showing the deeply nested hubs a user enters*
+			1. SearchBar --> // *Includes validation, calling to the API, and changing state*
+		1. Main
+			1. AddTagForm --> // *The input box, validation, API calls, and changing state for when a user adds a tag to a listing. Reusable*
+			1. CatListing --> // *Lists a hub/category within the current hub. Reusable*
+			1. LinkListing --> // *Lists an individual link. Reusable*
+			1. MainHubs --> // *One of the major views of the website. Displays the hubs list*
+			1. MainListings --> // *One of the major views of the website. Displays the listings list*
+			1. MainNav --> // *Provides the user the option of switching between the major views.*
+			1. MainTags --> // *One of the major views of the website. Displays the tags list*
+			1. SubmitButton --> // *A button to submit links lives on every page on the application. Reusable*
+		1. SubmitListing --> // *Submit form for listings including validation, API calls, state changes*
+	1. utils --> // *These are utility functions used across the application.
+1. FutureComponents --> // *Components under construction for future deployments*
+1. images
+1. tests
