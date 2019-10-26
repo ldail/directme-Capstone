@@ -1,16 +1,13 @@
-Directme Client Readme
+# Directme
 
+## Links
+* **[Live App](https://directme-client.ldail.now.sh/)**
 
-#Directme
+* [Client Repository](https://github.com/ldail/directme-Capstone)
+* [Server repository](https://github.com/ldail/directme-Capstone-server)
+* [Kanban / Project Board](https://github.com/ldail/CapstoneI/projects)
 
-##Links
-**[Live App](https://directme-client.ldail.now.sh/)**
-
-[Client Repository](https://github.com/ldail/directme-Capstone)
-[Server repository](https://github.com/ldail/directme-Capstone-server)
-[Kanban / Project Board](https://github.com/ldail/CapstoneI/projects)
-
-##About
+## About
 Directme is a modern web directory. Users can find new websites and communities via hubs and tags. Hubs are nested categories that a user can move through until they find a topic of interest. Tags allow a user to search by keywords to find listings. Users can contribute listings with any number of imaginable tags. If the tags match a hub's nested link, the listing will be displayed there as well.
 
 Future deployment will include:
@@ -20,7 +17,7 @@ Future deployment will include:
 * Become editors of a hub and currate the best links for others.
 * and much, more. Check the [Kanban / Project Board](https://github.com/ldail/CapstoneI/projects) for a list of upcoming releases.
 
-##Technology
+## Technology 
 * ReactJS
 * Express
 * Postgres
@@ -32,20 +29,23 @@ Future deployment will include:
 * Enzyme
 * Jest
 
-##Screenshots
+## Screenshots
 
-####`Hubs` View
+#### `MainHubs` View
 [Hubs View](/images/Directme_hubs_screenshot.png)
 
+#### `MainListings` View
 [Listings View](/images/Directme_listings_screenshot.png)
 
+#### `MainTags` View
 [Tags View](/images/Directme_tags_screenshot.png)
 
 
-##Details
+## Details
 
 Each Component is housed within its own folder. I took the best effort to separate out reusable functions as needed.
 The hierarchy for the client is as follows:
+
 1. Components
 	1. Primary App --> // *This houses all of the main application*
 		1. Header
