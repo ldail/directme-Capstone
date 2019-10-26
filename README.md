@@ -47,6 +47,11 @@ Each Component is housed within its own folder. I took the best effort to separa
 The hierarchy for the client is as follows:
 
 1. Components
+	1. Landing Page --> // *User greeted with an onboarding experience for their first time*
+		1. goBack --> // *Landing-specific utility function to see the last message*
+		1. goForward --> // *Landing-specific utility function to see the next message*
+		1. LandingPage2 --> // *This houses the bulk of the landing page onboarding experience*
+		1. Message --> // *The message that appears on the screen*
 	1. Primary App --> // *This houses all of the main application*
 		1. Header
 			1. HeaderTitle
