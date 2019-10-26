@@ -19,7 +19,7 @@ export default class LocationBar extends React.Component {
   }
 
   return(
-    <section className="locationBar">
+    <section id="locationBar" className="locationBar">
         {makePath(props,results)}
         <div className="lineBar"></div>
     </section>

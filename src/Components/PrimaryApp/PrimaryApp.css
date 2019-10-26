@@ -253,7 +253,6 @@ body, html, #root>.main.wrapper {
 .main.wrapper .chooseHeader {
   display: flex;
   justify-content: space-evenly;
-  padding-bottom: 10px;
 }
 
 .main.wrapper .chooseHeader a {
@@ -264,6 +263,11 @@ body, html, #root>.main.wrapper {
   color: #ea5a5a;
   cursor: pointer;
   text-decoration: none;
+  background-color: white;
+}
+
+#hubsCatListings {
+  background-color: white;
 }
 
 .main.wrapper .chooseHeader a div {
@@ -292,6 +296,7 @@ body, html, #root>.main.wrapper {
 .main.wrapper .chooseHeader a  div.active:hover, .main.wrapper .chooseHeader a  div.active:active {
   color: #ab3e3e;
   transition: 0.2s all;
+  background-color: white;
 }
 
 .main.wrapper .chooseHeader a div:not(.active):hover, .main.wrapper .chooseHeader a div:not(.active):active {
@@ -435,7 +440,7 @@ body, html, #root>.main.wrapper {
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 2;
+  z-index: 3;
   box-shadow: 0px 0px 5px #8c687c;
 }
 

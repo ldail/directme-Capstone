@@ -4,14 +4,13 @@ import {withRouter} from 'react-router'
 import config from './config'
 
 //Components
-import LandingPage from './Components/LandingPage/LandingPage';
+import LandingPage2 from './Components/LandingPage/LandingPage2';
 import PrimaryApp from './Components/PrimaryApp/PrimaryApp';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayPage: LandingPage,
       currentHub: 0,
       tags: [],
       addTag: 0,
@@ -109,7 +108,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.checkPage();
     let hubLinks = [];
     let hubTags = [];
     let tags = [];
@@ -215,20 +213,9 @@ class App extends Component {
     });
   }
 
-  //Check if local storage has been set indicating that the landing page has been seen.
-  checkPage() {
-    if (!window.localStorage.getItem('seenLanding')) { 
-      this.setState({seenLanding: 'true'})
-      window.localStorage.setItem('seenLanding',true);
-    }
-    else {
-      this.setState({seenLanding: true, displayPage: PrimaryApp})
-    }
-  }
-
   render() {
     return (
-      <this.state.displayPage addListing={this.addListing} addTagListing={this.addTagListing} addNewTag={this.addNewTag} router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} />
+      <PrimaryApp addListing={this.addListing} addTagListing={this.addTagListing} addNewTag={this.addNewTag} router={this.props} stateChange={this.stateChange} getTagCountByPopularity={this.getTagCountByPopularity} getFullTagById={this.getFullTagById} getFullTagByName={this.getFullTagByName} getTagNameById={this.getTagNameById} state={this.state} />
     )
   }
 }

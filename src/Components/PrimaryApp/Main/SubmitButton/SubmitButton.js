@@ -10,6 +10,6 @@ export default function SubmitButton(props) {
 
   
    return(
-    <Link to='?submit'><div className="submitButton"></div></Link>
+    <Link to='?submit'><div id="submitButton" className="submitButton"></div></Link>
    );
 }

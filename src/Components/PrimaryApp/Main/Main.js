@@ -10,6 +10,7 @@ import MainTags from './MainTags/MainTags';
 import SubmitListing from '../SubmitListing/SubmitListing'
 import MainListings from './MainListings/MainListings'
 
+
 class Main extends React.Component {
   checkPage = () => {
 
@@ -48,7 +49,7 @@ class Main extends React.Component {
 
   render() {
       return(
-        <main>
+        <main id="mainPage">
           <MainNav router={this.props.router} {...this.props}/>
           {/* <MainNavNumbers router={this.props.router} {...this.props}/> */}
           {this.decideView()}

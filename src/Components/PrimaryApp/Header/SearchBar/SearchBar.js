@@ -86,7 +86,7 @@ export default class SearchBar extends React.Component {
 
   render() {
     return(
-      <section className="searchBar">
+      <section id="searchBar" className="searchBar">
         <form id="searchTag" name="searchTag" onSubmit={(e) => {
           e.preventDefault();
           this.submitSearch();

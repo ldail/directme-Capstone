@@ -44,7 +44,7 @@ export default function CatListing(props) {
   let path3 = createPath(path,currentTagName)
 
   let getListings = getListingsByPath(props,path3);
-  let getTags = getSimilarTagsByPath(props,path3)
+  let getTags = getSimilarTagsByPath(props,path3);
   return(
     <Link to={path3} className="catListinga">
       <li className="catListing">

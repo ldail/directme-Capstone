@@ -2,6 +2,8 @@
 import React from 'react';
 
 //Components
+import LandingPage2 from '../LandingPage/LandingPage2';
+
 import HeaderTitle from './Header/HeaderTitle/HeaderTitle';
 import SearchBar from './Header/SearchBar/SearchBar';
 import LocationBar from './Header/LocationBar/LocationBar';
@@ -13,18 +15,31 @@ import SubmitButton from './Main/SubmitButton/SubmitButton';
 //CSS
 import './PrimaryApp.css'
 
-export default function PrimaryApp(props) {
+export default class PrimaryApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      seenLanding: false
+    }
+  }
 
-  let state = props.state || {};
-  let error = state.error || {};
+  seenLandingChange = () => {
+    this.setState({seenLanding: true});
+  }
+
+  render() {
+    let props = this.props || {}
+    let state = props.state || {};
+    let error = state.error || {};
 
 
   return(
     <div className="main wrapper">
+      {!window.localStorage.getItem('seenLanding') && this.state.seenLanding === false ? <LandingPage2 seenLandingChange={this.seenLandingChange} /> : ''}
 
       {/*Header*/}
       <header>
-        <section className="top">
+        <section id="top" className="top">
           <HeaderTitle {...props} />
           {/* <InfoBox />
           <AccountBox /> */}
@@ -42,4 +57,5 @@ export default function PrimaryApp(props) {
       {/* <SortOptions /> */}
     </div>
   );
+        }
 }

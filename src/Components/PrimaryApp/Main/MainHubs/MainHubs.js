@@ -25,8 +25,8 @@ export default function MainHubs(props) {
   }
 
   return(
-      <section className="catListings">
-        <ul>
+      <section id="hubsCatListings" className="catListings">
+        <ul id="hubCatListingsUl">
         {makeHubDisplay()}
         </ul>
 

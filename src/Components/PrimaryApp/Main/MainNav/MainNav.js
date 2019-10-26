@@ -41,11 +41,11 @@ export default class MainNav extends React.Component {
     else { this.changeActive('hubs') }
     return (
       <section className="chooseHeader">
-          <Link to={`${path}?hubs`} onClick={() => this.changeActive('hubs')}><div className={`firstNav ${this.state.active.hubs ? 'active' : 'inactive'}`}>Hubs</div></Link>
+          <Link to={`${path}?hubs`} id="firstNav" onClick={() => this.changeActive('hubs')}><div id="firstNavDiv" className={`firstNav ${this.state.active.hubs ? 'active' : 'inactive'}`}>Hubs</div></Link>
           {path !== '/' &&
-          <Link to={`${path}?listings`} onClick={() => this.changeActive('listings')}><div className={`middleNav ${this.state.active.listings ? 'active' : 'inactive'}`}>Listings</div></Link>
+          <Link to={`${path}?listings`} id="middleNav" onClick={() => this.changeActive('listings')}><div className={`middleNav ${this.state.active.listings ? 'active' : 'inactive'}`}>Listings</div></Link>
           }
-          <Link to={`${path}?tags`} onClick={() => this.changeActive('tags')}><div className={(this.state.active.tags ? 'active' : 'inactive')}>Tags</div></Link>
+          <Link to={`${path}?tags`} id="lastNav" onClick={() => this.changeActive('tags')}><div className={`lastNav ${(this.state.active.tags ? 'active' : 'inactive')}`}>Tags</div></Link>
       </section>
     );
       }

@@ -1,0 +1,85 @@
+#landingSplash * {
+  transition: .3s all;
+}
+
+#landingSplash.blackBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(000,000,000,0.6);
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+}
+#landingSplash .message {
+  color: #314d66;
+  text-align: center;
+  position: relative;
+  padding: 40px 40px;
+  background-color: white;
+  border: 1px solid #ea9f9f;
+  z-index: 4;
+  max-height: 300px;
+  max-width: 90%;
+}
+
+.third {
+  margin-top: 150px;
+}
+
+.fourth, .fifth {
+  align-self: flex-start;
+  margin-top: 30px;
+}
+
+#landingSplash h2 {
+  font-weight: bold;
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+
+#landingSplash .smallDivider {
+  width: 200px;
+  height: 1px;
+  background-color: #ea9f9f;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+#landingSplash .undo {
+  position: absolute;
+  left: 0;
+}
+
+.undo:hover, .redo:hover {
+  color: #ab3e3e;
+  cursor: pointer
+}
+#landingSplash .redo {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+#landingSplash .cancel {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#landingSplash .cancel:hover {
+  cursor: pointer;
+  color: #ab3e3e;
+}
+
+#landingSplash p {
+  margin-bottom: 10px;
+}
