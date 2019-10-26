@@ -6,7 +6,9 @@ import {Link} from 'react-router-dom'
 import checkPath from '../../../utils/checkPath'
 
 export default function LocationBar(props) {
-  let path = props.router.location.pathname;
+  let router = props.router || {};
+  let location = router.location || {};
+  let path = location.pathname || '';
   let results = ['home'];
   let checkPathFunction = checkPath(props,path);
   if (!checkPathFunction.missingPath) {
@@ -23,33 +25,55 @@ export default function LocationBar(props) {
 
 function makePath(props,results) {
 
-    let path = props.router.location.pathname;
+  let router = props.router || {};
+  let location = router.location || {};
+  let path = location.pathname || '';
     let paths = results.map((tagName,index) => {
       if (index !== results.length-1) {
         if (index === 0) {
-          return <div class="currentLocation"><Link to={`${path}`}>#{tagName}</Link></div>
+          if (!results[1]) {
+            return <div key={index} className="currentLocation"><Link to={`${path}`}>#{tagName}</Link></div>
+          }
+          else {
+            return <div key={index}><div className="currentLocation"><Link to={`${path}`}>#{tagName}</Link></div><span className="yellowArrow"></span></div>
+          }
         }
         //return links for the middle paths:
         if (index === 1) {
-          return <div class="nextLocation"><Link to='./'>#{tagName}</Link></div>
+          if (!results[index+1]) {
+            return <div key={index} className="nextLocation"><Link to='./'>#{tagName}</Link></div>
+          }
+          else {
+            return <div key={index}><div className="nextLocation"><Link to='./'>#{tagName}</Link></div><span className="yellowLine"></span></div>
+          }
         }
         if (index === 2) {
-          return <div class="nextLocation"><Link to='../'>#{tagName}</Link></div>
+          if (!results[index+1]) {
+            return <div key={index} className="nextLocation"><Link to='../'>#{tagName}</Link></div>
+          }
+          else {
+            return <div key={index}><div className="nextLocation"><Link to='../'>#{tagName}</Link></div><span className="yellowLine"></span></div>
+          }
         }
         else {
           let count = '../'
           for (let j=3; j<=index;j++) {
             count += '../'
           }
-          return <div class="nextLocation"><Link to ={count}>#{tagName}</Link></div>
+          if (!results[index+1]) {
+            return <div key={index} className="nextLocation"><Link to ={count}>#{tagName}</Link></div>
+          }
+          else {
+            return <div key={index} ><div className="nextLocation"><Link to ={count}>#{tagName}</Link></div><span className="yellowLine"></span></div>
+          }
         }
       }
       else {
         if (results.length === 1) { // only home
-          return <div class="currentLocation"><Link to='/'>#home</Link></div>
+          return <div key={index} className="currentLocation"><Link to='/'>#home</Link></div>
         }
         else {
-          return <div class="nextLocation"><Link to='/'>#home</Link></div>
+          return <div key={index} className="nextLocation"><Link to='/'>#home</Link></div>
         }
       }
     })

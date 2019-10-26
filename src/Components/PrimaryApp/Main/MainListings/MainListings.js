@@ -13,7 +13,9 @@ import findTagByName from '../../../utils/findTagByName';
 export default function MainListings(props) {
 
   function makeListingDisplay() {
-    let path = props.router.location.pathname;
+    let router = props.router || {};
+    let location = router.location || {};
+    let path = location.pathname || '';
     let check = checkPath(props,path);
     let filteredListings = getListingsByPath(props,path);
     if (check.missingPath === true) {

@@ -4,12 +4,12 @@ import { shallow, mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import { MemoryRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
-import HeaderTitle from '../Components/PrimaryApp/Header/HeaderTitle/HeaderTitle';
+import MainNav from '../Components/PrimaryApp/Main/MainNav/MainNav'
 
-describe('HeaderTitle', () => {
+describe('MainNav', () => {
   it('renders without errors', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<BrowserRouter><HeaderTitle /></BrowserRouter>, div);
+    ReactDOM.render(<BrowserRouter><MainNav /></BrowserRouter>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

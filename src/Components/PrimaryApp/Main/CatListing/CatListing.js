@@ -8,7 +8,9 @@ import checkPath from '../../../utils/checkPath'
 import createPath from '../../../utils/createPath'
 
 export default function CatListing(props) {
-  let path = props.router.location.pathname;
+  let router = props.router || {};
+  let location = router.location || {};
+  let path = location.pathname || '';
   let info = props.info || {}
   let currentTagName = info.name || ''
   
@@ -27,7 +29,7 @@ export default function CatListing(props) {
           if (index === subcategories.length-1) { arrow = 'subArrowLast' }
           return <Link className="subCategoryListing" key={index} to={path2}>
             <li key={index}>
-              <h4 class="flex">
+              <h4 className="flex">
                 <span className={arrow}></span>
                 <span>{item.name}</span>
               </h4>
@@ -44,7 +46,7 @@ export default function CatListing(props) {
       <div className="catListingTitle">
         <span className="blueArrow"></span><h3>{currentTagName}</h3>
       </div>
-      <div class="catListingInfo">
+      <div className="catListingInfo">
         <div className="catListingNumbers">
           <Link to={`${path3}?listings`} className="catListingNumbersItem tooltip"><span className="listingCount">5 <span className="tooltiptext tTop">5 listings</span></span><span className="listingIcon"></span></Link>
           <Link to={`${path3}?tags`} className="catListingNumbersItem tooltip"><span className="listingCount">12<span className="tooltiptext tBottom">12 tags</span></span><span className="tagIcon"></span></Link>

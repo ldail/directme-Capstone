@@ -34,7 +34,7 @@
 
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip:hover .tooltiptext, .tooltip:active .tooltiptext {
   visibility: visible;
   transition: 0s;
 }
@@ -80,7 +80,7 @@ body, html, #root>.main.wrapper {
   color: #314d66;
 }
 
-.main.wrapper a.subcategoryListing:hover {
+.main.wrapper a.subcategoryListing:hover, .main.wrapper a.subcategoryListing:active {
   background-color: #eae870;
 }
 
@@ -107,7 +107,7 @@ body, html, #root>.main.wrapper {
   color: #ea5a5a;
 }
 
-.main.wrapper h1 a:hover {
+.main.wrapper h1 a:hover, .main.wrapper h1 a:active {
   color: #3281b3;
   transition: 0.4s all;
 }
@@ -120,6 +120,12 @@ body, html, #root>.main.wrapper {
 .main.wrapper header a {
   text-decoration: none;
   color: #ea5a5a;
+}
+
+.main.wrapper header .currentLocation a, .main.wrapper header .nextLocation a {
+  text-decoration: none;
+  color: #fff;
+  font-family: 'PT Sans', sans-serif;
 }
 
 .main.wrapper h2 {
@@ -168,27 +174,62 @@ body, html, #root>.main.wrapper {
   margin-top: 20px;
   display: flex;
   align-content: center;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.main.wrapper .locationBar>div {
+  display: flex;
+  align-items: center;
 }
 
 .main.wrapper .currentLocation {
-  border: 1px solid black;
+  border: 1px solid #ea9f9f;
   padding: 10px;
   flex: 0;
   text-align: center;
-  margin-left: 20px;
   font-weight: bold;
+  color: white;
+  height: 40px;
+}
+
+.main.wrapper .currentLocation:hover {
+  background-color: #8d677b;
+}
+
+.main.wrapper .nextLocation:hover {
+  background-color: #8d677b;
+}
+
+.main.wrapper .yellowArrow {
+  height: 40px;
+  background-image: url('../../images/yellow-nav-arrow.png');
+  background-position-y: center;
+  background-position-x: left;
+  background-repeat: no-repeat;
+  width: 21px;
+  display: block;
+}
+
+.main.wrapper .yellowLine {
+  height: 2px;
+  width:21px;
+  display: block;
+  background-color: #dadc30;
 }
 
 .main.wrapper .nextLocation {
-  border: 1px solid black;
-  padding: 5px;
+  border: 1px solid #ea9f9f;
+  padding: 10px;
   flex: 0;
   text-align: center;
+  font-weight: normal;
 }
 
 .main.wrapper .lineBar {
   flex: 1;
-  border-top: 1px solid black;
+  height: 2px;
+  background-color: #dadc30;
 }
 
 .main.wrapper main {
@@ -242,12 +283,12 @@ body, html, #root>.main.wrapper {
   color: #ab3e3e;
 }
 
-.main.wrapper .chooseHeader a  div.active:hover {
+.main.wrapper .chooseHeader a  div.active:hover, .main.wrapper .chooseHeader a  div.active:active {
   color: #ab3e3e;
   transition: 0.2s all;
 }
 
-.main.wrapper .chooseHeader a div:not(.active):hover {
+.main.wrapper .chooseHeader a div:not(.active):hover, .main.wrapper .chooseHeader a div:not(.active):active {
   color: #fff;
   transition: 0.2s all;
 }
@@ -287,7 +328,7 @@ body, html, #root>.main.wrapper {
   padding: 20px 0px;
 }
 
-.main.wrapper .catListinga:hover {
+.main.wrapper .catListinga:hover, .main.wrapper .catListinga:active {
   background-color: #d7e9f7;
 }
 
@@ -392,7 +433,7 @@ body, html, #root>.main.wrapper {
   box-shadow: 0px 0px 5px #8c687c;
 }
 
-.main.wrapper .submitButton:hover {
+.main.wrapper .submitButton:hover, .main.wrapper .submitButton:active {
   transform: rotate(90deg);
   transition: 0.2s all;
 }
@@ -436,6 +477,18 @@ body, html, #root>.main.wrapper {
   margin-right: 10px;
 }
 
-.main.wrapper a.subCategoryListing:hover {
+.main.wrapper a.subCategoryListing:hover, .main.wrapper a.subCategoryListing:active {
   background-color: #eae870;
+}
+
+@media screen and (min-width: 768px) {
+  body, html, #root>.main.wrapper { 
+    background-image: url('../../images/largebackground.png');
+  }
+}
+
+@media screen and (min-width: 1600) {
+  body, html, #root>.main.wrapper { 
+    background-image: url('../../images/extralargebackground.png');
+  }
 }

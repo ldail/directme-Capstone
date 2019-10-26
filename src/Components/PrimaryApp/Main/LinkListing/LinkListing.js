@@ -17,7 +17,9 @@ export default function LinkListing(props) {
     let tagList = [];
 
     //find out how many levels up we are so we can search directly from the home.
-    let path = props.router.location.pathname;
+    let router = props.router || {};
+    let location = router.location || {};
+    let path = location.pathname || '';
     let prePath = '';
       if (path !== '/') {
         if (path.includes('/')) {
@@ -53,11 +55,11 @@ export default function LinkListing(props) {
             <h5>{createTagListing()}</h5>
           </div>
           <div className="rightSide">
-            <Link to="#" onClick={(e) => addTag(e)} className="addTagButton"></Link>
+            <button type="submit" onClick={(e) => addTag(e)} className="addTagButton"></button>
           </div>
         </div>
         <AddTagForm {...props} id={id} results={results} listing={listing} />
-        <p class="linkDescription">{description}</p>
+        <p className="linkDescription">{description}</p>
       </div>
     </li>
   )

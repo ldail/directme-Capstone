@@ -23,10 +23,14 @@ export default class MainNav extends React.Component {
 
   }
   render() {
-    let path = this.props.router.location.pathname;
-    if (this.props.location.search.includes('?tags')) { this.changeActive('tags') }
-    else if (this.props.location.search.includes('?listings')) { this.changeActive('listings') }
-    else if (this.props.location.search.includes('?tag=')) { 
+    let props = this.props || {}
+    let router = props.router || {};
+    let location = router.location || {};
+    let search = location.search || [];
+    let path = location.pathname || '';
+    if (search.includes('?tags')) { this.changeActive('tags') }
+    else if (search.includes('?listings')) { this.changeActive('listings') }
+    else if (search.includes('?tag=')) { 
       if (path === '/') {
         this.changeActive('tags') 
       }

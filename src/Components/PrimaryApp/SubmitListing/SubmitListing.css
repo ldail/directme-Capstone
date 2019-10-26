@@ -1,3 +1,4 @@
+
 .submit-listing main {
   padding: 20px;
   text-align: center;
@@ -22,4 +23,116 @@
 .tagListingSubmit {
   margin-right: 20px;
   padding-right: 20px;
+}
+
+#submitLink h3 {
+  background-color: #b0c1ce;
+  color: #314d66;
+  font-weight: bold;
+  padding: 5px 5px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.main.wrapper .main.submit-listing {
+  border: 1px solid black;
+  text-align: center;
+}
+
+#submitLink {
+  text-align: center;
+}
+
+#submitLink label {
+  margin-bottom: 15px;
+  width: 60%;
+  margin: 0 auto;
+  display: block;
+}
+
+#submitLink input {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+input#tagList {
+  margin-bottom: 0px;
+  display: block;
+  width: 30%;
+}
+
+#submitLink .smallAddTagButton {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+}
+#submitLink textarea {
+  width: 60%;
+  text-align: center;
+}
+
+#submitLink #submitTheForm {
+  background-color: #314d66;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 1px solid #314d66;
+  margin-right: 5px;
+}
+
+#submitLink #cancelTheForm {
+  background-color: white;
+  border: 1px solid #314d66;
+  color: #314d66;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin-left: 5px;
+}
+
+#submitLink #submitTheForm:hover, #submitLink #submitTheForm:active {
+  background-color: #eae870;
+  color: #314d66;
+}
+
+#submitLink #cancelTheForm:hover, #submitLink #cancelTheForm:active {
+  background-color: #ddd;
+}
+
+#submitLink .tagName {
+  width: 30%;
+  margin: 0 auto;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+#submitLink .tagName:hover, #submitLink .tagName:active, #submitLink .hubListTags:hover * {
+  color: #314d66;
+  background-color: #eae870;
+  cursor: pointer;
+}
+
+#submitLink ul .smallDivider {
+  width: 30%;
+  height: 1px;
+  background-color: #a96060;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.tagListingSubmit {
+  color: #fff;
+}
+
+#submitLink .tagName a {
+  color: #fff;
+}
+
+#submitLink .tagName {
+  cursor: pointer;
 }

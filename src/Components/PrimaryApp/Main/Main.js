@@ -4,7 +4,6 @@ import {withRouter} from 'react-router'
 
 //Components
 import MainNav from './MainNav/MainNav';
-import MainNavNumbers from './MainNavNumbers/MainNavNumbers'
 import MainHubs from './MainHubs/MainHubs'
 import MainTags from './MainTags/MainTags';
 import SubmitListing from '../SubmitListing/SubmitListing'
@@ -31,11 +30,14 @@ class Main extends React.Component {
   }
 
   render() {
+    let props = this.props;
+    let state = props.state;
+    let error = state.error;
       return(
         <main>
           <MainNav router={this.props.router} {...this.props}/>
           {/* <MainNavNumbers router={this.props.router} {...this.props}/> */}
-          {this.checkPage()}
+          {error===true ? <main class="errorMessage">There has been an error! Please refresh or try again</main> : this.checkPage()}
         </main>
       );
   }

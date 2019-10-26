@@ -8,7 +8,9 @@ import checkPath from '../../../utils/checkPath';
 
 export default function MainHubs(props) {
 
-  let path = props.router.location.pathname;
+  let router = props.router || {};
+  let location = router.location || {};
+  let path = location.pathname || '';
   let check = checkPath(props,path) // returns the currentHub (unique) id and if the path is missing.
   let hubList = getHubList(props, check.currentHub); //returns the list of categories within. Empty if none.
 

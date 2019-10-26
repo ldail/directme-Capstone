@@ -2,8 +2,9 @@
 import onlyUnique from './onlyUnique'
 
 export default function getListingsByPath(props,path) {
-  let tags = props.state.tags || [];
-  let listings = props.state.listings || [];
+  let state = props.state || {};
+  let tags = state.tags || [];
+  let listings = state.listings || [];
   if (path === '/') {
     return listings;
   }

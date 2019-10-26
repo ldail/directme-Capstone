@@ -75,10 +75,11 @@ li {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  padding: 20px 0px;
 }
 
 .TagSingles ul a {
-  width: 50%;
+  width: 40%;
   text-align: center;
   height: 50px;
   display: flex;
@@ -86,16 +87,15 @@ li {
   justify-content: center;
 }
 
-.TagSingles a:hover {
-  background-color: #314d66;
-}
-
-.TagSingles a:hover {
-  color: white;
+.TagSingles a:hover, .TagSingles a:active {
+  background-color: #eae870;
+  color: #314d66;
 }
 
 .TagSingles a {
-  color: #314d66;
+  color: #fff;
+  background-color: #314d66;
   font-weight: bold;
   width: 100%;
+  margin: 20px;
 }

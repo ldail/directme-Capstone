@@ -1,6 +1,7 @@
 //Dependencies
 import React from 'react';
 import {Link} from 'react-router-dom';
+import extractDomain from 'extract-domain'
 
 //Components
 import checkPath from '../../utils/checkPath';
@@ -86,6 +87,8 @@ export default class submitListing extends React.Component {
             this.props.addListing(submitListingObject);
 
             //Check if Tags exist. If not, add them.
+            let addingUrl = extractDomain(this.state.url)
+            newAdding.push(addingUrl)
             let addingTags = newAdding;
             let hub = this.state.hub;
             let allTags = this.props.state.tags;
@@ -183,11 +186,11 @@ export default class submitListing extends React.Component {
   showAddingTags = () => {
     if (this.state.addingTags.length !== 0) {
       let display = this.state.addingTags.map(tagName => {
-        return <div>#{tagName.toLowerCase()} - <Link onClick={(e) => {
-            e.preventDefault();
-            let newAddingTags = this.state.addingTags.filter(tag => tag.toLowerCase() !== tagName.toLowerCase());
-            this.setState({addingTags: newAddingTags, tagError: false});
-          }}>[-x-]</Link></div>;
+        return <div className="tagName" onClick={(e) => {
+          e.preventDefault();
+          let newAddingTags = this.state.addingTags.filter(tag => tag.toLowerCase() !== tagName.toLowerCase());
+          this.setState({addingTags: newAddingTags, tagError: false});
+        }}>#{tagName.toLowerCase()}</div>;
         });
       return display;
     }
@@ -210,7 +213,7 @@ export default class submitListing extends React.Component {
   hubList = () => {
     let jsx = '';
     if (this.state.hub.length !== 0) {
-      jsx = this.state.hub.map(hub => <li class="tagListingSubmit">#{hub.toLowerCase()}</li>)
+      jsx = this.state.hub.map(hub => <li className="tagListingSubmit tagName" onClick={(e) => this.removeHub(e)}>#{hub.toLowerCase()}</li>)
     }
     return jsx;
   }
@@ -246,6 +249,7 @@ export default class submitListing extends React.Component {
     let props = this.props || {};
     let router = props.router || {}
     let location = router.location || {};
+    let history = router.history || {push: function() {}};
     let path = location.pathname || '';
     let check = checkPath(this.props,path) // returns the currentHub (unique) id and if the path is missing.
     if (check.missingPath) {
@@ -260,25 +264,26 @@ export default class submitListing extends React.Component {
             <input type="text" id="title" name="title" placeholder="listing title" onChange={(e) => this.setState({title: e.target.value})} required />
             <label htmlFor ="url">URL:</label>
             <input type="text" id="url" name="url" placeholder="http://..." onChange={(e) => this.checkUrl(e)} required/>
-            {this.state.urlError && <div class="tagError">Please enter a URL starting with 'http://'</div>}
-            {this.state.urlDuplicateError && <div class="tagError">This listing URL has been submitted before! Cannot duplicate</div>}
+            {this.state.urlError && <div className="tagError">Please enter a URL starting with 'http://'</div>}
+            {this.state.urlDuplicateError && <div className="tagError">This listing URL has been submitted before! Cannot duplicate</div>}
             <label htmlFor="description">Description: </label>
-            <input type="text" id="description" name="description" placeholder="description" onChange={(e) => this.setState({description: e.target.value})}/>
+            <textarea id="description" name="description" placeholder="description" onChange={(e) => this.setState({description: e.target.value})}/>
             <label htmlFor="tagList">Tags:</label>
+            {this.state.tagError && <div className="errorMessage">Please enter a new tag that that only has letters and numbers!</div>}
             <input type="text" id="tagList" value={this.state.tagText} onChange={(e) => this.validateTag(e)} onFocus={() => this.setState({focus: true})} onBlur={() => this.setState({focus: false})} name="tagList" placeholder="+" />
-            {this.state.tagError && <div class="tagError">Please enter a new tag that that only has letters and numbers!</div>}
-            <button type="submit" onClick={(e) => {
+            <button type="submit" className="smallAddTagButton" onClick={(e) => {
               e.preventDefault();
-              this.addTag()}}>+</button>
+              this.addTag()}}></button>
             <ul>
-              <li>{this.hubList()}{this.returnHub()}</li>
+              <li className="hubListTags">{this.hubList()}</li>
+              {this.state.hub.length !== 0 ? <li className="smallDivider"></li> : <div></div>}
               <li>{this.showAddingTags()}</li>
             </ul>
 
-            <button type="submit">Submit</button>
-            <button type="button" onClick={(e) => {
+            <button type="submit" id="submitTheForm">Submit</button>
+            <button type="button" id="cancelTheForm" onClick={(e) => {
                 e.preventDefault();
-                this.props.router.history.push(this.props.router.location.pathname);
+                history.push(location.pathname);
               }}>Cancel</button>
           </form>
       );

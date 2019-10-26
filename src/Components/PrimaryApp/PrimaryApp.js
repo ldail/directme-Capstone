@@ -1,24 +1,22 @@
 //Dependencies
 import React from 'react';
-import {Route} from 'react-router-dom';
 
 //Components
 import HeaderTitle from './Header/HeaderTitle/HeaderTitle';
-import InfoBox from './Header/InfoBox/InfoBox';
-import AccountBox from './Header/AccountBox/AccountBox';
 import SearchBar from './Header/SearchBar/SearchBar';
 import LocationBar from './Header/LocationBar/LocationBar';
 
 import Main from './Main/Main';
-import SubmitListing from './SubmitListing/SubmitListing'
 
 import SubmitButton from './Main/SubmitButton/SubmitButton';
-import SortOptions from './SortOptions/SortOptions';
 
 //CSS
 import './PrimaryApp.css'
 
 export default function PrimaryApp(props) {
+
+  let state = props.state || {};
+  let error = state.error || {};
 
 
   return(
@@ -37,7 +35,7 @@ export default function PrimaryApp(props) {
 
 
       {/*Main*/}
-      {props.state.error ? <div class="errorMessage">There has been an error! Please refresh or try again</div> : <Main {...props} router={props.router} /> }
+      <Main {...props} router={props.router} />
       <SubmitButton router={props.router} />
 
       {/*Footer*/}

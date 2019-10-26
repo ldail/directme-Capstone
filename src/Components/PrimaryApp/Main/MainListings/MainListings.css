@@ -8,7 +8,7 @@
   flex-direction: column;
 }
 
-.listing:hover {
+.listing:hover, .listing:active {
   background-color: #d7e9f7;
 }
 
@@ -19,26 +19,26 @@
   width: 100%;
 }
 
-.listing .catListingInfo a, .listing .catListingInfo {
+.listing .catListingInfo a {
   color: #314d66;
 }
 
-.listing .tagName {
+.tagName {
   background-color: #314d66;
   margin: 3px;
   padding: 5px;
   font-size: 14px;
 }
 
-.listing .tagName a {
+.listing .catListingInfo .tagName a {
   color: white;
 }
 
-.listing .tagName:hover {
+.tagName:hover, .tagName:active {
   background-color: #eae870;
 }
 
-.listing .tagName:hover a {
+.tagName:hover a, .tagName:active a {
   color: #314d66;
 }
 
@@ -85,12 +85,13 @@ h5 span {
   display: flex;
 }
 
-.tagName { 
+.listing .tagName { 
   display: inline-block;
   margin-right: 10px;
 }
 
 .addTagButton {
+  border: none;
   background-image: url('../../../../images/addicon-blue.png');
   background-size: contain;
   width: 20px;
@@ -101,7 +102,7 @@ h5 span {
   border-radius: 50%;
 }
 
-.addTagButton:hover {
+.addTagButton:hover,.addTagButton:active {
   background-image: url('../../../../images/addicon-white.png');
   background-color: #314d66;
 }
@@ -117,7 +118,7 @@ h5 span {
   align-items: center;
 }
 
-#addTagForm button {
+.smallAddTagButton {
   background-image: url('../../../../images/addicon-white.png');
   background-size: contain;
   width: 16px;
@@ -130,7 +131,7 @@ h5 span {
   border-radius: 50%;
 }
 
-#addTagForm button:hover {
+.smallAddTagButton:hover, .smallAddTagButton:active {
   background-color: #eae870;
   background-image: url('../../../../images/addicon-blue.png')
 }
