@@ -28,7 +28,7 @@ export default function MainTags(props) {
   return (
       <section className="TagSingles">
         <div className="tagsInfo">
-          <h4>More tags connected to these:</h4>
+          <h4>Similar tags (by popularity):</h4>
         <ul>
           {makeTagsDisplay()}
         </ul>

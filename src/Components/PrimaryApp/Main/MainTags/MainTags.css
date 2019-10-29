@@ -63,7 +63,7 @@ li {
 }
 
 .tagsInfo h4 {
-  background-color: #b0c1ce;
+  background-color: #d7e9f7;
   color: #314d66;
   font-weight: bold;
   padding: 5px 5px;
@@ -85,6 +85,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: normal;
 }
 
 .TagSingles a:hover, .TagSingles a:active {
@@ -94,7 +95,7 @@ li {
 
 .TagSingles a {
   color: #fff;
-  background-color: #314d66;
+  background-color: #ea5a5a;
   font-weight: bold;
   width: 100%;
   margin: 20px;

@@ -1,7 +1,7 @@
 *, label {
   margin: 0px;
   padding: 0px;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
   box-sizing: border-box;
   transition: 0.2s all;
 }
@@ -56,7 +56,8 @@ a {
 
 body, html, #root>.main.wrapper { 
   height: 100%;
-  background-image: url('../../images/background.png');
+  /* background-image: url('../../images/background.png'); */
+  background-color: #314d66;
   background-position-x: center;
   background-position-y: top;
   background-attachment: fixed;
@@ -81,9 +82,8 @@ body, html, #root>.main.wrapper {
 .main.wrapper a.subCategoryListing {
   display: block;
   margin: 0px;
-  background-color: #b0c1ce;
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   color: #314d66;
 }
 
@@ -114,14 +114,19 @@ body, html, #root>.main.wrapper {
   color: #ea5a5a;
 }
 
+.main.wrapper h1 a {
+  font-family: 'PT Sans', sans-serif;
+}
+
 .main.wrapper h1 a:hover, .main.wrapper h1 a:active {
   color: #3281b3;
   transition: 0.4s all;
 }
 
-.main.wrapper h1 span {
+.main.wrapper h1 span, .main.wrapper h1 span a {
   color: #3281b3;
   font-weight: 900;
+  font-family: 'PT Sans', sans-serif;
 }
 
 .main.wrapper header a {
@@ -139,6 +144,7 @@ body, html, #root>.main.wrapper {
   font-size: 20px;
   font-weight: 500;
   padding-left: 5px;
+  margin-top: -10px;
 }
 
 .main.wrapper .websiteButton {
@@ -165,7 +171,7 @@ body, html, #root>.main.wrapper {
   background-repeat: no-repeat;
   padding-left: 30px;
   border: 1px solid #855656;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .main.wrapper #searchTag {
@@ -222,7 +228,7 @@ body, html, #root>.main.wrapper {
   height: 2px;
   width:21px;
   display: block;
-  background-color: #dadc30;
+  background-color:  #ea9f9f;
 }
 
 .main.wrapper .nextLocation {
@@ -236,7 +242,7 @@ body, html, #root>.main.wrapper {
 .main.wrapper .lineBar {
   flex: 1;
   height: 2px;
-  background-color: #dadc30;
+  background-color:  #ea9f9f;
 }
 
 .main.wrapper main {
@@ -254,6 +260,8 @@ body, html, #root>.main.wrapper {
 .main.wrapper .chooseHeader {
   display: flex;
   justify-content: space-evenly;
+  font-family: 'PT Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .main.wrapper .chooseHeader a {
@@ -278,12 +286,13 @@ body, html, #root>.main.wrapper {
 
 
 .main.wrapper .chooseHeader div:not(.active) {
-  background-color: #ea9f9f;
-  color: #922d2d;
+  background-color: #b0c1ce;
+  color: #314d66;
 } 
 
 .main.wrapper .chooseHeader .firstNav {
   border-right: 1px solid #922d2d;
+  font-family: 'Lato', sans-serif;
 }
 
 .main.wrapper .chooseHeader .middleNav {
@@ -291,7 +300,7 @@ body, html, #root>.main.wrapper {
 }
 
 .main.wrapper .chooseHeader a div:not(.active) {
-  color: #ab3e3e;
+  color: #314d66;
 }
 
 .main.wrapper .chooseHeader a  div.active:hover, .main.wrapper .chooseHeader a  div.active:active {
@@ -301,7 +310,7 @@ body, html, #root>.main.wrapper {
 }
 
 .main.wrapper .chooseHeader a div:not(.active):hover, .main.wrapper .chooseHeader a div:not(.active):active {
-  color: #fff;
+  color: #ab3e3e;
   transition: 0.2s all;
 }
 
@@ -348,6 +357,7 @@ body, html, #root>.main.wrapper {
   display: flex;
   align-content: center;
   margin-bottom: 5px;
+  background-color: #d7e9f7;
 }
 
 .main.wrapper .catListing .blueArrow {
@@ -363,7 +373,7 @@ body, html, #root>.main.wrapper {
   font-weight: bold;
   text-decoration: none;
   padding-left: 3px;
-  font-size: 16px;
+  font-size: 19px;
 }
 
 .main.wrapper .catListingInfo {
@@ -375,6 +385,11 @@ body, html, #root>.main.wrapper {
   flex-direction: column;
   margin: 5px;
   width: 50px;
+}
+
+h4 {
+  font-weight: normal;
+  font-size: 16px;
 }
 
 .main.wrapper .catListingNumbersItem {
@@ -480,7 +495,7 @@ body, html, #root>.main.wrapper {
 .main.wrapper .keepHub {
   display: flex;
   margin-top: 5px;
-  font-size: 16px;
+  font-size: 15px;
   color: white;
   font-family: 'PT Sans', sans-serif;
 }

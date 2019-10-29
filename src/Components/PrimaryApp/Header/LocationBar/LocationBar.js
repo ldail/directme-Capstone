@@ -32,9 +32,8 @@ function makePath(props,results) {
   let location = router.location || {};
   let path = location.pathname || '';
     let paths = results.map((tagName,index) => {
-      console.log(results);
-      if (index !== results.length-1) { // on the last one
-        if (index === 0) { //if we're on the current page
+      if (index !== results.length-1) { // not on the last one
+        if (index === 0) { //if we're on the first/current page
           if (!results[1]) {
             return <div key={index} className="currentLocation"><Link to={`${path}`}>#{tagName}</Link></div>
           }
@@ -42,8 +41,21 @@ function makePath(props,results) {
             return <div key={index}><div className="currentLocation"><Link to={`${path}`}>#{tagName}</Link></div><span className="yellowArrow"></span></div>
           }
         }
+        else {
         //return links for the middle paths:
-        if (index === 1) {
+          let newPath = '/';
+          let middleResults = results;
+          middleResults.pop();
+          middleResults.shift();
+          let goTo = index + 1;
+          for (let j = middleResults -1 ;j>=0;j--) {
+            newPath += `${middleResults[j]}/`
+          }
+          return <div key={index} className="nextLocation"><Link to={newPath}>#{tagName}</Link></div>
+
+
+          /*
+        else if (index === 1) {
           if (!results[index+1]) {
             return <div key={index} className="nextLocation"><Link to='./'>#{tagName}</Link></div>
           }
@@ -51,7 +63,7 @@ function makePath(props,results) {
             return <div key={index}><div className="nextLocation"><Link to='./'>#{tagName}</Link></div><span className="yellowLine"></span></div>
           }
         }
-        if (index === 2) {
+        else if (index === 2) {
           if (!results[index+1]) {
             return <div key={index} className="nextLocation"><Link to='../'>#{tagName}</Link></div>
           }
@@ -70,6 +82,8 @@ function makePath(props,results) {
           else {
             return <div key={index} ><div className="nextLocation"><Link to ={count}>#{tagName}</Link></div><span className="yellowLine"></span></div>
           }
+        } 
+      } */
         }
       }
       else {

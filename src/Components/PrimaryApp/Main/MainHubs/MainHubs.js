@@ -19,6 +19,7 @@ export default function MainHubs(props) {
       return <li>This is not an established path yet!</li>
     }
     if (hubList.length === 0) {
+      props.router.history.push(`${path}?listings`);
       return <li className="noFurtherHubs">There are no further hubs!</li>
     }
     return hubList.map((item,index) => <CatListing key={index} currentHub={check.currentHub} info={item} router={props.router} {...props}  />)
