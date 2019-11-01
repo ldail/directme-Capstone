@@ -1,11 +1,8 @@
-.listings {
-  width: 95%;
-  margin: 0 auto;
-}
-
 .listings .listing {
   display: flex;
   flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .listing:hover, .listing:active {
