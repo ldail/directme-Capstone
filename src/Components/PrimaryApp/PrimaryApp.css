@@ -6,6 +6,10 @@
   transition: 0.2s all;
 }
 
+#mainPage {
+  background-color: white;
+}
+
 .center {
   text-align: center;
   width: 100%;

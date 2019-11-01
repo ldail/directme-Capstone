@@ -50,7 +50,7 @@ export default class PrimaryApp extends React.Component {
 
 
       {/*Main*/}
-      <Main {...props} router={props.router} />
+      <Main {...props} router={props.router} seenLanding={this.state.seenLanding} />
       <SubmitButton router={props.router} />
 
       {/*Footer*/}

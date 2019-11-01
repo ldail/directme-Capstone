@@ -31,10 +31,10 @@ export default class LandingPage extends React.Component {
   }
 
   showMessage = () => {
-    let highlightItems = ['top','searchBar','locationBar','firstNav','hubsCatListings','firstNav', 'hubCatListingsUl', 'lastNav','submitButton', 'middleNav'];
+    let highlightItems = ['top','searchBar','locationBar','firstNav','hubsCatListings','firstNav', 'hubCatListingsUl', 'lastNav','submitButton', 'middleNav', 'TagSingles', 'mainListings', 'mainListingList', 'TagSinglesUl'];
 
     if (this.state.message === 1) {
-      if (this.props.router.location.pathname !== '/programming') { this.props.router.history.push('/programming'); }
+      if (this.props.router.location.pathname !=='/programming') { this.props.router.history.push('/programming'); }
       highlightItems.forEach(item => this.setZIndex(item,1));
       let focusItem = ['top']
       focusItem.forEach(item => this.setZIndex(item, 5));
@@ -56,25 +56,20 @@ export default class LandingPage extends React.Component {
     }
 
     else if (this.state.message === 4) {
+      this.pushToHubs()
       highlightItems.forEach(item => this.setZIndex(item,1));
-      let focusItem = ['hubsCatListings','firstNav', 'hubCatListingsUl']
-      focusItem.forEach(item => this.setZIndex(item, 5));
       return <Message {...this.props} loadingState={this.props.state.loading} cancelState={this.cancelState} state={this.state} classInclude='fourth' changeMessageState={this.changeMessageState} title='Hubs!' message={<div><p>View all of the hubs and ones nested within.</p><p>Only listings that match all the tag names will show up!</p></div>} />
     }
 
     else if (this.state.message === 5) {
-      if (this.props.router.location.search !== '?listings') { this.props.router.history.push(`${this.props.router.location.pathname}?listings`); }
+      this.pushToListings()
       highlightItems.forEach(item => this.setZIndex(item,1));
-      let focusItem = ['hubsCatListings','middleNav', 'hubCatListingsUl']
-      focusItem.forEach(item => this.setZIndex(item, 5));
       return <Message {...this.props} loadingState={this.props.state.loading} cancelState={this.cancelState} state={this.state} classInclude='fifth' changeMessageState={this.changeMessageState} title='Listings!' message={<div><p>See all the listings submitted!</p><p>If you're in a hub, you will be able to see all of the listings that match that hub.</p></div>} />
     }
 
     else if (this.state.message === 6) {
-      if (this.props.router.location.search !== '?tags') { this.props.router.history.push(`${this.props.router.location.pathname}?tags`); }
+      this.pushToTags();
       highlightItems.forEach(item => this.setZIndex(item,1));
-      let focusItem = ['hubsCatListings','lastNav', 'hubCatListingsUl']
-      focusItem.forEach(item => this.setZIndex(item, 5));
       return <Message {...this.props} loadingState={this.props.state.loading} cancelState={this.cancelState} state={this.state} classInclude='fifth' changeMessageState={this.changeMessageState} title='Tags!' message={<div><p>See all the tags collected.</p><p>If you're in a hub, you will be able to see all of the similar tags.</p></div>} />
     }
 
@@ -91,11 +86,37 @@ export default class LandingPage extends React.Component {
     }
   }
 
+  async pushToHubs() {
+    let focusItem = ['hubsCatListings','firstNav', 'hubCatListingsUl', 'mainPage'];
+    if (this.props.router.location.search !== '?hubs') { 
+      await this.props.router.history.push(`${this.props.router.location.pathname}?hubs`);
+    }
+    await focusItem.forEach(item => this.setZIndex(item, 5));
+  }
+
+  async pushToListings() {
+    let focusItem = ['mainListings','middleNav', 'mainListingList', 'mainPage']
+    if (this.props.router.location.search !== '?listings') { 
+      await this.props.router.history.push(`${this.props.router.location.pathname}?listings`);
+    }
+    await focusItem.forEach(item => this.setZIndex(item, 5));
+  }
+
+  async pushToTags() {
+    let focusItem = ['TagSingles','lastNav', 'TagSinglesUl', 'mainPage']
+    if (this.props.router.location.search !== '?tags') { 
+      await this.props.router.history.push(`${this.props.router.location.pathname}?tags`);
+    }
+    await focusItem.forEach(item => this.setZIndex(item, 5));
+  }
   render() {
     console.log(this.props)
     if (!window.localStorage.getItem('seenLanding') && this.state.inProgress !== true) {
       window.localStorage.setItem('seenLanding',true);
       this.props.seenLandingChange();
+          if (this.props.router.location.pathname !== '/' && this.props.router.location.search !== '?hubs') {
+      this.props.router.history.push('/?hubs');
+    }
     }
     return(
       <div className="blackBackground" id="landingSplash">

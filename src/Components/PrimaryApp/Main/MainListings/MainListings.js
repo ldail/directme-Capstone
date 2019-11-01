@@ -75,8 +75,8 @@ export default function MainListings(props) {
   
   }
     return (
-      <section className="listings">
-        <ul>
+      <section id="mainListings" className="listings">
+        <ul id="mainListingList">
           {makeListingDisplay()}
         </ul>
       </section>

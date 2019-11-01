@@ -20,11 +20,11 @@ class Main extends React.Component {
     }
 
     else if (this.props.location.search.includes('?listings') || this.props.location.search.includes('?tag=')) {
-      return <MainListings router={this.props.router} {...this.props}/>
+      return <MainListings router={this.props.router} {...this.props} />
     }
 
     else if (this.props.location.search.includes('?submit')) {
-      return <SubmitListing router={this.props.router} {...this.props} />
+      return <SubmitListing router={this.props.router} {...this.props}  />
     }
 
     else {

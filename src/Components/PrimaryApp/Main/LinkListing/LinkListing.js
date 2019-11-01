@@ -33,7 +33,7 @@ export default function LinkListing(props) {
       }
     results.tagNames.forEach((tagName,index) => {
       if (tagName !== extractDomain(listing.url)) {
-        tagList.push(<li key={index} className="tagName"><Link to ={`${prePath}?tag=${tagName}`}>#{tagName}</Link> </li>)
+        tagList.push(<li key={index} className="tagName"><Link to ={`${prePath}?tag=${tagName}`} onClick={(e) => checkIfLanding(e)}>#{tagName}</Link> </li>)
       }
     });
     return tagList;
@@ -46,10 +46,16 @@ export default function LinkListing(props) {
       props.stateChange({addTag : id})
     }
   }
+
+  function checkIfLanding(e) {
+    if (!props.seenLanding) {
+      e.preventDefault();
+    }
+  }
   return (
     <li className="listing catListing">
       <div className="catListingInfo">
-      <a href={listing.url} target="_blank">
+      <a href={listing.url} target="_blank" onClick={(e) => checkIfLanding(e)}>
         <h3>{listing.name}</h3>
         <h4>{listing.url}</h4>
       </a>

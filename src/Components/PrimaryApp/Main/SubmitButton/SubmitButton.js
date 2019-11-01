@@ -6,10 +6,12 @@ import {Link} from 'react-router-dom'
 import createPath from '../../../utils/createPath'
 
 export default function SubmitButton(props) {
-  // let path = props.router.location.pathname;
-
-  
+  function checkIfLanding(e) {
+    if (!props.seenLanding) {
+      e.preventDefault();
+    }
+  }
    return(
-    <Link to='?submit'><div id="submitButton" className="submitButton"></div></Link>
+    <Link to='?submit' onClick={(e) => checkIfLanding(e)}><div id="submitButton" className="submitButton"></div></Link>
    );
 }
