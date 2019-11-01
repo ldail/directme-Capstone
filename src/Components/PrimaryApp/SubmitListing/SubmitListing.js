@@ -88,7 +88,9 @@ export default class submitListing extends React.Component {
 
             //Check if Tags exist. If not, add them.
             let addingUrl = extractDomain(this.state.url)
-            newAdding.push(addingUrl)
+            // let addingTitle = this.state.title;
+            newAdding.push(addingUrl);
+            // newAdding.push(addingTitle);
             let addingTags = newAdding;
             let hub = this.state.hub;
             let allTags = this.props.state.tags;

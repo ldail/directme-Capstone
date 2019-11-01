@@ -83,3 +83,12 @@
 #landingSplash p {
   margin-bottom: 10px;
 }
+
+.viewMore2, .viewMoreExplanation {
+  margin-top: 5px;
+}
+
+.viewMore2:hover {
+  background-color: #eae870;
+  cursor: pointer;
+}

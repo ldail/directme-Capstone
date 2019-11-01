@@ -9,6 +9,7 @@ import MainHubs from './MainHubs/MainHubs'
 import MainTags from './MainTags/MainTags';
 import SubmitListing from '../SubmitListing/SubmitListing'
 import MainListings from './MainListings/MainListings'
+import decideLoading from '../../utils/decideLoading';
 
 
 class Main extends React.Component {
@@ -35,11 +36,11 @@ class Main extends React.Component {
     let props = this.props || {}
     let state = props.state || {}
     let error = state.error || {}
-    let loading = state.loading || ''
+    let loading = decideLoading(props) || '';
     if (error === true) {
       return <div className="errorMessage">There has been an error! Please refresh or try again</div>
     }
-    else if (loading === true) {
+    else if (loading) {
       return <div className="center"><ReactLoading className="center" type={"spinningBubbles"} color={'#a96060'} height={60} width={60} /></div>
     }
     else {

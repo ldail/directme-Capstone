@@ -1,6 +1,7 @@
 //Dependencies
 import React from 'react'
 import {Link} from 'react-router-dom'
+import extractDomain from 'extract-domain'
 
 //Components
 import getAllListingTagsByListingId from '../../../utils/getAllListingTagsByListingId'
@@ -31,7 +32,9 @@ export default function LinkListing(props) {
         }
       }
     results.tagNames.forEach((tagName,index) => {
-    tagList.push(<li key={index} className="tagName"><Link to ={`${prePath}?tag=${tagName}`}>#{tagName}</Link> </li>)
+      if (tagName !== extractDomain(listing.url)) {
+        tagList.push(<li key={index} className="tagName"><Link to ={`${prePath}?tag=${tagName}`}>#{tagName}</Link> </li>)
+      }
     });
     return tagList;
   }

@@ -6,6 +6,8 @@
         "src": "^/static/(.*)",
         "dest": "/static/$1"
       },
+      { "src": "/favicon.ico", "dest": "/favicon.ico" },
+      { "src": "/manifest.json", "dest": "/site.webmanifest.json" },
       {
         "src": ".*",
         "dest": "/index.html"

@@ -79,7 +79,8 @@ li {
 }
 
 .TagSingles ul a {
-  width: 40%;
+  min-width: 200px;
+  max-width: 30%;
   text-align: center;
   height: 50px;
   display: flex;

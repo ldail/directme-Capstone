@@ -4,7 +4,7 @@ import {withRouter} from 'react-router'
 import config from './config'
 
 //Components
-import LandingPage2 from './Components/LandingPage/LandingPage2';
+import LandingPage from './Components/LandingPage/LandingPage';
 import PrimaryApp from './Components/PrimaryApp/PrimaryApp';
 
 class App extends Component {

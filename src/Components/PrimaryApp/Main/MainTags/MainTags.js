@@ -1,6 +1,7 @@
 //Dependencies
 import React from 'react';
 import {Link} from 'react-router-dom'
+import extractDomain from 'extract-domain'
 
 //Components
 import checkPath from '../../../utils/checkPath';
@@ -14,15 +15,26 @@ export default function MainTags(props) {
   function makeTagsDisplay() {
     let path = props.router.location.pathname;
     let check = checkPath(props,path);
+    let state = props.state || {};
+    let listings = state.listings || {};
     if (check.missingPath === true) {
       return <li>This is not an established path yet!</li>
     }
     let tagList = getSimilarTagsByPath(props,path) || [];
+    let showList = tagList.filter(tag => {
+      let find = listings.find(listing => {
+        let extracted = extractDomain(listing.url)
+        return extracted === tag.name
+      });
+      if (!find) {
+        return tag
+      }
+    })
     
-    if (tagList.length === 0) {
+    if (showList.length === 0) {
       return <li>There are no tags within this hub yet!</li>
     }
-    return tagList.map((item,index) => <Link to={`?tag=${item.name}`} key={index}><li><span class="insideBox">#{item.name}</span></li></Link>)
+    return showList.map((item,index) => <Link to={`?tag=${item.name}`} key={index}><li><span className="insideBox">#{item.name}</span></li></Link>)
     // currentHub={check.currentHub} info={item} router={props.router} {...props}
   }
   return (

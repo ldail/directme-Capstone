@@ -56,8 +56,8 @@ a {
 
 body, html, #root>.main.wrapper { 
   height: 100%;
-  /* background-image: url('../../images/background.png'); */
-  background-color: #314d66;
+  background-image: url('../../images/background.png');
+  /* background-color: #314d66; */
   background-position-x: center;
   background-position-y: top;
   background-attachment: fixed;

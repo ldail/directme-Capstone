@@ -37,9 +37,10 @@
 
 .tagName:hover, .tagName:active {
   background-color: #eae870;
+  color: #314d66;
 }
 
-.tagName:hover a, .tagName:active a {
+.listing .tagName:hover a, .tagName:active a {
   color: #314d66;
 }
 

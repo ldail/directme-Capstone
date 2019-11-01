@@ -2,7 +2,7 @@
 import React from 'react';
 
 //Components
-import LandingPage2 from '../LandingPage/LandingPage2';
+import LandingPage from '../LandingPage/LandingPage';
 
 import HeaderTitle from './Header/HeaderTitle/HeaderTitle';
 import SearchBar from './Header/SearchBar/SearchBar';
@@ -35,7 +35,7 @@ export default class PrimaryApp extends React.Component {
 
   return(
     <div className="main wrapper">
-      {!window.localStorage.getItem('seenLanding') && this.state.seenLanding === false ? <LandingPage2 seenLandingChange={this.seenLandingChange} /> : ''}
+      {!window.localStorage.getItem('seenLanding') && this.state.seenLanding === false ? <LandingPage seenLandingChange={this.seenLandingChange} router={props.router} {...props} /> : ''}
 
       {/*Header*/}
       <header>

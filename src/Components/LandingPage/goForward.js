@@ -6,7 +6,7 @@ const goForward = (props) => {
   let state = props.state;
   let currentID = state.message;
   let inProgress = state.inProgress;
-  if (currentID === 6) {
+  if (currentID === 7) {
     props.cancelState();
   }
   else {

@@ -19,13 +19,10 @@ Future deployment will include:
 
 ## Technology 
 * ReactJS
-* Express
-* Postgres
 * HTML5
 * CSS3
 * Mocha
 * Chai
-* Supertest
 * Enzyme
 * Jest
 
@@ -51,7 +48,7 @@ The hierarchy for the client is as follows:
 	1. Landing Page --> // *User greeted with an onboarding experience for their first time*
 		1. goBack --> // *Landing-specific utility function to see the last message*
 		1. goForward --> // *Landing-specific utility function to see the next message*
-		1. LandingPage2 --> // *This houses the bulk of the landing page onboarding experience*
+		1. LandingPage --> // *This houses the bulk of the landing page onboarding experience*
 		1. Message --> // *The message that appears on the screen*
 	1. Primary App --> // *This houses all of the main application*
 		1. Header
@@ -72,15 +69,3 @@ The hierarchy for the client is as follows:
 1. FutureComponents --> // *Components under construction for future deployments*
 1. images
 1. tests
-
-#### Server-side Application
-1. migrations
-1. seeds 
-1. src
-	1. router
-		1. router-service --> // *all knex functions that connect the node server to the postgres database*
-		1. router --> *the endpoints for the server that connect the API calls to the router-service*
-	1. app --> // *the express application including all middleware and connects the router*
-	1. config --> // *configuration data*
-	1. server --> // *entry point for the application. Starts the server and knex database*
-1. test
