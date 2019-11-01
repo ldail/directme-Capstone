@@ -10,19 +10,23 @@ export default function getListingsByPath(props,path) {
   }
   let newPath = path.slice(1);
   if (!newPath.includes('/')) { //single Path
-    let tag = tags.find(tag => {
-      if (tag.name) {
-        return tag.name.toLowerCase() === newPath.toLowerCase()
-      }
-    }) || {};
-    let id = tag.id || 1;
-    let filteredListings = listings.filter(listing => listing.tag_id === id)
-    return filteredListings;
+    return processSinglePath(tags,newPath,listings)
   }
 
   //get Path Tag IDs
   let tagsArray = newPath.split('/')
-  let tagsArrayObjects = tagsArray.map(tagName => {
+  let newestPath = [];
+  if (tagsArray.includes('')) { // includes a trailing slash somewhere, probably at the end.
+    newestPath = tagsArray.filter(item => item !== '');
+    if (newestPath.length === 1) {
+      return processSinglePath(tags,newestPath[0],listings);
+    }
+  }
+  else { 
+    newestPath = tagsArray
+  }
+
+  let tagsArrayObjects = newestPath.map(tagName => {
     return tags.find(tag => {
       if (tag.name) {
         return tag.name.toLowerCase() === tagName.toLowerCase();
@@ -49,4 +53,15 @@ export default function getListingsByPath(props,path) {
 
   let final = remainingLinks.map(linkId => listings.find(listing => listing.id === linkId))
   return final;
+}
+
+function processSinglePath(tags,newPath,listings) {
+  let tag = tags.find(tag => {
+    if (tag.name) {
+      return tag.name.toLowerCase() === newPath.toLowerCase()
+    }
+  }) || {};
+  let id = tag.id || 1;
+  let filteredListings = listings.filter(listing => listing.tag_id === id)
+  return filteredListings;
 }

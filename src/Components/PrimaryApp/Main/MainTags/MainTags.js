@@ -12,11 +12,6 @@ import './MainTags.css'
 
 export default function MainTags(props) {
 
-  function checkIfLanding(e) {
-    if (!props.seenLanding) {
-      e.preventDefault();
-    }
-  }
   function makeTagsDisplay() {
     let path = props.router.location.pathname;
     let check = checkPath(props,path);
@@ -39,13 +34,14 @@ export default function MainTags(props) {
     if (showList.length === 0) {
       return <li>There are no tags within this hub yet!</li>
     }
-    return showList.map((item,index) => <Link to={`?tag=${item.name}`} key={index} className="tagListingItem" onClick={(e) => checkIfLanding(e)}><li><span className="insideBox">#{item.name}</span></li></Link>)
+    return showList.map((item,index) => <Link to={`?tag=${item.name}`} key={index} className="tagListingItem"><li><span className="insideBox">#{item.name}</span></li></Link>)
     // currentHub={check.currentHub} info={item} router={props.router} {...props}
   }
+
   return (
       <section id="TagSingles" className="TagSingles">
         <div className="tagsInfo">
-          <h4>Similar tags (by popularity):</h4>
+          <h4>{props.router.location.pathname==='/' ? `All` : `Similar`} tags (by popularity):</h4>
         <ul id="TagSinglesUl">
           {makeTagsDisplay()}
         </ul>

@@ -5,6 +5,7 @@ import extractDomain from 'extract-domain'
 
 //Components
 import checkPath from '../../utils/checkPath';
+import onlyUnique from '../../utils/onlyUnique';
 
 //CSS
 import './SubmitListing.css';
@@ -87,11 +88,16 @@ export default class submitListing extends React.Component {
             this.props.addListing(submitListingObject);
 
             //Check if Tags exist. If not, add them.
+
+            //add the domain as a 'hidden tag'
             let addingUrl = extractDomain(this.state.url)
-            // let addingTitle = this.state.title;
             newAdding.push(addingUrl);
-            // newAdding.push(addingTitle);
-            let addingTags = newAdding;
+
+            //add the title as individual tags
+            let titleTags = this.state.title.split(' ');
+            titleTags.forEach(tag => newAdding.push(tag));
+
+            let addingTags = newAdding.filter(onlyUnique);
             let hub = this.state.hub;
             let allTags = this.props.state.tags;
             let listingTagList = [];
@@ -266,7 +272,7 @@ export default class submitListing extends React.Component {
             <input type="text" id="title" name="title" placeholder="listing title" onChange={(e) => this.setState({title: e.target.value})} required />
             <label htmlFor ="url">URL:</label>
             <input type="text" id="url" name="url" placeholder="http://..." onChange={(e) => this.checkUrl(e)} required/>
-            {this.state.urlError && <div className="tagError">Please enter a URL starting with 'http://'</div>}
+            {this.state.urlError && <div className="errorMessage">Please enter a URL starting with 'http://'</div>}
             {this.state.urlDuplicateError && <div className="tagError">This listing URL has been submitted before! Cannot duplicate</div>}
             <label htmlFor="description">Description: </label>
             <textarea id="description" name="description" placeholder="description" onChange={(e) => this.setState({description: e.target.value})}/>

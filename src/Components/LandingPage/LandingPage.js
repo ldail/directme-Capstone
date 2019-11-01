@@ -110,7 +110,6 @@ export default class LandingPage extends React.Component {
     await focusItem.forEach(item => this.setZIndex(item, 5));
   }
   render() {
-    console.log(this.props)
     if (!window.localStorage.getItem('seenLanding') && this.state.inProgress !== true) {
       window.localStorage.setItem('seenLanding',true);
       this.props.seenLandingChange();

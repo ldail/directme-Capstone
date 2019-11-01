@@ -27,11 +27,12 @@ export default function getSimilarTagsByPath(props,oldPath) {
         return processSinglePath(props,path.listings,tags);
       }
     }
-
-    let pathArray = path.split('/');
+    else { 
+      newPath = checkPath;
+    }
 
     //get the IDs of each tag in the path to exclude later on.
-    let pathArrayFullTags = pathArray.map(name => tags.find(tag => {
+    let pathArrayFullTags = newPath.map(name => tags.find(tag => {
       if (tag.name){
         let find = tag.name.toLowerCase() === name.toLowerCase();
         return find;
@@ -41,7 +42,7 @@ export default function getSimilarTagsByPath(props,oldPath) {
 
     //check if any of the results are empty, otherwise gather them.
     let empty = false;
-    let singlePathData = pathArray.map(name => {
+    let singlePathData = newPath.map(name => {
       let results = processSinglePath(props,name,listings,tags);
       if (!results || results.length === 0) { empty = true}
       return results;

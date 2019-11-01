@@ -25,8 +25,8 @@
   padding: 40px 40px;
   background-color: white;
   border: 1px solid #ea9f9f;
-  z-index: 4;
-  max-height: 300px;
+  z-index: 7;
+  min-height: 150px;
   max-width: 90%;
 }
 
