@@ -1,19 +1,19 @@
 {
   "version": 2,
+  "alias":"directme",
   "name": "directme",
+
   "routes": [
       {
         "src": "^/static/(.*)",
         "dest": "/static/$1"
       },
+      { "src": "/favicon.ico", "dest": "/favicon.ico" },
+      { "src": "/manifest.json", "dest": "/manifest.json" },
       {
-        "src": "^/favicon.ico$",
-        "dest": "/favicon.ico"
+        "src": "/service-worker.js",
+        "dest": "/service-worker.js"
       },
-      {
-        "src": "^/manifest.json$",
-        "dest": "/manifest.json"
-       },
       {
         "src": ".*",
         "dest": "/index.html"
