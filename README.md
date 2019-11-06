@@ -29,13 +29,13 @@ Future deployment will include:
 ## Screenshots
 
 #### `MainHubs` View
-![Hubs View](/src/images/Directme_hubs_screenshot.png)
+![Hubs View](/src/images/Directme_hubs__screenshot.png)
 
 #### `MainListings` View
-![Listings View](/src/images/Directme_listings_screenshot.png)
+![Listings View](/src/images/Directme_listings__screenshot.png)
 
 #### `MainTags` View
-![Tags View](/src/images/Directme_tags_screenshot.png)
+![Tags View](/src/images/Directme_tags__screenshot.png)
 
 
 ## Details
