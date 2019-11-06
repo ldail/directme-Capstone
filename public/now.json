@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "alias":"directme",
-  "name": "directme",
+  "alias":"directme-v2",
+  "name": "directme-v2",
 
   "routes": [
       {
