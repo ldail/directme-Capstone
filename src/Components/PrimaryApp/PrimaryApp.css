@@ -249,6 +249,9 @@ body, html, #root>.main.wrapper {
   background-color:  #ea9f9f;
 }
 
+.main.wrapper .noInnerHubs {
+  cursor: default;
+}
 .main.wrapper main {
   display: flex;
   flex-direction: column;
@@ -315,6 +318,11 @@ body, html, #root>.main.wrapper {
 
 .main.wrapper .chooseHeader a div:not(.active):hover, .main.wrapper .chooseHeader a div:not(.active):active {
   color: #ab3e3e;
+  transition: 0.2s all;
+}
+
+.main.wrapper .chooseHeader a div:not(.active).noInnerHubs:hover, .main.wrapper .chooseHeader a div:not(.active).noInnerHubs:active {
+  color: #314d66;
   transition: 0.2s all;
 }
 
