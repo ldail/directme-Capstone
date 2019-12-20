@@ -1,7 +1,7 @@
 # Directme
 
 ## Links
-* **[Live App](https://directme.now.sh/)**
+* **[Live App](https://directme.ldail.now.sh/)**
 
 * [Client Repository](https://github.com/ldail/directme-Capstone)
 * [Server repository](https://github.com/ldail/directme-Capstone-server)
